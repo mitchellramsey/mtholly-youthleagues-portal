@@ -1,0 +1,16 @@
+
+input {
+    display: inline-block;
+    margin: 10px;
+}
+
+h5,
+h4 {
+    padding-top: 40px;
+}
+
+.form-btn {
+    margin-top: 7px;
+    border-radius: 0px;
+    display: block;
+}

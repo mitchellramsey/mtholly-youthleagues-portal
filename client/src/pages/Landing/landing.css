@@ -1,0 +1,15 @@
+
+.landing-bg {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.56), 
+        rgba(255, 255, 255, 0.56)
+      ),
+    url("../../assets/images/landing-bg.jpg");
+    background-size: cover;
+    height: 750px;
+}
+
+.col-home-bg {
+    background-color: rgba(255, 255, 255, 0.568);
+}
+
