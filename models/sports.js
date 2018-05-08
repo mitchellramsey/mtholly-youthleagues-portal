@@ -8,5 +8,12 @@ module.exports = function (sequelize, DataTypes) {
       }
     }
   });
+
+  Sport.associate = function (models) {
+		Sport.hasMany(models.Team, {
+			onDelete: "cascade"
+		});
+  };
+    
   return Sport;
 };

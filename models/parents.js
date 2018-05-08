@@ -65,7 +65,13 @@ module.exports = function (sequelize, DataTypes) {
         len: [0, 5000]
       }
     }
-
   });
+
+  Parent.associate = function (models) {
+		Parent.hasMany(models.Kids, {
+			onDelete: "cascade"
+		});
+  };
+
   return Parent;
 };

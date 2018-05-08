@@ -72,7 +72,21 @@ module.exports = function (sequelize, DataTypes) {
 				len: [0, 5000]
 			}
 		}
-
 	});
+
+	Coach.associate = function (models) {
+		Coach.hasMany(models.Parent, {
+			onDelete: "cascade"
+		});
+
+		Coach.hasMany(models.Kids, {
+			onDelete: "cascade"
+		});
+
+		Coach.hasMany(models.Practice, {
+			onDelete: "cascade"
+		});
+	};
+
 	return Coach;
 };

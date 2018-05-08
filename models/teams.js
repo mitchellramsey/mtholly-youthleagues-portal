@@ -22,5 +22,16 @@ module.exports = function (sequelize, DataTypes) {
         }
       }
     });
+
+    Team.associate = function (models) {
+      Team.hasMany(models.Coach, {
+        onDelete: "cascade"
+      });
+  
+      Team.hasMany(models.GamesInfo, {
+        onDelete: "cascade"
+      });
+    };
+    
     return Team;
   };
