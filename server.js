@@ -4,6 +4,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const db = require('./models');
 const passport = require("passport");
 const logger = require("morgan");
 const session = require("express-session");
@@ -37,6 +38,8 @@ const clientControllers = require("./controllers/client-controllers");
 app.use("/client-controllers", clientControllers);
 
 // Starting the server
-app.listen(PORT, function() {
+db.sequelize.sync({force:true}).then(function() {
+  app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
+  });
 });

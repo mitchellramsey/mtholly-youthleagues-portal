@@ -44,7 +44,7 @@ class LogIn extends Component {
                         name="Email"
                         onChange={this.handleInputChange}
                         type="email"
-                        placeholder="First Name"
+                        placeholder="Email"
                     />
                     <input
                         value={this.state.password}
