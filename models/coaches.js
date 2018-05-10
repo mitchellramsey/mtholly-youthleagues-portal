@@ -1,42 +1,42 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function (sequelize, Datatypes) {
 	var Coach = sequelize.define("Coach", {
 		first_name: {
-			type: DataType.TEXT,
+			type: Datatypes.TEXT,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		last_name: {
-			type: DataType.TEXT,
+			type: Datatypes.TEXT,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		address: {
-			type: DataType.TEXT,
+			type: Datatypes.TEXT,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		city: {
-			type: DataType.TEXT,
+			type: Datatypes.TEXT,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		state: {
-			type: DataType.TEXT,
+			type: Datatypes.TEXT,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		zip: {
-			type: DataType.INTEGER,
+			type: Datatypes.INTEGER,
 			allowNull: false,
 			validate: {
 				isInt: true,
@@ -44,14 +44,14 @@ module.exports = function (sequelize, DataTypes) {
 			}
 		},
 		sport: {
-			type: DataType.TEXT,
+			type: Datatypes.TEXT,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		phone: {
-			type: DataType.INTEGER,
+			type: Datatypes.INTEGER,
 			allowNull: false,
 			validate: {
 				isInt: true,
@@ -59,14 +59,14 @@ module.exports = function (sequelize, DataTypes) {
 			}
 		},
 		email: {
-			type: DataType.TEXT,
+			type: Datatypes.TEXT,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		comments: {
-			type: DataTypes.TEXT,
+			type: Datatypes.TEXT,
 			allowNull: true,
 			validate: {
 				len: [0, 5000]

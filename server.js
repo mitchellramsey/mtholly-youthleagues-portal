@@ -2,6 +2,12 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+<<<<<<< HEAD
+=======
+const PORT = process.env.PORT || 3001;
+const app = express();
+const db = require('./models');
+>>>>>>> c441bbb838dd939face0ed399f21da34bc62f122
 const passport = require("passport");
 const logger = require("morgan");
 const session = require("express-session");
@@ -34,6 +40,8 @@ app.use("/api/users", authControllers);
 
 
 // Starting the server
-app.listen(PORT, function() {
+db.sequelize.sync({force:true}).then(function() {
+  app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
+  });
 });

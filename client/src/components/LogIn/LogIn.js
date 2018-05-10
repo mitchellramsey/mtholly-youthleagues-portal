@@ -39,11 +39,41 @@ class LogIn extends Component {
 
     // Render the form
     render() {
+<<<<<<< HEAD
         return (
             <LogInForm
                 onChange={this.handleInputChange}
                 onSubmit={this.handleFormSubmit}
             />
+=======
+        return(
+            <div className="col-md-6 text-center mx-auto">
+                <h3>Parent Access Portal</h3>
+                <form className="form">
+                    <input
+                        value={this.state.email}
+                        name="Email"
+                        onChange={this.handleInputChange}
+                        type="email"
+                        placeholder="Email"
+                    />
+                    <input
+                        value={this.state.password}
+                        name="password"
+                        onChange={this.handleInputChange}
+                        type="password"
+                        placeholder="Password"
+                    />
+                </form>
+                <button className="btn btn-primary form-btn mx-auto" onClick={this.handeFormSubmit}>Submit</button>
+
+                <h5>Need an account?</h5>
+                <span>Click <a href="/signup">here</a></span>
+
+                <h4>Administrative Access Portal</h4>
+                <span>Log In <a href="/admin">here</a></span>
+            </div>
+>>>>>>> c441bbb838dd939face0ed399f21da34bc62f122
         )
     }
 }
