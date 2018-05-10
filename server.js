@@ -41,6 +41,7 @@ app.use("/client-controllers", clientControllers);
 
 // import routes and give the server access to them.
 require("./routes/coach-route.js")(app);
+require("./routes/game-route.js")(app);
 
 // Starting the server
 db.sequelize.sync().then(function() {
