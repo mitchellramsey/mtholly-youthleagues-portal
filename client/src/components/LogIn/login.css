@@ -14,3 +14,8 @@ h4 {
     border-radius: 0px;
     display: block;
 }
+
+/* Conditional error class */
+.form-group.has-error {
+    color: red;
+}

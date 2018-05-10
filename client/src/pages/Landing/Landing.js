@@ -1,28 +1,36 @@
+// Imports
 import React, { Component } from "react";
-import { Col, Row, Container } from "../../components/Grid";
 import MainHeader from "../../components/MainHeader";
 import LogIn from "../../components/LogIn";
+import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import "./landing.css";
 
+// Creating the Homepage
 class Landing extends Component {
-
+    // Render the page
     render() {
         return (
-            <Container fluid>
-                <Row>
-                    <Col size="md-6 form">
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-6 form">
                         <MainHeader/>
-                        <LogIn/>
-                    </Col>
+                        <FlashMessageList/>
+                        <LogIn
+                            onSubmit={() => this.handleFormSubmit()}
+                            onChange={() => this.handleInputChange()}
+                            user={() => this.state.user}
+                        />
+                    </div>
 
-                    <Col size="md-6 home-bg">
+                    <div className="col-md-6 home-bg">
                         <div className="landing-bg">
                         </div>
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
         )
     }
 };
 
+// Export the page
 export default Landing;
