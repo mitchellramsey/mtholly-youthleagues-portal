@@ -7,7 +7,8 @@ class AdminLanding extends Component {
         coachEmail: "",
         coachPassword: "",
         leagueAdminEmail: "",
-        leagueAdminPassword: ""
+        leagueAdminPassword: "",
+        leagueAdminPin: ""
     };
 
     handleInputChange = event => {
@@ -77,6 +78,13 @@ class AdminLanding extends Component {
                         onChange={this.handleInputChange}
                         type="password"
                         placeholder="Password"
+                    />
+                    <input
+                        value={this.state.leagueAdminPin}
+                        name="leagueAdminPin"
+                        onChange={this.handleInputChange}
+                        type="password"
+                        placeholder="Pin"
                     />
                     <button className="btn btn-primary form-btn mx-auto" onClick={this.handeFormSubmit}>Submit</button>
                 </form>

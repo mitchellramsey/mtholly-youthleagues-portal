@@ -1,42 +1,42 @@
 module.exports = function (sequelize, DataTypes) {
   var Parent = sequelize.define("Parent", {
     first_name: {
-      type: DataType.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]
       }
     },
     last_name: {
-      type: DataType.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]
       }
     },
     address: {
-      type: DataType.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]
       }
     },
     city: {
-      type: DataType.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]
       }
     },
     state: {
-      type: DataType.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]
       }
     },
     zip: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         isInt: true,
@@ -44,7 +44,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     phone: {
-      type: DataType.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         isInt: true,
@@ -52,7 +52,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     email: {
-      type: DataType.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]

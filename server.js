@@ -4,11 +4,14 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const db = require('./models');
 const passport = require("passport");
 const logger = require("morgan");
 const session = require("express-session");
 const flash = require("connect-flash");
 const cookieSession = require("cookie-session");
+
+
 // Initializing passport
 app.use(passport.initialize());
 // Keeping log-in sessions persistent
@@ -36,7 +39,12 @@ if (process.env.NODE_ENV === "production") {
 const clientControllers = require("./controllers/client-controllers");
 app.use("/client-controllers", clientControllers);
 
+// import routes and give the server access to them.
+require("./routes/coach-route.js")(app);
+
 // Starting the server
-app.listen(PORT, function() {
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
+  });
 });

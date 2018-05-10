@@ -48,6 +48,14 @@ class Signup extends Component {
 
                 <form className="form" method="POST">
                     <div className="form-group">
+                        <label htmlFor="accountType"> Account Type: </label><br/>
+                            <select name="accountType">
+                                <option value="">Account Type</option>
+                                <option value="parent">Parent</option>
+                                <option value="coach">Coach</option>
+                            </select>
+                    </div>
+                    <div className="form-group">
                         <label htmlFor="firstName">First Name</label>
                             <input 
                                 type="text" 
