@@ -1,12 +1,28 @@
 import React, { Component } from "react";
 import MainHeader from "../../components/MainHeader";
 import DummyForm from "../../components/DummyForm";
-
+import CreateChildForm from "../../components/CreateChildForm";
+import "./ParentPortal.css";
 import Nav from "../../components/Nav";
 
 
 
 class ParentPortal extends Component {
+    constructor() {
+        super();
+        this.state = {
+            showChildForm: true
+        }
+
+    }
+    
+
+    toggleChildForm () {
+        console.log(this);
+        this.setState({
+            showChildForm: !this.state.showChildForm
+        });
+    }
 
     render() {
         return (
@@ -14,19 +30,27 @@ class ParentPortal extends Component {
             <Nav/>
                 <div className="row">
                     <div className="col-md-6 form">
-                        <MainHeader/>
-                        <DummyForm/>
+                    <MainHeader />
+                        <button className="btn btn-success register" onClick={this.toggleChildForm}>Register Child</button>
+                        
                     </div>
 
                     <div className="col-md-6 form">
                         <div className="landing-bg">
+                            {
+                                this.state.showChildForm
+                                    ? <CreateChildForm />
+                                    : null
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 };
+
+
 
 // Exporting the page, and connecting the props with redux
 export default ParentPortal;
