@@ -3,6 +3,16 @@ import axios from "axios";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
 import jwt from "jsonwebtoken";
 import jwt_decode from 'jwt-decode';
+import { SET_CURRENT_USER } from "./types";
+
+// Creating an action for SET_CURRENT_USER
+export function setCurrentUser(user) {
+    return {
+        type: SET_CURRENT_USER,
+        user
+    }
+}
+
 
 // Signup AJAX post
 export function loginRequest(data) {
@@ -17,7 +27,7 @@ export function loginRequest(data) {
             // Importing the authToken function
             // Passing it the token
             setAuthorizationToken(token);
-            console.log(decoded);
+            dispatch(setCurrentUser(decoded));
         })
     }
 }

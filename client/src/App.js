@@ -8,6 +8,9 @@ import Landing from "./pages/Landing";
 import SignupPage from "./pages/SignupPage";
 import ParentPortal from "./pages/ParentPortal";
 import './App.css';
+import setAuthorizationToken from "./utils/setAuthorizationToken";
+import { setCurrentUser } from "./actions/login";
+import jwt_decode from 'jwt-decode';
 
 const store = createStore(
   rootReducer,
@@ -15,7 +18,16 @@ const store = createStore(
     applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
-)
+);
+
+// If JWT token exists, set it
+if(localStorage.jwtToken) {
+  setAuthorizationToken(localStorage.jwtToken);
+  // Dispatch the action
+  store.dispatch(setCurrentUser(jwt_decode(localStorage.jwtToken)))
+}
+
+
 
 const App = () => (
   <Provider store={store}>
