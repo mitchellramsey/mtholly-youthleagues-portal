@@ -13,6 +13,17 @@ export function setCurrentUser(user) {
     }
 }
 
+// Logout action
+export function logout() {
+    return dispatch => {
+        // Remove token upon logout
+        // Clears authorization
+        localStorage.removeItem("jwtToken");
+        setAuthorizationToken(false);
+        dispatch(setCurrentUser({}));
+    }
+}
+
 
 // Signup AJAX post
 export function loginRequest(data) {

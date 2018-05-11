@@ -9,9 +9,9 @@ class ParentPortal extends Component {
     render() {
         return (
             <div className="container-fluid">
+            <Nav/>
                 <div className="row">
                     <div className="col-md-6 form">
-                        <Nav/>
                         <MainHeader/>
                         
                     </div>
