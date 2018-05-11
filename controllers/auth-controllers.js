@@ -1,20 +1,39 @@
 // Dependencies
 const express = require("express");
-// Express Router
+const jwt = require("jsonwebtoken");
+const config = require("../client/src/Shared/Config/config");
+// User Model
+const { Users } = require("../models");
+const bCrypt = require("bcrypt");
+// Express router
 const router = express.Router();
-// Validations
-const validation = require("../Shared/Validations/signup");
 
-// User Signup POST
+// Auth route
 router.post("/", (req, res) => {
-    const { errors, isValid } = validation(req.body);
-
-    // If theres an error, send it to the client   
-    if (isValid) {
-        res.json({ success: true})
-    } else {
-        res.status(400).json(errors)
-    }
-});
+    // Req.body data
+    const { email, password } = req.body;
+    // Find a User by email
+    Users.findOne({
+        where: {
+            email: email
+        } 
+    }).then(function(user) {
+        // If user is found, compare passwords
+        if(user) {
+            if(bCrypt.compareSync(password, user.userPassword)) {
+                // Apply JWT after log-in
+                const token = jwt.sign({
+                    id: user.id,
+                    username: user.email
+                }, config.jwtSecret);
+                // Redirect/Add JWT
+                res.json({ token })
+            } else {
+                // Hang, for now
+                res.status(401).json({ success: false })
+            }
+        }
+    })
+})
 
 module.exports = router;

@@ -210,7 +210,7 @@ class SignupForm extends Component {
                             {/* Error Handling */}
                             {errors.address && <span className="help-block">{errors.address}</span>}
                     </div>
-                    <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading} onClick={this.handeFormSubmit}>Submit</button>
+                    <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                 </form>         
             </div>
         )

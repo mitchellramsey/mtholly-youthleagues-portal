@@ -18,7 +18,6 @@ const store = createStore(
 )
 
 const App = () => (
-<<<<<<< HEAD
   <Provider store={store}>
     <Router>
       <div>
@@ -26,23 +25,11 @@ const App = () => (
           {/* Homepage */}
           <Route exact path="/" component={Landing} />
           <Route exact path="/signup" component={SignupPage} />
+          <Route exact path="/parent-portal" component={ParentPortal} />
         </Switch>
       </div>
     </Router>
   </Provider>
-=======
-  <Router>
-    <div>
-      <Switch>
-        {/* Homepage */}
-        <Route exact path="/" component={Landing} />
-        <Route path="/admin" component={AdminLogin} />
-        <Route path="/signup" component={SignupPage} />
-        <Route path="/parent/:parentId" component={ParentPortal} />
-      </Switch>
-    </div>
-  </Router>
->>>>>>> c441bbb838dd939face0ed399f21da34bc62f122
 );
 
 export default App;

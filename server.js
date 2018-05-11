@@ -2,12 +2,7 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-<<<<<<< HEAD
-=======
-const PORT = process.env.PORT || 3001;
-const app = express();
 const db = require('./models');
->>>>>>> c441bbb838dd939face0ed399f21da34bc62f122
 const passport = require("passport");
 const logger = require("morgan");
 const session = require("express-session");
@@ -15,7 +10,7 @@ const flash = require("connect-flash");
 const cookieSession = require("cookie-session");
 
 // Initializing Express
-const app = express();
+let app = express();
 const PORT = process.env.PORT || 3001;
 // Setting up flash messages for session users
 app.use(flash());
@@ -35,12 +30,14 @@ if (process.env.NODE_ENV === "production") {
 // Requiring controllers
 const clientControllers = require("./controllers/client-controllers");
 app.use("/client-controllers", clientControllers);
+const signUpControllers = require("./controllers/signUp-controllers");
+app.use("/api/users", signUpControllers)
 const authControllers = require("./controllers/auth-controllers");
-app.use("/api/users", authControllers);
+app.use("/api/auth", authControllers);
 
 
 // Starting the server
-db.sequelize.sync({force:true}).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
