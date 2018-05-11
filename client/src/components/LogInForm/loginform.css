@@ -1,3 +1,7 @@
 span.help-block {
     display: block;
 }
+
+#email {
+    margin-left: 40px;
+}

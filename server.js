@@ -30,10 +30,15 @@ if (process.env.NODE_ENV === "production") {
 // Requiring controllers
 const clientControllers = require("./controllers/client-controllers");
 app.use("/client-controllers", clientControllers);
+
 const signUpControllers = require("./controllers/signUp-controllers");
 app.use("/api/users", signUpControllers)
+
 const authControllers = require("./controllers/auth-controllers");
 app.use("/api/auth", authControllers);
+
+const parentPageEvents = require("./controllers/parentPageEvents");
+app.use("/api/parentSubmit", parentPageEvents);
 
 
 // Starting the server

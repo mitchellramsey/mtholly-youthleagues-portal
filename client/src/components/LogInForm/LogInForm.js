@@ -75,6 +75,7 @@ class LogInForm extends Component {
                                 onChange={this.handleInputChange}
                                 type="email"
                                 placeholder="Email"
+                                id="email"
                             />
                             {/* Error Handling */}
                             

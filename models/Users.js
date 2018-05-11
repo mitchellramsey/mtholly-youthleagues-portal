@@ -69,6 +69,9 @@ module.exports = function (sequelize, DataTypes) {
         validate: {
           len: [0, 50]
         }
+      },
+      tokenId: {
+        type: DataTypes.STRING,
       }
     });
     return Users;

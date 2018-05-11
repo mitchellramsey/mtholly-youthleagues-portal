@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import MainHeader from "../../components/MainHeader";
+import DummyForm from "../../components/DummyForm";
+import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import Nav from "../../components/Nav";
 
 
@@ -13,7 +15,8 @@ class ParentPortal extends Component {
                 <div className="row">
                     <div className="col-md-6 form">
                         <MainHeader/>
-                        
+                        <FlashMessageList/>
+                        <DummyForm/>
                     </div>
 
                     <div className="col-md-6 form">

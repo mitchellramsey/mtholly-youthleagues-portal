@@ -14,7 +14,9 @@ class Nav extends Component {
     logout(event) {
         // Prevents page refresh
         event.preventDefault();
-        this.props.logout();
+        this.props.logout(this.state).then(
+            (res) => this.context.router.history.push("/")
+        );
     }
 
     render() {
@@ -42,6 +44,10 @@ class Nav extends Component {
 Nav.propTypes = {
     auth: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired
+}
+
+Nav.contextTypes = {
+    router: PropTypes.object.isRequired
 }
 
 // Needing to access redux store

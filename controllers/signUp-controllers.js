@@ -4,6 +4,8 @@ const express = require("express");
 const router = express.Router();
 // Validations
 const validation = require("../client/src/Shared/Validations/signup");
+// Middleware
+const middleware = require("../client/src/Shared/Middleware/authenticateMiddleware");
 // Password encrpytion
 const bCrypt = require("bcrypt-nodejs");
 // User Model
