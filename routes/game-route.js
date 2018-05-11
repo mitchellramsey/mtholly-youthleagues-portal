@@ -6,7 +6,7 @@ module.exports = function(app) {
         db.GamesInfo.findAll({})
         .then(function(dbGamesInfo){
             let gamesObj = {
-                gamessList: dbGamesInfo
+                gamesList: dbGamesInfo
             }
             console.log(gamesObj);
 

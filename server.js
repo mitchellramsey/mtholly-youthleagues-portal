@@ -2,8 +2,6 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 3001;
-const app = express();
 const db = require('./models');
 const passport = require("passport");
 const logger = require("morgan");
@@ -11,21 +9,17 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const cookieSession = require("cookie-session");
 
-
-// Initializing passport
-app.use(passport.initialize());
-// Keeping log-in sessions persistent
-app.use(passport.session());
+// Initializing Express
+let app = express();
+const PORT = process.env.PORT || 5000;
 // Setting up flash messages for session users
 app.use(flash());
 // Serving up the public folder to give static content
 app.use(express.static("public"));
 
-// Parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
 // Parse application/JSON
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Using morgan to log server requests
 app.use(logger("dev"));
@@ -38,10 +32,24 @@ if (process.env.NODE_ENV === "production") {
 // Requiring controllers
 const clientControllers = require("./controllers/client-controllers");
 app.use("/client-controllers", clientControllers);
+const signUpControllers = require("./controllers/signUp-controllers");
+app.use("/api/users", signUpControllers)
+const authControllers = require("./controllers/auth-controllers");
+app.use("/api/auth", authControllers);
+
 
 // import routes and give the server access to them.
 require("./routes/coach-route.js")(app);
 require("./routes/game-route.js")(app);
+require("./routes/kid-api-route.js")(app);
+require("./routes/parent-api-route.js")(app);
+require("./routes/practice-route.js")(app);
+require("./routes/sport-api-route.js")(app);
+require("./routes/team-route.js")(app);
+
+
+
+
 
 // Starting the server
 db.sequelize.sync().then(function() {
