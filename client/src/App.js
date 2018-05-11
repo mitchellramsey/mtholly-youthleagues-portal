@@ -7,6 +7,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import Landing from "./pages/Landing";
 import SignupPage from "./pages/SignupPage";
 import ParentPortal from "./pages/ParentPortal";
+import authenticateRoutes from "../src/utils/authenticateRoutes";
 import './App.css';
 import setAuthorizationToken from "./utils/setAuthorizationToken";
 import { setCurrentUser } from "./actions/login";
@@ -36,7 +37,7 @@ const App = () => (
           {/* Homepage */}
           <Route exact path="/" component={Landing} />
           <Route exact path="/signup" component={SignupPage} />
-          <Route exact path="/parent-portal" component={ParentPortal} />
+          <Route exact path="/parent-portal" component={authenticateRoutes(ParentPortal)} />
         </Switch>
       </div>
     </Router>
