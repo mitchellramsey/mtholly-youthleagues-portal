@@ -5,3 +5,22 @@ span.help-block {
 #email {
     margin-left: 40px;
 }
+
+.continue> button {
+    background-color: #e2dfdf;
+    border-color: #e2dfdf;
+}
+
+.continue> button:hover {
+    background-color: #ecf9ff;
+    border-color: #ecf9ff;
+}
+
+ul {
+    list-style-type: none;
+    width: 100%;
+}
+
+li {
+    display: inline-block;
+}

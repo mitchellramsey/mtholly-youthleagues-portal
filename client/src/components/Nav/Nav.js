@@ -24,14 +24,18 @@ class Nav extends Component {
         const { isAuthenticated } = this.props.auth
         // Logged in user links
         const userLink = (
-            // User log out
-            <ul className="ml-auto"><Link to="/" className="links" onClick={this.logout.bind(this)}>Log Out</Link></ul>
-        )
-        // Normal Nav links
-        const normalLinks = (
-            <ul><Link to="/" className="links">Home</Link></ul>
+            <ul>
+                <li className="log-out"><Link to="/" className="links nav-item" onClick={this.logout.bind(this)}>Log Out</Link></li>
+                <li><Link to="/" className="links nav-item">Home</Link></li>
+            </ul>
         )
 
+        /* Normal Nav links */
+        const normalLinks = (
+            <ul><Link to="/" className="links nav-item">Home</Link></ul>  
+        )
+
+        /* If user is authenticated render a certain link */
         return (
             <nav className="navbar navbar-expand-lg">
                 { isAuthenticated ? userLink : normalLinks }
