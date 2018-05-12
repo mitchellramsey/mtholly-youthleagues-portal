@@ -100,6 +100,9 @@ class CoachForm extends Component {
                             />
                     </div>
                     <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
+
+                    <h5>Need an account?</h5>
+                    <span>Click <Link to="/coachessignup">here</Link></span>
                 </form>
         )
 
@@ -113,8 +116,6 @@ class CoachForm extends Component {
                     { isAuthenticated ? continueButton : loginFormArea }
                 </div>
 
-                <h5>Need an account?</h5>
-                <span>Click <Link to="/coachessignup">here</Link></span>
             </div>
         )
     }
