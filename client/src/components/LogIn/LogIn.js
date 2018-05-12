@@ -1,6 +1,13 @@
+// Imports
 import React, { Component } from "react";
+
+// Component
 import LogInForm from "../LogInForm/LogInForm";
+
+// CSS
 import "./login.css";
+
+// ----------------------------------------------------------------------------------- //
 
 // Log in form and page
 class LogIn extends Component {
@@ -48,5 +55,6 @@ class LogIn extends Component {
     }
 }
 
+// ----------------------------------------------------------------------------------- //
 // Exporting the LogIn component
 export default LogIn;

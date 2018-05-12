@@ -3,8 +3,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Component } from "react";
 import { connect } from "react-redux";
+
+// Actions
 import { addFlashMessage } from "../actions/flashMessages";
 
+// ----------------------------------------------------------------------------------- //
 // Creating component wrapper
 export default function(ComposedComponent) {
     class authenticateRoutes extends Component {
@@ -29,23 +32,25 @@ export default function(ComposedComponent) {
         }
     }
 
-    // Setting propTypes
-    authenticateRoutes.propTypes = {
-        isAuthenticated: PropTypes.bool.isRequired,
-        addFlashMessage: PropTypes.func.isRequired
-    }
+// ----------------------------------------------------------------------------------- //
+// Setting propTypes
+authenticateRoutes.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    addFlashMessage: PropTypes.func.isRequired
+}
 
-    authenticateRoutes.contextTypes = {
-        router: PropTypes.object.isRequired
-    }
+authenticateRoutes.contextTypes = {
+    router: PropTypes.object.isRequired
+}
 
-    // Accessing redux store
-    function mapStateToProps(state) {
-        return {
-            isAuthenticated: state.auth.isAuthenticated
-        }
+// Accessing redux store
+function mapStateToProps(state) {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
     }
+}
 
+// ----------------------------------------------------------------------------------- //
     return connect(mapStateToProps, { addFlashMessage })(authenticateRoutes);
 }
 

@@ -1,5 +1,7 @@
 // Imports
 import React from "react";
+
+// CSS
 import "./mainheader.css";
 
 // Jumbotron/Main header
@@ -9,5 +11,6 @@ const MainHeader = () => (
     </div>
 )
 
+// ----------------------------------------------------------------------------------- //
 // Exporting the Header component
 export default MainHeader;

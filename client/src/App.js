@@ -1,14 +1,20 @@
 // Dependencies and Imports
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-import rootReducer from "./Shared/rootReducer/rootReducer";
-import { createStore, applyMiddleware, compose } from "redux";
 import setAuthorizationToken from "./utils/setAuthorizationToken";
-import { setCurrentUser } from "./actions/login";
 import jwt_decode from 'jwt-decode';
 import authenticateRoutes from "../src/utils/authenticateRoutes";
+
+// Redux root reducer
+import rootReducer from "./Shared/rootReducer/rootReducer";
+
+// Redux imports
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { createStore, applyMiddleware, compose } from "redux";
+
+// Actions
+import { setCurrentUser } from "./actions/login";
 
 // ------------------ Pages ----------------------- //
 import Landing from "./pages/Landing";
@@ -21,7 +27,7 @@ import AdminLogInPage from "./pages/AdminLogInPage/AdminLogInPage";
 // ------------------ CSS ----------------------- //
 import './App.css';
 
-
+// Creating Redux store
 const store = createStore(
   rootReducer,
   compose(
@@ -37,11 +43,14 @@ if(localStorage.jwtToken) {
 }
 
 
-
+// Main
 const App = () => (
+  // Redux store
   <Provider store={store}>
+  {/* React Router */}
     <Router>
       <div>
+        {/* React Switch for routing */}
         <Switch>
           {/* Homepage */}
           <Route exact path="/" component={Landing} />
@@ -56,4 +65,5 @@ const App = () => (
   </Provider>
 );
 
+// Exporting the App
 export default App;

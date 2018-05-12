@@ -1,12 +1,17 @@
 // Imports
 import React, { Component } from "react";
+
+// Component
 import MainHeader from "../../components/MainHeader/MainHeader";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
-import "../Landing/landing.css";
 import AdminLogin from "../../components/AdminForm/AdminLogin";
 import Nav from "../../components/Nav/Nav";
 
+// CSS
+import "../Landing/landing.css";
 
+
+// ----------------------------------------------------------------------------------- //
 // Creating the Coach Page
 class AdminLogInPage extends Component {
     // Render the page
@@ -35,5 +40,6 @@ class AdminLogInPage extends Component {
     }
 };
 
+// ----------------------------------------------------------------------------------- //
 // Export the page
 export default AdminLogInPage;

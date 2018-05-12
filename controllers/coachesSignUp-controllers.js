@@ -11,6 +11,7 @@ const bCrypt = require("bcrypt-nodejs");
 // User Model
 const { Coach } = require("../models");
 
+// ----------------------------------------------------------------------------------- //
 // User Signup POST
 router.post("/", (req, res) => {
     const { errors, isValid } = validation(req.body);
@@ -64,4 +65,5 @@ router.post("/", (req, res) => {
     }
 });
 
+// ----------------------------------------------------------------------------------- //
 module.exports = router;

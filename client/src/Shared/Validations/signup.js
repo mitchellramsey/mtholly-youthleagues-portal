@@ -12,9 +12,10 @@ module.exports = function validateInput(data) {
     }
 
     // Field validator
-    if(validator.isEmpty(data.lastName)) {
+    if(validator.isEmpty(data.firstName)) {
         errors.lastName = "This field is required.";
     }
+   
 
     // Field validator
     if(validator.isEmpty(data.phone)) {

@@ -3,9 +3,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
+
+// CSS
 import "../../components/LogIn/login.css";
+
+// Actions
 import validateInput from "../../Shared/Validations/signup";
 
+// ----------------------------------------------------------------------------------- //
 // Creating the Signup form
 class SignupForm extends Component {
 
@@ -83,7 +88,7 @@ class SignupForm extends Component {
             <div className="col-md-6 text-center mx-auto">
                 <h3>Sign-up Form</h3>
                 {/* Sign Up Form */}
-                <form className="form" method="POST" onSubmit={this.handleFormSubmit}>
+                <form className="form" onSubmit={this.handleFormSubmit}>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
                     <div className={classnames("form-group", { "has-error": errors.firstName })}>
                         <label htmlFor="firstName" className="control-label">First Name</label>
@@ -205,11 +210,13 @@ class SignupForm extends Component {
     }
 }
 
+// ----------------------------------------------------------------------------------- //
 // Setting Proptypes
 SignupForm.propTypes = {
     userSignupRequest: PropTypes.func.isRequired,
     addFlashMessage: PropTypes.func.isRequired
 }
 
+// ----------------------------------------------------------------------------------- //
 // Exporting the signUpform, withRouter for proper redirect after log-in
 export default withRouter(SignupForm);

@@ -2,11 +2,16 @@
 import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { logout } from "../../actions/login";
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
+
+// Actions
+import { logout } from "../../actions/login";
+
+// CSS
 import "./nav.css";
 
+// ----------------------------------------------------------------------------------- //
 // Creating the Nav component
 class Nav extends Component {
 
@@ -46,6 +51,7 @@ class Nav extends Component {
     }
 }
 
+// ----------------------------------------------------------------------------------- //
 // Setting PropTypes
 Nav.propTypes = {
     auth: PropTypes.object.isRequired,
@@ -63,5 +69,6 @@ function mapStateToProps(state) {
     };
 }
 
+// ----------------------------------------------------------------------------------- //
 // Exporting the Nav component and connecting
 export default connect(mapStateToProps, { logout })(Nav);

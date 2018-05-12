@@ -3,10 +3,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
-import "../../components/LogIn/login.css";
+
+// Actions
 import validateInput from "../../Shared/Validations/signup";
 
-//Creating Register Child Form
+// CSS
+import "../../components/LogIn/login.css";
+
+// ----------------------------------------------------------------------------------- //
+// Creating Register Child Form
 
 class CreateChildForm extends Component {
 
@@ -202,11 +207,8 @@ class CreateChildForm extends Component {
             </div>
         );
     }
-
-
-
-
 }
 
-// Exporting the page, and connecting the props with redux
+// ----------------------------------------------------------------------------------- //
+// Exporting the page
 export default CreateChildForm;

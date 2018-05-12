@@ -1,14 +1,20 @@
 import React, { Component } from "react";
+
+// Component
+import Nav from "../../components/Nav";
+import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import MainHeader from "../../components/MainHeader";
 import DummyForm from "../../components/DummyForm";
 import CreateChildForm from "../../components/CreateChildForm";
-import "./ParentPortal.css";
-import Nav from "../../components/Nav";
+
+// Redux root reducer
 import flashMessages from "../../Shared/rootReducer/flashMessages";
-import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 
+// CSS
+import "./ParentPortal.css";
 
-
+// ----------------------------------------------------------------------------------- //
+// Creating the Parent Page
 class ParentPortal extends Component {
     constructor() {
         super();
@@ -19,6 +25,7 @@ class ParentPortal extends Component {
     }
     
 
+    // Toggle child form on click
     toggleChildForm () {
         console.log(this);
         this.setState({
@@ -26,6 +33,7 @@ class ParentPortal extends Component {
         });
     }
 
+    // Render the page
     render() {
         return (
             <div className="container-fluid">
@@ -53,6 +61,6 @@ class ParentPortal extends Component {
 };
 
 
-
+// ----------------------------------------------------------------------------------- //
 // Exporting the page, and connecting the props with redux
 // export default connect(null, { addFlashMessage })(ParentPortal);
