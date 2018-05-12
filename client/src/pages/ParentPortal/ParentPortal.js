@@ -11,7 +11,7 @@ class ParentPortal extends Component {
     constructor() {
         super();
         this.state = {
-            showChildForm: true
+            showChildForm: false
         }
 
     }
@@ -31,7 +31,7 @@ class ParentPortal extends Component {
                 <div className="row">
                     <div className="col-md-6 form">
                     <MainHeader />
-                        <button className="btn btn-success register" onClick={this.toggleChildForm}>Register Child</button>
+                        <button className="btn btn-success register" onClick={() => this.toggleChildForm()}>Register Child</button>
                         
                     </div>
 
