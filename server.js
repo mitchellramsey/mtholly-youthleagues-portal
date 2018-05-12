@@ -48,8 +48,11 @@ app.use("/api/coachsignup", coachSignUpControllers);
 const coachLogInControllers = require("./controllers/coachLogIn-controllers");
 app.use("/api/auth/coaches", coachLogInControllers);
 
+const registerChild = require("./controllers/registerChild-controllers");
+app.use("/api/registerChild", registerChild);
 
-// import routes and give the server access to them.
+
+// import routes and give the server access to them. 
 require("./routes/coach-route.js")(app);
 require("./routes/game-route.js")(app);
 require("./routes/kid-api-route.js")(app);
