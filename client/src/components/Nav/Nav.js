@@ -32,7 +32,9 @@ class Nav extends Component {
 
         /* Normal Nav links */
         const normalLinks = (
-            <ul>  </ul>  
+            <ul> 
+                <li><Link to="/" className="links nav-item">Home</Link></li>    
+            </ul>  
         )
 
         /* If user is authenticated render a certain link */
