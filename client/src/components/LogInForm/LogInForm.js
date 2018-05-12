@@ -1,5 +1,6 @@
 // Imports
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { loginRequest } from "../../actions/login";
 import validateInput from "../../Shared/Validations/login";
 import { connect } from "react-redux";
@@ -60,12 +61,20 @@ class LogInForm extends Component {
     render() {
         // Setting the errors variable
         const { isLoading } = this.state;
+        // Acessing authenticated property
+        const { isAuthenticated } = this.props.auth;
 
-        return (
-            <div className="col-md-6 text-center mx-auto">
-                <h3>Parent Access Portal</h3>
-                
-                <form className="form">
+        // Continue button
+        const continueButton = (
+            <div className="continue">
+                <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>
+                    <Link to="/parent-portal" className="links">Continue to Parent Portal</Link>
+                </button>
+            </div>
+        )
+        // Log in form
+        const loginFormArea = (
+            <form className="form">
                 {/* "ClassNames NPM Package for conditional error handling styles" */}
                     <div className="form-group">
                         <label htmlFor="email" className="control-label">Email</label>
@@ -75,9 +84,9 @@ class LogInForm extends Component {
                                 onChange={this.handleInputChange}
                                 type="email"
                                 placeholder="Email"
+                                id="email"
                             />
-                            {/* Error Handling */}
-                            
+                            {/* Error Handling */} 
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
                     <div className="form-group">
@@ -92,6 +101,18 @@ class LogInForm extends Component {
                     </div>
                     <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
                 </form>
+        )
+
+        // Render the form or button
+        return (
+            // Main page
+            <div className="col-md-6 text-center mx-auto">
+                <h3>Parent Access Portal</h3>
+                
+                {/* If authenticated, either render the log-in form or the continue button */}
+                <div>
+                    { isAuthenticated ? continueButton : loginFormArea }
+                </div>
 
                 <h5>Need an account?</h5>
                 <span>Click <a href="/signup">here</a></span>
@@ -104,6 +125,7 @@ class LogInForm extends Component {
 }
 // Setting propTypes
 LogInForm.propTypes = {
+    auth: PropTypes.object.isRequired,
     loginRequest: PropTypes.func.isRequired
 }
 
@@ -111,7 +133,14 @@ LogInForm.contextTypes = {
     router: PropTypes.object.isRequired
 }
 
+// Needing to access redux store
+function mapStateToProps(state) {
+    return {
+        auth: state.auth
+    };
+}
+
 // Exporting the form component and connecting it with redux
-export default connect(null, { loginRequest })(LogInForm);
+export default connect(mapStateToProps, { loginRequest })(LogInForm);
 
 

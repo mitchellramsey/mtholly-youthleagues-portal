@@ -25,7 +25,6 @@ class SignupPage extends Component {
                     <div className="col-md-6 form">
                         <Nav/>
                         <MainHeader/>
-                        <FlashMessageList/>
                         <SignupForm
                             userSignupRequest={userSignupRequest}
                             addFlashMessage={addFlashMessage}

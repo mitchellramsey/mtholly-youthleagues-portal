@@ -66,7 +66,7 @@ class SignupForm extends Component {
                         type: "Success",
                         text: "You have signed up successfully, Welcome."
                     })
-                    this.props.history.push("/") 
+                    this.props.history.push("/parent-portal") 
                 },
                 // Setting errors
                 (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -118,18 +118,6 @@ class SignupForm extends Component {
                             <input
                                 value={this.state.password}
                                 name="password"
-                                className="form-control"
-                                onChange={this.handleInputChange}
-                                type="password"
-                                placeholder="Password Confirmation"
-                            />
-                    </div>
-                    {/* Will Validate this in the future */}
-                    <div className="form-group">
-                        <label htmlFor="password" className="control-label">Password Confirmation</label>
-                            <input
-                                value={this.state.passwordConfirmation}
-                                name="passwordConfirmation"
                                 className="form-control"
                                 onChange={this.handleInputChange}
                                 type="password"

@@ -1,7 +1,6 @@
 // Imports
 import axios from "axios";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
-import jwt from "jsonwebtoken";
 import jwt_decode from 'jwt-decode';
 import { SET_CURRENT_USER } from "./types";
 
@@ -10,6 +9,19 @@ export function setCurrentUser(user) {
     return {
         type: SET_CURRENT_USER,
         user
+    }
+}
+
+// Logout action
+export function logout() {
+    return dispatch => {
+        return axios.get("/").then(res => {
+            // Remove token upon logout
+            // Clears authorization
+            localStorage.removeItem("jwtToken");
+            setAuthorizationToken(false);
+            dispatch(setCurrentUser({}));
+        })
     }
 }
 

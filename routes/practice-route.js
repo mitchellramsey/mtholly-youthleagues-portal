@@ -15,4 +15,17 @@ module.exports = function(app) {
             res.json(practicesObj);
         });
     });
+
+    app.post('/add-practice', function (req, res) {
+
+		var practice = req.body;
+		db.Practice.create({
+            date: practice.date,
+            time: practice.time,
+            location: practice.location,
+            team_association: practice.team_association
+		}).then(function (result) {
+			res.json(result);
+		});
+	});
 };
