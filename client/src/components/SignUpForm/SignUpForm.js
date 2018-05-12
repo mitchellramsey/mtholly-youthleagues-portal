@@ -212,4 +212,4 @@ SignupForm.propTypes = {
 }
 
 // Exporting the signUpform, withRouter for proper redirect after log-in
-export default withRouter(SignupForm);
+// export default withRouter(SignupForm);

@@ -2,6 +2,7 @@ var db = require("../models");
 var path = require("path");
 
 
+
 module.exports = function (app) {
 	// retrieve all teams from data base.
 	app.get("/teams", function (req, res) {
@@ -28,3 +29,4 @@ module.exports = function (app) {
 		});
 	});
 };
+

@@ -2,6 +2,7 @@ var db = require("../models");
 var path = require("path");
 
 
+
 module.exports = function (app) {
 
 	app.get("/sports", function (req, res) {
@@ -26,3 +27,4 @@ module.exports = function (app) {
 		});
 	});
 };
+

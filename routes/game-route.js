@@ -1,5 +1,7 @@
 var db = require("../models");
-var path = require("path")
+var path = require("path");
+
+
 ;
 module.exports = function(app) {
     app.get("/games", function(req, res) {
@@ -28,3 +30,4 @@ module.exports = function(app) {
 		});
 	});
 };
+
