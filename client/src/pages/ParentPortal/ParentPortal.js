@@ -55,4 +55,4 @@ class ParentPortal extends Component {
 
 
 // Exporting the page, and connecting the props with redux
-export default connect(null, { addFlashMessage })(ParentPortal);
+// export default connect(null, { addFlashMessage })(ParentPortal);
