@@ -42,6 +42,12 @@ app.use("/api/auth", authControllers);
 const parentPageEvents = require("./controllers/parentPageEvents");
 app.use("/api/parentSubmit", parentPageEvents);
 
+const coachSignUpControllers = require("./controllers/coachesSignUp-controllers");
+app.use("/api/coachsignup", coachSignUpControllers);
+
+const coachLogInControllers = require("./controllers/coachLogIn-controllers");
+app.use("/api/auth/coaches", coachLogInControllers);
+
 
 // import routes and give the server access to them.
 require("./routes/coach-route.js")(app);

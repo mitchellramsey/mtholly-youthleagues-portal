@@ -74,7 +74,7 @@ class LogInForm extends Component {
         )
         // Log in form
         const loginFormArea = (
-            <form className="form">
+            <form className="form text-center">
                 {/* "ClassNames NPM Package for conditional error handling styles" */}
                     <div className="form-group">
                         <label htmlFor="email" className="control-label">Email</label>
@@ -106,7 +106,7 @@ class LogInForm extends Component {
         // Render the form or button
         return (
             // Main page
-            <div className="col-md-6 text-center mx-auto">
+            <div className="form-group text-center">
                 <h3>Parent Access Portal</h3>
                 
                 {/* If authenticated, either render the log-in form or the continue button */}
@@ -115,10 +115,10 @@ class LogInForm extends Component {
                 </div>
 
                 <h5>Need an account?</h5>
-                <span>Click <a href="/signup">here</a></span>
+                <span>Click <Link to="/signup">here</Link></span>
 
                 <h4>Administrative Access Portal</h4>
-                <span>Log In <a href="/admin">here</a></span>
+                <span>Log In <Link to="/coacheslogin">here</Link></span>
             </div>
         )
     }

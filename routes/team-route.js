@@ -3,7 +3,7 @@ var path = require("path");
 
 
 module.exports = function (app) {
-
+	// retrieve all teams from data base.
 	app.get("/teams", function (req, res) {
 		db.Team.findAll({})
 			.then(function (dbTeam) {
@@ -15,7 +15,7 @@ module.exports = function (app) {
 				res.json(teamsObj);
 			});
 	});
-
+	// post or add new team to data base.
 	app.post('/new-team', function (req, res) {
 
 		var team = req.body;
