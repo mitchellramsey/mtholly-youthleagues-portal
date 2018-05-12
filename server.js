@@ -51,18 +51,8 @@ app.use("/api/auth/coaches", coachLogInControllers);
 const registerChild = require("./controllers/registerChild-controllers");
 app.use("/api/registerChild", registerChild);
 
-
-// import routes and give the server access to them. 
-require("./routes/coach-route.js")(app);
-require("./routes/game-route.js")(app);
-require("./routes/kid-api-route.js")(app);
-require("./routes/parent-api-route.js")(app);
-require("./routes/practice-route.js")(app);
-require("./routes/sport-api-route.js")(app);
-require("./routes/team-route.js")(app);
-
-
-
+const adminLogInControllers = require("./controllers/adminLogIncontrollers");
+app.use("/api/auth/admin", adminLogInControllers);
 
 
 // Starting the server

@@ -29,7 +29,7 @@ class ParentPortal extends Component {
     render() {
 
         const { childSignUp } = this.props; 
-        
+
         return (
             <div className="container-fluid">
             <Nav/>

@@ -1,7 +1,7 @@
 // Imports
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { coachesLogInRequest } from "../../actions/coachesLogInRequest";
+import { adminLogInRequest } from "../../actions/adminLogInRequest";
 import validateInput from "../../Shared/Validations/login";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -9,7 +9,7 @@ import "../LogInForm/loginform.css";
 
 
 // Creating the Log in form component
-class CoachForm extends Component {
+class AdminLogIn extends Component {
     constructor(props) {
         super(props);
         // Setting state
@@ -50,7 +50,7 @@ class CoachForm extends Component {
             // When the form is submitted, reset any stored errors and disable the submit button during load time
             // To prevent multiple events
             this.setState({ errors: {}, isLoading: true });
-            this.props.coachesLogInRequest(this.state).then(
+            this.props.adminLogInRequest(this.state).then(
                 (res) => this.context.router.history.push("/"),
                 (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
             )
@@ -68,7 +68,7 @@ class CoachForm extends Component {
         const continueButton = (
             <div className="continue">
                 <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>
-                    <Link to="/parent-portal" className="links">Continue to Coach Portal</Link>
+                    <Link to="/admin-portal" className="links">Continue to Admin Portal</Link>
                 </button>
             </div>
         )
@@ -100,9 +100,6 @@ class CoachForm extends Component {
                             />
                     </div>
                     <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
-
-                    <h5>Need an account?</h5>
-                    <span>Click <Link to="/coachessignup">here</Link></span>
                 </form>
         )
 
@@ -110,7 +107,7 @@ class CoachForm extends Component {
         return (
             // Main page
             <div className="col-md-6 text-center mx-auto">
-                <h3>Coach Access Portal</h3>
+                <h3>League Administrator Access Portal</h3>
                 {/* If authenticated, either render the log-in form or the continue button */}
                 <div>
                     { isAuthenticated ? continueButton : loginFormArea }
@@ -121,12 +118,12 @@ class CoachForm extends Component {
     }
 }
 // Setting propTypes
-CoachForm.propTypes = {
+AdminLogIn.propTypes = {
     auth: PropTypes.object.isRequired,
-    coachesLogInRequest: PropTypes.func.isRequired
+    adminLogInRequest: PropTypes.func.isRequired
 }
 
-CoachForm.contextTypes = {
+AdminLogIn.contextTypes = {
     router: PropTypes.object.isRequired
 }
 
@@ -138,4 +135,4 @@ function mapStateToProps(state) {
 }
 
 // Exporting the form component and connecting it with redux
-export default connect(mapStateToProps, { coachesLogInRequest })(CoachForm);
+export default connect(mapStateToProps, { adminLogInRequest })(AdminLogIn)
