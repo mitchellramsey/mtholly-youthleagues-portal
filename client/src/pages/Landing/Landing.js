@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import MainHeader from "../../components/MainHeader";
 import LogIn from "../../components/LogIn";
+import Nav from "../../components/Nav/Nav";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import "./landing.css";
 
@@ -11,6 +12,7 @@ class Landing extends Component {
     render() {
         return (
             <div className="container-fluid">
+                <Nav/>
                 <div className="row">
                     <div className="col-md-6 form">
                         <MainHeader/>

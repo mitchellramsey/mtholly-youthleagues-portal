@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import MainHeader from "../../components/MainHeader";
 import DummyForm from "../../components/DummyForm";
-
+import { addFlashMessage } from "../../actions/flashMessages";
+import { connect } from "react-redux";
 import Nav from "../../components/Nav";
+import flashMessages from "../../Shared/rootReducer/flashMessages";
+import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 
 
 
@@ -15,6 +18,7 @@ class ParentPortal extends Component {
                 <div className="row">
                     <div className="col-md-6 form">
                         <MainHeader/>
+                        <FlashMessageList/>
                         <DummyForm/>
                     </div>
 
@@ -29,4 +33,4 @@ class ParentPortal extends Component {
 };
 
 // Exporting the page, and connecting the props with redux
-export default ParentPortal;
+export default connect(null, { addFlashMessage })(ParentPortal);

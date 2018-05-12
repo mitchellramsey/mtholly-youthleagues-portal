@@ -64,9 +64,9 @@ class SignupForm extends Component {
                 () => {
                     this.props.addFlashMessage({
                         type: "Success",
-                        text: "You have signed up successfully, Welcome."
+                        text: "You have signed up successfully, Welcome. Please Log-In to continue"
                     })
-                    this.props.history.push("/parent-portal") 
+                    this.props.history.push("/") 
                 },
                 // Setting errors
                 (err) => this.setState({ errors: err.response.data, isLoading: false })            

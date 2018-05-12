@@ -21,10 +21,11 @@ class SignupPage extends Component {
 
         return (
             <div className="container-fluid">
+                <Nav/>
                 <div className="row">
                     <div className="col-md-6 form">
-                        <Nav/>
                         <MainHeader/>
+                        <FlashMessageList/>
                         <SignupForm
                             userSignupRequest={userSignupRequest}
                             addFlashMessage={addFlashMessage}
