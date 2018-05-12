@@ -19,6 +19,8 @@ app.use(express.static("public"));
 
 // Parse application/JSON
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // Using morgan to log server requests
 app.use(logger("dev"));
 
@@ -39,6 +41,18 @@ app.use("/api/auth", authControllers);
 
 const parentPageEvents = require("./controllers/parentPageEvents");
 app.use("/api/parentSubmit", parentPageEvents);
+
+const coachSignUpControllers = require("./controllers/coachesSignUp-controllers");
+app.use("/api/coachsignup", coachSignUpControllers);
+
+const coachLogInControllers = require("./controllers/coachLogIn-controllers");
+app.use("/api/auth/coaches", coachLogInControllers);
+
+const registerChild = require("./controllers/registerChild-controllers");
+app.use("/api/registerChild", registerChild);
+
+const adminLogInControllers = require("./controllers/adminLogIncontrollers");
+app.use("/api/auth/admin", adminLogInControllers);
 
 
 // Starting the server

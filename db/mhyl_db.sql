@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS mhyl_DB;
+DROP DATABASE IF EXISTS mhyl_db;
 
-CREATE DATABASE mhyl_DB;
+CREATE DATABASE mhyl_db;
 
-USE mhyl_DB;
+USE mhyl_db;

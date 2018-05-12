@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../client/src/Shared/Config/config");
 // User Model
 const { Users } = require("../models");
-const bCrypt = require("bcrypt");
+const bCrypt = require("bcrypt-nodejs");
 // Express router
 const router = express.Router();
 

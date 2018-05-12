@@ -1,21 +1,21 @@
 module.exports = function (sequelize, DataTypes) {
     var Team = sequelize.define("Team", {
       sport: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [0, 100]
         }
       },
       coaches: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [0, 100]
         }
       },
       kids: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [0, 100]

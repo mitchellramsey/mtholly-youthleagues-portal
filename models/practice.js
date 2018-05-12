@@ -1,14 +1,14 @@
 module.exports = function (sequelize, DataTypes) {
   var Practice = sequelize.define("Practice", {
     date: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DATE,
       allowNull: false,
       validate: {
         len: [0, 100]
       }
     },
     time: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TIME,
       allowNull: false,
       validate: {
         isInt: true,
@@ -16,14 +16,14 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     location: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]
       }
     },
     team_association: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]

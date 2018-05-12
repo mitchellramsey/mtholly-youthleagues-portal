@@ -1,14 +1,14 @@
 module.exports = function (sequelize, DataTypes) {
 	var GamesInfo = sequelize.define("GamesInfo", {
 		date: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.DATE,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		time: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.TIME,
 			allowNull: false,
 			validate: {
 				isInt: true,
@@ -16,21 +16,21 @@ module.exports = function (sequelize, DataTypes) {
 			}
 		},
 		location: {
-			type: DataTypes.TEXT,
+			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		team1: {
-			type: DataTypes.TEXT,
+			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		team2: {
-			type: DataTypes.TEXT,
+			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]

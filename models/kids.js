@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
   var Kids = sequelize.define("Kids", {
     first_name: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]
@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     },
 
     last_name: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]
@@ -26,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
     },
 
     gender: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]
@@ -34,7 +34,7 @@ module.exports = function (sequelize, DataTypes) {
     },
 
     sport: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [0, 100]

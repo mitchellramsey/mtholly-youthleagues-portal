@@ -646,6 +646,7 @@
     "multicast-dns": "^6.2.3",
     "multicast-dns-service-types": "^1.1.0",
     "mute-stream": "^0.0.7",
+    "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "nan": "^2.10.0",
     "nanomatch": "^1.2.9",

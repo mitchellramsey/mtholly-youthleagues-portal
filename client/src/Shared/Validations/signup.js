@@ -32,6 +32,11 @@ module.exports = function validateInput(data) {
     }
 
     // Field validator
+    if(data.sport === "") {
+        errors.sport = "This field is required.";
+    }
+
+    // Field validator
     if(validator.isEmpty(data.address)) {
         errors.address = "This field is required.";
     }

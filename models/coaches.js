@@ -1,35 +1,39 @@
 module.exports = function (sequelize, Datatypes) {
 	var Coach = sequelize.define("Coach", {
 		first_name: {
-			type: Datatypes.TEXT,
+			type: Datatypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		last_name: {
-			type: Datatypes.TEXT,
+			type: Datatypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
-		address: {
+		password: {
 			type: Datatypes.TEXT,
+			allowNull: false
+		},
+		address: {
+			type: Datatypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		city: {
-			type: Datatypes.TEXT,
+			type: Datatypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		state: {
-			type: Datatypes.TEXT,
+			type: Datatypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
@@ -44,22 +48,22 @@ module.exports = function (sequelize, Datatypes) {
 			}
 		},
 		sport: {
-			type: Datatypes.TEXT,
+			type: Datatypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		},
 		phone: {
-			type: Datatypes.INTEGER,
+			type: Datatypes.STRING,
 			allowNull: false,
 			validate: {
 				isInt: true,
-				len: [0, 100]
+				len: [0, 255]
 			}
 		},
 		email: {
-			type: Datatypes.TEXT,
+			type: Datatypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
