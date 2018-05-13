@@ -1,8 +1,9 @@
 // Imports
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { parentSubmit } from "../../actions/parentSubmit";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+import classnames from "classnames";
 
 // Creating the Log in form component
 class CreateChildForm extends Component {
@@ -10,8 +11,8 @@ class CreateChildForm extends Component {
         super(props);
         // Setting state
         this.state = {
-            first_name: "",
-            last_name: "",
+            firstName: "",
+            lastName: "",
             age: "",
             gender: "",
             sport: "",
@@ -35,15 +36,6 @@ class CreateChildForm extends Component {
     handleFormSubmit = event => {
         // Preventing default form behavior
         event.preventDefault();
-<<<<<<< HEAD
-        this.props.parentSubmit(this.state);
-    };
-
-    // Render the form
-    render() {
-        // Setting the errors variable
-        const { isLoading } = this.state;
-=======
 
         // If state is valid, perform the AJAX request
        
@@ -61,41 +53,9 @@ class CreateChildForm extends Component {
     // Render the form
     render() {
 
->>>>>>> bf875d33a9dc1cbcbdc2d73e2803e8b7c0a3e012
 
         return (
             <div className="col-md-6 text-center mx-auto">
-<<<<<<< HEAD
-                <h3>Test</h3>
-                
-                <form className="form">
-                {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
-                        <label htmlFor="test" className="control-label">Test</label>
-                            <input
-                                value={this.state.fieldOne}
-                                name="fieldOne"
-                                onChange={this.handleInputChange}
-                                type="text"
-                                placeholder="fieldOne"
-                            />
-                            {/* Error Handling */}
-                            
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
-                        <label htmlFor="password" className="control-label">TestTwo</label>
-                            <input
-                                value={this.state.testTwo}
-                                name="testTwo"
-                                onChange={this.handleInputChange}
-                                type="text"
-                                placeholder="testTwo"
-                            />
-                    </div>
-                    <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
-                </form>
-=======
                 <h3>Register Child</h3>
                 {/* Sign Up Form */}
                 <form className="form" method="POST" onSubmit={this.handleFormSubmit}>
@@ -195,7 +155,6 @@ class CreateChildForm extends Component {
                     
                     <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                 </form>         
->>>>>>> bf875d33a9dc1cbcbdc2d73e2803e8b7c0a3e012
             </div>
         )
     }
@@ -205,9 +164,6 @@ CreateChildForm.propTypes = {
     parentSubmit: PropTypes.func.isRequired
 }
 
-<<<<<<< HEAD
-export default connect(null, { parentSubmit })(CreateChildForm);
-=======
 
 //Setting PropTypes
 CreateChildForm.propTypes = {
@@ -217,4 +173,3 @@ CreateChildForm.propTypes = {
 
 // Exporting the page, and connecting the props with redux
 export default withRouter(CreateChildForm);
->>>>>>> bf875d33a9dc1cbcbdc2d73e2803e8b7c0a3e012

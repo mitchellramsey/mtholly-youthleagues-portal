@@ -17,10 +17,12 @@ class ParentPortal extends Component {
         }
 
     }
+
+
     
 
     toggleChildForm () {
-       
+        console.log(this);
         this.setState({
             showChildForm: !this.state.showChildForm
         });

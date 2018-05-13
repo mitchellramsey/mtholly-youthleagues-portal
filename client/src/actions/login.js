@@ -33,9 +33,11 @@ export function loginRequest(data) {
             // Saving token to user localStorage
             // Decoded token
             const token = res.data.token;
+            console.log(token);
             localStorage.setItem("jwtToken", token);
 
             const decoded = jwt_decode(token);
+            console.log(decoded);
             // Importing the authToken function
             // Passing it the token
             setAuthorizationToken(token);
