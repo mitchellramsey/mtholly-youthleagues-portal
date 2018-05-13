@@ -1,12 +1,12 @@
-var db = require("../models");
-var path = require("path");
-
-
-
-module.exports = function (app) {
+// User Model
+const { Team } = require("../models");
+// Dependencies
+const express = require("express");
+// Express Router
+const router = express.Router();
 	// retrieve all teams from data base.
-	app.get("/teams", function (req, res) {
-		db.Team.findAll({})
+	router.get("/teams", function (req, res) {
+		Team.findAll({})
 			.then(function (dbTeam) {
 				let teamsObj = {
 					teamsList: dbTeam
@@ -17,7 +17,7 @@ module.exports = function (app) {
 			});
 	});
 	// post or add new team to data base.
-	app.post('/new-team', function (req, res) {
+	router.post('/new-team', function (req, res) {
 
 		var team = req.body;
 		db.Team.create({
@@ -28,5 +28,5 @@ module.exports = function (app) {
 			res.json(result);
 		});
 	});
-};
 
+module.exports = router;

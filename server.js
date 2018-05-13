@@ -11,7 +11,7 @@ const cookieSession = require("cookie-session");
 
 // Initializing Express
 let app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 // Setting up flash messages for session users
 app.use(flash());
 // Serving up the public folder to give static content
@@ -48,18 +48,20 @@ app.use("/api/coachsignup", coachSignUpControllers);
 const coachLogInControllers = require("./controllers/coachLogIn-controllers");
 app.use("/api/auth/coaches", coachLogInControllers);
 
+const coachGetRout = require("./controllers/coachGetRoute");
+app.use("/api/coaches", coachGetRout);
 
-// import routes and give the server access to them.
-require("./routes/coach-route.js")(app);
-require("./routes/game-route.js")(app);
-require("./routes/kid-api-route.js")(app);
-require("./routes/parent-api-route.js")(app);
-require("./routes/practice-route.js")(app);
-require("./routes/sport-api-route.js")(app);
-require("./routes/team-route.js")(app);
+const sportGetRoute = require("./controllers/sportGetRoute");
+app.use("/api/sports", sportGetRoute);
 
+const gameGetRoute = require("./controllers/gameGetRoute");
+app.use("/api/games", gameGetRoute);
 
+const practiceGetRoute = require("./controllers/practiceGetRoute");
+app.use("/api/practice", practiceGetRoute);
 
+const teamGetRoute = require("./controllers/teamGetRoute");
+app.use("/api/teams", teamGetRoute);
 
 
 // Starting the server
