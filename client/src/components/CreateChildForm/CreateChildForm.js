@@ -26,7 +26,8 @@ class CreateChildForm extends Component {
             gender: "",
             sport: "",
             years_exp: "",
-            comments: ""
+            comments: "",
+            parentId: props.userId
         };
         // Binding methods to 'this'
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -163,13 +164,6 @@ class CreateChildForm extends Component {
             </div>
         )
     }
-<<<<<<< HEAD
-}
-
-CreateChildForm.propTypes = {
-    parentSubmit: PropTypes.func.isRequired
-=======
->>>>>>> f88b472a6bf124b7d5c73f30dc725cddccb2a374
 }
 
 // -------------------------------------------------------------------------------------------------

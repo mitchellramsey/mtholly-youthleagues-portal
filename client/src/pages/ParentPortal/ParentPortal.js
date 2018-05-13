@@ -40,7 +40,6 @@ class ParentPortal extends Component {
 
     // Render the page
     render() {
-
         const { childSignUp, addFlashMessage } = this.props; 
 
         return (
@@ -61,6 +60,7 @@ class ParentPortal extends Component {
                                     ? <CreateChildForm 
                                         childSignUp={childSignUp}
                                         addFlashMessage={addFlashMessage}
+                                        userId={this.props.auth.user.id}
                                     />
                                     : null
                             }
@@ -76,8 +76,16 @@ class ParentPortal extends Component {
 // Setting propTypes
 ParentPortal.propTypes = {
     childSignUp: PropTypes.func.isRequired,
-    addFlashMessage: PropTypes.func.isRequired
+    addFlashMessage: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+}
+
+
+function mapStateToProps(state) {
+    return {
+        auth: state.auth
+    };
 }
 
 // Exporting the page, and connecting the props with redux
-export default connect(null, { childSignUp, addFlashMessage })(ParentPortal);
+export default connect(mapStateToProps, { childSignUp, addFlashMessage })(ParentPortal);
