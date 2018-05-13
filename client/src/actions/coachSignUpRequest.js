@@ -1,7 +1,7 @@
 // Imports
-// Imports
 import axios from "axios";
 
+// ----------------------------------------------------------------------------------- //
 // Signup AJAX post
 export function coachSignupRequest(userData) {
     return dispatch => {

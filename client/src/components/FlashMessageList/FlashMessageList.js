@@ -1,10 +1,16 @@
 // Imports
 import React from "react";
 import { Component } from "react";
-import FlashMessage from "./FlashMessage";
 import { connect } from "react-redux";
-import { deleteFlashMessage } from "../../actions/flashMessages";
 import PropTypes from "prop-types";
+
+// Actions
+import { deleteFlashMessage } from "../../actions/flashMessages";
+
+// Component
+import FlashMessage from "./FlashMessage";
+
+// ----------------------------------------------------------------------------------- //
 
 // Creating the FlashMessageList component
 class FlashMessageList extends Component {
@@ -23,6 +29,7 @@ class FlashMessageList extends Component {
     }
 }
 
+// ----------------------------------------------------------------------------------- //
 // Setting propTypes
 FlashMessageList.propTypes = {
     messages: PropTypes.array.isRequired,
@@ -36,5 +43,6 @@ function mapStateToProps(state) {
     }
 }
 
+// ----------------------------------------------------------------------------------- //
 // Exporting the connected component
 export default connect(mapStateToProps, { deleteFlashMessage })(FlashMessageList);

@@ -1,6 +1,8 @@
 // Imports
 import { ADD_FLASH_MESSAGE } from "./types";
 import { DELETE_FLASH_MESSAGE } from "./types";
+
+// ----------------------------------------------------------------------------------- //
 // Adding the flash message
 export function addFlashMessage(message) {
     return {

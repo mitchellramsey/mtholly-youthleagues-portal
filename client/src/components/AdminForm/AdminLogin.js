@@ -1,11 +1,20 @@
 // Imports
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { adminLogInRequest } from "../../actions/adminLogInRequest";
-import validateInput from "../../Shared/Validations/login";
 import { connect } from "react-redux";
+import classnames from "classnames";
 import PropTypes from "prop-types";
+
+// Actions
+import { adminLogInRequest } from "../../actions/adminLogInRequest";
+
+// Validation 
+import validateInput from "../../Shared/Validations/login";
+
+// CSS
 import "../LogInForm/loginform.css";
+
+// --------------------------------------------------------- //
 
 
 // Creating the Log in form component
@@ -60,7 +69,7 @@ class AdminLogIn extends Component {
     // Render the form
     render() {
         // Setting the errors variable
-        const { isLoading } = this.state;
+        const { isLoading, errors } = this.state;
         // Acessing authenticated property
         const { isAuthenticated } = this.props.auth;
 
@@ -76,7 +85,7 @@ class AdminLogIn extends Component {
         const loginFormArea = (
             <form className="form">
                 {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
+                <div className={classnames("form-group", { "has-error": errors.email })}>
                         <label htmlFor="email" className="control-label">Email</label>
                             <input
                                 value={this.state.email}
@@ -87,9 +96,10 @@ class AdminLogIn extends Component {
                                 id="email"
                             />
                             {/* Error Handling */} 
+                            {errors.email && <span className="help-block">{errors.email}</span>}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
+                    <div className={classnames("form-group", { "has-error": errors.password })}>
                         <label htmlFor="password" className="control-label">Password</label>
                             <input
                                 value={this.state.password}
@@ -98,6 +108,8 @@ class AdminLogIn extends Component {
                                 type="password"
                                 placeholder="Password"
                             />
+                            {/* Error Handling */}
+                            {errors.password && <span className="help-block">{errors.password}</span>}
                     </div>
                     <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
                 </form>
@@ -117,6 +129,7 @@ class AdminLogIn extends Component {
         )
     }
 }
+// ---------------------------------------------------------------------------------------------------- //
 // Setting propTypes
 AdminLogIn.propTypes = {
     auth: PropTypes.object.isRequired,
@@ -133,6 +146,6 @@ function mapStateToProps(state) {
         auth: state.auth
     };
 }
-
+// ---------------------------------------------------------------------------------------------------- //
 // Exporting the form component and connecting it with redux
 export default connect(mapStateToProps, { adminLogInRequest })(AdminLogIn)

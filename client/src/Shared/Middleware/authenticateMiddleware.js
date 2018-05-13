@@ -1,6 +1,8 @@
 // Dependencies
 const jwt = require("jsonwebtoken");
 const config = require("../Config/config");
+
+// Model
 const { Users } = require("../../../../models");
 
 // Middleware Function

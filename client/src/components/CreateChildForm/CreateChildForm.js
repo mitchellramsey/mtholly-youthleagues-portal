@@ -5,6 +5,15 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 
+// Actions
+import validateInput from "../../Shared/Validations/signup";
+
+// CSS
+import "../../components/LogIn/login.css";
+
+// ----------------------------------------------------------------------------------- //
+// Creating Register Child Form
+
 // Creating the Log in form component
 class CreateChildForm extends Component {
     constructor(props) {
@@ -149,27 +158,27 @@ class CreateChildForm extends Component {
                                 value={this.state.comments}
                             />
                     </div>
-
-                            
-
-                    
                     <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                 </form>         
             </div>
         )
     }
+<<<<<<< HEAD
 }
 
 CreateChildForm.propTypes = {
     parentSubmit: PropTypes.func.isRequired
+=======
+>>>>>>> f88b472a6bf124b7d5c73f30dc725cddccb2a374
 }
 
-
+// -------------------------------------------------------------------------------------------------
 //Setting PropTypes
 CreateChildForm.propTypes = {
     childSignUp: PropTypes.func.isRequired,
 
 }
 
+// -------------------------------------------------------------------------------------------------
 // Exporting the page, and connecting the props with redux
 export default withRouter(CreateChildForm);

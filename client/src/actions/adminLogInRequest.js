@@ -4,6 +4,8 @@ import setAuthorizationToken from "../utils/setAuthorizationToken";
 import jwt_decode from 'jwt-decode';
 import { SET_CURRENT_USER } from "./types";
 
+
+// ----------------------------------------------------------------------------------- //
 // Creating an action for SET_CURRENT_USER
 export function setCurrentUser(user) {
     return {

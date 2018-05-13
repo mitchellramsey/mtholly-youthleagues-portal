@@ -3,8 +3,11 @@ import React from "react";
 import { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+
+// CSS
 import "./flashmessage.css";
 
+// ----------------------------------------------------------------------------------- //
 // Creating the Flash Message component
 class FlashMessage extends Component {
 
@@ -38,10 +41,13 @@ class FlashMessage extends Component {
         )
     }
 }
+// ----------------------------------------------------------------------------------- //
 // Setting propTypes
 FlashMessage.propTypes = {
     message: PropTypes.object.isRequired,
     deleteFlashMessage: PropTypes.func.isRequired
 }
+
+// ----------------------------------------------------------------------------------- //
 // Exporting the component
 export default FlashMessage;
