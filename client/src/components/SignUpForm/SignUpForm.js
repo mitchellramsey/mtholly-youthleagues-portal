@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import classnames from "classnames";
+// To be fixed
+// import classnames from "classnames";
 
 // CSS
 import "../../components/LogIn/login.css";
@@ -90,7 +91,7 @@ class SignupForm extends Component {
                 {/* Sign Up Form */}
                 <form className="form" onSubmit={this.handleFormSubmit}>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.firstName })}>
+                    <div className="form-group">
                         <label htmlFor="firstName" className="control-label">First Name</label>
                             <input 
                                 type="text" 
@@ -101,10 +102,10 @@ class SignupForm extends Component {
                                 value={this.state.firstName}
                             />
                             {/* Error Handling */}
-                            {errors.firstName && <span className="help-block">{errors.firstName}</span>}
+                            {/* {errors.firstName && <span className="help-block">{errors.firstName}</span>} */}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.lastName })}>
+                    <div className="form-group">
                         <label htmlFor="lastName" className="control-label">Last Name</label>
                             <input 
                                 type="text" 
@@ -115,7 +116,7 @@ class SignupForm extends Component {
                                 value={this.state.lastName}
                             />
                             {/* Error Handling */}
-                            {errors.lastName && <span className="help-block">{errors.lastName}</span>}
+                            {/* {errors.lastName && <span className="help-block">{errors.lastName}</span>} */}
                     </div>
                     {/* Will Validate this in the future */}
                     <div className="form-group">
@@ -130,7 +131,7 @@ class SignupForm extends Component {
                             />
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.phone })}>
+                    <div className="form-group">
                         <label htmlFor="phoneNumber" className="control-label">Phone Number</label>
                             <input 
                                 type="text" 
@@ -141,10 +142,10 @@ class SignupForm extends Component {
                                 value={this.state.phone}
                             />
                             {/* Error Handling */}
-                            {errors.phone && <span className="help-block">{errors.phone}</span>}
+                            {/* {errors.phone && <span className="help-block">{errors.phone}</span>} */}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.email })}>
+                    <div className="form-group">
                         <label htmlFor="email" className="control-label">E-mail</label>
                             <input 
                                 type="text" 
@@ -155,10 +156,10 @@ class SignupForm extends Component {
                                 value={this.state.email}
                             />
                             {/* Error Handling */}
-                            {errors.email && <span className="help-block">{errors.email}</span>}
+                            {/* {errors.email && <span className="help-block">{errors.email}</span>} */}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.address })}>
+                    <div className="form-group">
                         <label htmlFor="address"  className="control-label">Address</label>
                             <input 
                                 type="text" 
@@ -201,7 +202,7 @@ class SignupForm extends Component {
                                 value={this.state.county}
                             />
                             {/* Error Handling */}
-                            {errors.address && <span className="help-block">{errors.address}</span>}
+                            {/* {errors.address && <span className="help-block">{errors.address}</span>} */}
                     </div>
                     <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                 </form>         

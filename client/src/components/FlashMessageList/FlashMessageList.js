@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 
 // Actions
 import { deleteFlashMessage } from "../../actions/flashMessages";
-import PropTypes from "prop-types";
 
 // Component
 import FlashMessage from "./FlashMessage";

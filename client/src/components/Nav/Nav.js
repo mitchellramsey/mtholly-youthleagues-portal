@@ -27,10 +27,11 @@ class Nav extends Component {
     render() {
         // Acessing authenticated property
         const { isAuthenticated } = this.props.auth
+        const { username } = this.props.auth.user
         // Logged in user links
         const userLink = (
             <ul>
-                <li className="log-out"><Link to="/" className="links nav-item" onClick={this.logout.bind(this)}>Log Out</Link></li>
+                <li className="log-out">{username}<Link to="/" className="links nav-item" onClick={this.logout.bind(this)}>Log Out</Link></li>
                 <li><Link to="/" className="links nav-item">Home</Link></li>
             </ul>
         )

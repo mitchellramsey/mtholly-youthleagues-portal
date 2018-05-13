@@ -27,6 +27,21 @@ module.exports = function validateInput(data) {
     }
 
     // Field validator
+    if(validator.isEmpty(data.password)) {
+        errors.password = "This field is required.";
+    }
+
+    // Field validator
+    if(validator.isEmpty(data.passwordConfirmation)) {
+        errors.passwordConfirmation = "This field is required.";
+    }
+
+    // If passwords are not equal
+    if(!validator.equals(data.password, data.passwordConfirmation)) {
+        errors.passwordConfirmation = "Passwords do not match.";
+    }
+
+    // Field validator
     if(validator.isEmpty(data.email)) {
         errors.email = "This field is required.";
     }
@@ -37,7 +52,7 @@ module.exports = function validateInput(data) {
     }
 
     // Field validator
-    if(!validator.isEmail(data.sport)) {
+    if(validator.isEmpty(data.sport)) {
         errors.sport = "This field is required.";
     }
 

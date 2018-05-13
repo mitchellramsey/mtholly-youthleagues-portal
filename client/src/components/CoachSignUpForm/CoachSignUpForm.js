@@ -25,6 +25,7 @@ class CoachSignupForm extends Component {
                 city: "",
                 state: "",
                 password: "",
+                passwordConfirmation: "",
                 zip: "",
                 sport: "",
                 phone: "",
@@ -132,7 +133,21 @@ class CoachSignupForm extends Component {
                                 placeholder="Password Confirmation"
                             />
                             {/* Error Handling */}
-                            {errors.last_name && <span className="help-block">{errors.last_name}</span>}
+                            {errors.password && <span className="help-block">{errors.password}</span>}
+                    </div>
+                    {/* "ClassNames NPM Package for conditional error handling styles" */}
+                    <div className={classnames("form-group", { "has-error": errors.passwordConfirmation })}>
+                        <label htmlFor="passwordConfirmation" className="control-label">Password Confirmation</label>
+                            <input
+                                value={this.state.passwordConfirmation}
+                                name="passwordConfirmation"
+                                className="form-control"
+                                onChange={this.handleInputChange}
+                                type="password"
+                                placeholder="Password Confirmation"
+                            />
+                            {/* Error Handling */}
+                            {errors.passwordConfirmation && <span className="help-block">{errors.passwordConfirmation}</span>}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
                     <div className={classnames("form-group", { "has-error": errors.phone })}>
