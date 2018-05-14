@@ -55,9 +55,12 @@ app.use("/api/auth/coaches", coachLogInControllers);
 
 const registerChild = require("./controllers/registerChild-controllers");
 app.use("/api/registerChild", registerChild);
+app.use("/api/retrieveChildren", registerChild);
 
 const adminLogInControllers = require("./controllers/adminLogIncontrollers");
 app.use("/api/auth/admin", adminLogInControllers);
+
+
 // ----------------------------------------------------------------------------------- //
 
 // ----------------------------------------------------------------------------------- //

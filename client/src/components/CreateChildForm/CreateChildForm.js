@@ -71,7 +71,7 @@ class CreateChildForm extends Component {
             <div className="col-md-6 text-center mx-auto">
                 <h3>Register Child</h3>
                     {/* Sign Up Form */}
-                    <form className="form text-center">
+                    <form className="form text-center" onSubmit={this.handleFormSubmit}>
                         <TextFieldGroup
                             onChange={this.handleInputChange}
                             errors={this.firstName}
