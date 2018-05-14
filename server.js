@@ -53,6 +53,21 @@ app.use("/api/coachsignup", coachSignUpControllers);
 const coachLogInControllers = require("./controllers/coachLogIn-controllers");
 app.use("/api/auth/coaches", coachLogInControllers);
 
+const coachGetRout = require("./controllers/coachGetRoute");
+app.use("/api/coaches", coachGetRout);
+
+const sportGetRoute = require("./controllers/sportGetRoute");
+app.use("/api/sports", sportGetRoute);
+
+const gameGetRoute = require("./controllers/gameGetRoute");
+app.use("/api/games", gameGetRoute);
+
+const practiceGetRoute = require("./controllers/practiceGetRoute");
+app.use("/api/practice", practiceGetRoute);
+
+const teamGetRoute = require("./controllers/teamGetRoute");
+app.use("/api/teams", teamGetRoute);
+
 const registerChild = require("./controllers/registerChild-controllers");
 app.use("/api/registerChild", registerChild);
 app.use("/api/retrieveChildren", registerChild);
@@ -65,7 +80,7 @@ app.use("/api/auth/admin", adminLogInControllers);
 
 // ----------------------------------------------------------------------------------- //
 // Starting the server
-db.sequelize.sync().then(function() {
+db.sequelize.sync({force: true}).then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
