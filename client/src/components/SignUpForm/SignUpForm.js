@@ -2,8 +2,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-// To be fixed
-// import classnames from "classnames";
+
+// Component
+import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 
 // CSS
 import "../../components/LogIn/login.css";
@@ -22,6 +23,8 @@ class SignupForm extends Component {
                 firstName: "",
                 lastName: "",
                 phone: "", 
+                password: "",
+                passwordConfirmation: "",
                 email: "",
                 address: "",
                 zip: "",
@@ -29,12 +32,14 @@ class SignupForm extends Component {
                 state: "",
                 county: "",
                 errors: {},
-                isLoading: false
+                isLoading: false,
+                invalid: false
             };
         
         // Binding form submittion and input change to "this" specific one
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.checkUser = this.checkUser.bind(this);
     }
 
     // Capturing form input
@@ -55,14 +60,41 @@ class SignupForm extends Component {
        return isValid;
     }
 
+    // Checking if user exists
+    checkUser(event) {
+        // Email field
+        const field = event.target.name;
+        // Value
+        const value = event.target.value;
+        // If value doesnt equal an empty string, run this
+        if(value !== "") {
+            this.props.isUserExists(value).then(res => {
+                // Defining errors
+                let errors = this.state.errors
+                let invalid;
+                // If error
+                if(res.data.user) {
+                    // set error
+                    errors[field] = "This email is already taken";
+                    let invalid = true;
+                } else {
+                    // Leave the field empty
+                    errors[field] = "";
+                    let invalid = false;
+                }
+                // Set State with errors
+                this.setState({ errors, invalid });
+            });
+        }
+    }
+
     // On form submit
     handleFormSubmit = event => {
-        // When the form is submitted, reset any stored errors and disable the submit button during load time
-        // To prevent multiple events
-        this.setState({ errors: {}, isLoading: true });
         // Preventing default form behavior
         event.preventDefault();
-
+        // When the form is submitted, reset any stored errors and disable the submit button during load time
+        // To prevent multiple events
+        this.setState({ errors: {} });
         // If state is valid, perform the AJAX request
         if(this.isValid()) {
             this.props.userSignupRequest(this.state).then(
@@ -71,11 +103,11 @@ class SignupForm extends Component {
                     this.props.addFlashMessage({
                         type: "Success",
                         text: "You have signed up successfully, Welcome. Please Log-In to continue"
-                    })
+                    });
                     this.props.history.push("/") 
                 },
                 // Setting errors
-                (err) => this.setState({ errors: err.response.data, isLoading: false })            
+                (err) => this.setState({ errors: err.response.data })            
             );
         }
     };
@@ -89,123 +121,136 @@ class SignupForm extends Component {
             <div className="col-md-6 text-center mx-auto">
                 <h3>Sign-up Form</h3>
                 {/* Sign Up Form */}
-                <form className="form" onSubmit={this.handleFormSubmit}>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
-                        <label htmlFor="firstName" className="control-label">First Name</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="firstName" 
-                                placeholder="First Name"
-                                onChange={this.handleInputChange}
-                                value={this.state.firstName}
-                            />
-                            {/* Error Handling */}
-                            {/* {errors.firstName && <span className="help-block">{errors.firstName}</span>} */}
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
-                        <label htmlFor="lastName" className="control-label">Last Name</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="lastName" 
-                                placeholder="Last Name"
-                                onChange={this.handleInputChange}
-                                value={this.state.lastName}
-                            />
-                            {/* Error Handling */}
-                            {/* {errors.lastName && <span className="help-block">{errors.lastName}</span>} */}
-                    </div>
-                    {/* Will Validate this in the future */}
-                    <div className="form-group">
-                        <label htmlFor="password" className="control-label">Password</label>
-                            <input
-                                value={this.state.password}
-                                name="password"
-                                className="form-control"
-                                onChange={this.handleInputChange}
-                                type="password"
-                                placeholder="Password Confirmation"
-                            />
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
-                        <label htmlFor="phoneNumber" className="control-label">Phone Number</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="phone" 
-                                placeholder="Phone Number"
-                                onChange={this.handleInputChange}
-                                value={this.state.phone}
-                            />
-                            {/* Error Handling */}
-                            {/* {errors.phone && <span className="help-block">{errors.phone}</span>} */}
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
-                        <label htmlFor="email" className="control-label">E-mail</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="email" 
-                                placeholder="E-mail"
-                                onChange={this.handleInputChange}
-                                value={this.state.email}
-                            />
-                            {/* Error Handling */}
-                            {/* {errors.email && <span className="help-block">{errors.email}</span>} */}
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
-                        <label htmlFor="address"  className="control-label">Address</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="address" 
-                                placeholder="Address"
-                                onChange={this.handleInputChange}
-                                value={this.state.address}
-                            />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="zip" 
-                                placeholder="Zip code"
-                                onChange={this.handleInputChange}
-                                value={this.state.zip}
-                            />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="city" 
-                                placeholder="City"
-                                onChange={this.handleInputChange}
-                                value={this.state.city}
-                            />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="state" 
-                                placeholder="State"
-                                onChange={this.handleInputChange}
-                                value={this.state.state}
-                            />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="county" 
-                                placeholder="County"
-                                onChange={this.handleInputChange}
-                                value={this.state.county}
-                            />
-                            {/* Error Handling */}
-                            {/* {errors.address && <span className="help-block">{errors.address}</span>} */}
-                    </div>
-                    <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
-                </form>         
+                    <form className="form" onSubmit={this.handleFormSubmit}>
+                        {/* First Name */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.firstName}
+                            onBlur={this.checkUser}
+                            label="First Name"
+                            type="text"
+                            field="firstName"
+                            className="form-control"
+                            value={this.state.firstName}
+                            placeholder="First Name"
+                        />
+
+                        {/* Last Name */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.lastName}
+                            label="Last Name"
+                            type="text"
+                            field="lastName"
+                            className="form-control"
+                            value={this.state.lastName}
+                            placeholder="Last Name"
+                        />
+
+                        {/* Password */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.password}
+                            label="Password"
+                            type="password"
+                            field="password"
+                            className="form-control"
+                            value={this.state.password}
+                            placeholder="Password"
+                        />
+                        {/* Password Confirmation */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.passwordConfirmation}
+                            label="Password Confirmation"
+                            type="password"
+                            field="passwordConfirmation"
+                            className="form-control"
+                            value={this.state.passwordConfirmation}
+                            placeholder="Password Confirmation"
+                        />
+
+                        {/* Phone */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.phone}
+                            label="Phone"
+                            type="text"
+                            field="phone"
+                            className="form-control"
+                            value={this.state.phone}
+                            placeholder="Phone"
+                        />
+                        {/* Email */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            checkUser={this.checkUser}
+                            errors={errors.email}
+                            label="Email"
+                            type="text"
+                            field="email"
+                            className="form-control address"
+                            value={this.state.email}
+                            placeholder="Email"
+                        />
+
+                        {/* Street Address */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.address}
+                            label="Address"
+                            type="text"
+                            field="address"
+                            className="form-control address"
+                            value={this.state.address}
+                            placeholder="Street address"
+                        />
+
+                        {/* City */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.city}
+                            type="text"
+                            field="city"
+                            className="form-control address"
+                            value={this.state.city}
+                            placeholder="City"
+                        />
+
+                        {/* State */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.state}
+                            type="text"
+                            field="state"
+                            className="form-control address"
+                            value={this.state.state}
+                            placeholder="State"
+                        />
+
+                        {/* County */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.county}
+                            type="text"
+                            field="county"
+                            className="form-control"
+                            value={this.state.county}
+                            placeholder="County"
+                        />
+
+                        {/* Zip */}
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.zip}
+                            type="text"
+                            field="zip"
+                            className="form-control address"
+                            value={this.state.zip}
+                            placeholder="Zip"
+                        />
+                        <button className="btn btn-primary form-btn mx-auto submit-btn" disabled={this.state.isLoading || this.state.invalid}>Submit</button>
+                    </form>         
             </div>
         )
     }
@@ -215,7 +260,8 @@ class SignupForm extends Component {
 // Setting Proptypes
 SignupForm.propTypes = {
     userSignupRequest: PropTypes.func.isRequired,
-    addFlashMessage: PropTypes.func.isRequired
+    addFlashMessage: PropTypes.func.isRequired,
+    isUserExists: PropTypes.func.isRequired
 }
 
 // ----------------------------------------------------------------------------------- //

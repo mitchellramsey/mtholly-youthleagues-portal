@@ -1,9 +1,11 @@
+
 span.help-block {
     display: block;
 }
 
-#email {
-    margin-left: 40px;
+.form-control {
+    display: inline-block;
+    border-radius: 0px;
 }
 
 .continue> button {

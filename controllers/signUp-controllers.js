@@ -1,16 +1,15 @@
 // Dependencies
 const express = require("express");
 // Express Router
-
 const router = express.Router();
+
 // Validations
-
 const validation = require("../client/src/Shared/Validations/signup");
+
 // Middleware
-
 const middleware = require("../client/src/Shared/Middleware/authenticateMiddleware");
-// Password encrpytion
 
+// Password encrpytion
 const bCrypt = require("bcrypt-nodejs");
 
 // User Model
@@ -33,8 +32,8 @@ router.post("/", (req, res) => {
         }).then(function(user) {
             // If the email already exists
             if (user) {
-                return console.log("That email is already in use.");
-            } else {
+                errors.email = "This email is already in use";
+            } else if(!user) {
 
                 // Generating hashed passwords
                 const userPassword = bCrypt.hashSync(password);
@@ -64,9 +63,30 @@ router.post("/", (req, res) => {
                     }
          
                 }).then(newUser => res.json({ success: true }))
-            }
+                    // Catch errors
+                    .catch(err => res.status(500).json({ error: err }));
+            } 
         });
+    }  else {
+        // send errors
+        res.status(400).json(errors);
+        console.log("x");
     }
+});
+
+// ----------------------------------------------------------------------------------- //
+
+// Route to check if an already exists during sign up - This activates OnBlur with the email field
+router.get("/:identifier", (req, res) => {
+    // Find the passed paramter within the email column
+    Users.findAll({
+        where: {
+            email: req.params.identifier
+        }
+        // If it exists send that user email back
+    }).then(user => {
+        res.json({ user });
+    })
 });
 
 // ----------------------------------------------------------------------------------- //

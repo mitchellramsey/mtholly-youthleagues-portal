@@ -1,12 +1,11 @@
 
-input {
-    display: inline-block;
-    margin: 10px;
-}
-
 h5,
 h4 {
     padding-top: 40px;
+}
+
+.help-block {
+    padding-top: 8px;
 }
 
 .form-btn {
@@ -15,7 +14,15 @@ h4 {
     display: block;
 }
 
+.submit-btn {
+    margin-top: 42px;
+}
+
 /* Conditional error class */
 .form-group.has-error {
     color: red;
+}
+
+.address {
+    margin-bottom: -28px;
 }

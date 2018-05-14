@@ -2,12 +2,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-// To be fixed
-// import classnames from "classnames";
 import PropTypes from "prop-types";
 
 // Actions
 import { loginRequest } from "../../actions/login";
+
+// Component
+import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 
 // Validation 
 import validateInput from "../../Shared/Validations/login";
@@ -86,33 +87,30 @@ class LogInForm extends Component {
         // Log in form
         const loginFormArea = (
             <form className="form text-center">
-                {/* "ClassNames NPM Package for conditional error handling styles" */}
-                <div className="form-group">
-                        <label htmlFor="email" className="control-label">Email</label>
-                            <input
-                                value={this.state.email}
-                                name="email"
-                                onChange={this.handleInputChange}
-                                type="email"
-                                placeholder="Email"
-                                id="email"
-                            />
-                            {/* Error Handling */} 
-                            {/* {errors.email && <span className="help-block">{errors.email}</span>} */}
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
-                        <label htmlFor="password" className="control-label">Password</label>
-                            <input
-                                value={this.state.password}
-                                name="password"
-                                onChange={this.handleInputChange}
-                                type="password"
-                                placeholder="Password"
-                            />
-                            {/* Error Handling */} 
-                            {/* {errors.password && <span className="help-block">{errors.password}</span>} */}
-                    </div>
+                {/* Email */}
+                <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={this.email}
+                        label="Email"
+                        type="text"
+                        name="email"
+                        className="form-control"
+                        value={this.state.email}
+                        placeholder="Email"
+                        id="email"
+                    />
+                {/* Password */}
+                <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={this.password}
+                        label="Password"
+                        type="password"
+                        name="password"
+                        className="form-control"
+                        value={this.state.password}
+                        placeholder="Password"
+                        id="password"
+                    />
                     <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
 
                     <h5>Need an account?</h5>
@@ -130,7 +128,7 @@ class LogInForm extends Component {
         // Render the form or button
         return (
             // Main page
-            <div className="form-group text-center">
+            <div className="col-md-6 text-center mx-auto">
                 <h3>Parent Access Portal</h3>
                 
                 {/* If authenticated, either render the log-in form or the continue button */}

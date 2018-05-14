@@ -2,7 +2,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import classnames from "classnames";
+
+// Component
+import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 
 // Validation
 import validateInput from "../../Shared/Validations/coachessignup";
@@ -93,151 +95,137 @@ class CoachSignupForm extends Component {
                 <h3>Coach Sign-up Form</h3>
                 {/* Sign Up Form */}
                 <form className="form" onSubmit={this.handleFormSubmit}>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.first_name })}>
-                        <label htmlFor="first_name" className="control-label">First Name</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="first_name" 
-                                placeholder="First Name"
-                                onChange={this.handleInputChange}
-                                value={this.state.first_name}
-                            />
-                            {/* Error Handling */}
-                            {errors.first_name && <span className="help-block">{errors.first_name}</span>}
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.last_name })}>
-                        <label htmlFor="lastName" className="control-label">Last Name</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="last_name" 
-                                placeholder="Last Name"
-                                onChange={this.handleInputChange}
-                                value={this.state.last_name}
-                            />
-                            {/* Error Handling */}
-                            {errors.last_name && <span className="help-block">{errors.last_name}</span>}
-                    </div>
-                    {/* Will Validate this in the future */}
-                    <div className={classnames("form-group", { "has-error": errors.password })}>
-                        <label htmlFor="password" className="control-label">Password</label>
-                            <input
-                                value={this.state.password}
-                                name="password"
-                                className="form-control"
-                                onChange={this.handleInputChange}
-                                type="password"
-                                placeholder="Password Confirmation"
-                            />
-                            {/* Error Handling */}
-                            {errors.password && <span className="help-block">{errors.password}</span>}
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.passwordConfirmation })}>
-                        <label htmlFor="passwordConfirmation" className="control-label">Password Confirmation</label>
-                            <input
-                                value={this.state.passwordConfirmation}
-                                name="passwordConfirmation"
-                                className="form-control"
-                                onChange={this.handleInputChange}
-                                type="password"
-                                placeholder="Password Confirmation"
-                            />
-                            {/* Error Handling */}
-                            {errors.passwordConfirmation && <span className="help-block">{errors.passwordConfirmation}</span>}
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.phone })}>
-                        <label htmlFor="phoneNumber" className="control-label">Phone Number</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="phone" 
-                                placeholder="Phone Number"
-                                onChange={this.handleInputChange}
-                                value={this.state.phone}
-                            />
-                            {/* Error Handling */}
-                            {errors.phone && <span className="help-block">{errors.phone}</span>}
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.email })}>
-                        <label htmlFor="email" className="control-label">E-mail</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="email" 
-                                placeholder="E-mail"
-                                onChange={this.handleInputChange}
-                                value={this.state.email}
-                            />
-                            {/* Error Handling */}
-                            {errors.email && <span className="help-block">{errors.email}</span>}
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.sport })}>
-                        <label htmlFor="sport" className="control-label">Sport</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="sport" 
-                                placeholder="Sport"
-                                onChange={this.handleInputChange}
-                                value={this.state.sport}
-                            />
-                            {/* Error Handling */}
-                            {errors.sport && <span className="help-block">{errors.sport}</span>}
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.address })}>
-                        <label htmlFor="address"  className="control-label">Address</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="address" 
-                                placeholder="Address"
-                                onChange={this.handleInputChange}
-                                value={this.state.address}
-                            />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="zip" 
-                                placeholder="Zip code"
-                                onChange={this.handleInputChange}
-                                value={this.state.zip}
-                            />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="city" 
-                                placeholder="City"
-                                onChange={this.handleInputChange}
-                                value={this.state.city}
-                            />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="state" 
-                                placeholder="State"
-                                onChange={this.handleInputChange}
-                                value={this.state.state}
-                            />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="county" 
-                                placeholder="County"
-                                onChange={this.handleInputChange}
-                                value={this.state.county}
-                            />
-                            {/* Error Handling */}
-                            {errors.address && <span className="help-block">{errors.address}</span>}
-                    </div>
-                    <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                    {/* First Name */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.first_name}
+                        label="First Name"
+                        type="text"
+                        name="first_name"
+                        className="form-control"
+                        value={this.state.first_name}
+                        placeholder="First Name"
+                        id="first_name"
+                    />
+                    {/* Last Name */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.last_name}
+                        label="Last Name"
+                        type="text"
+                        name="last_name"
+                        className="form-control"
+                        value={this.state.last_name}
+                        placeholder="Last Name"
+                        id="last_name"
+                    />
+                    {/* Password */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.password}
+                        label="Password"
+                        type="password"
+                        name="password"
+                        className="form-control"
+                        value={this.state.password}
+                        placeholder="Password"
+                        id="password"
+                    />
+                    {/* Password Confirmation */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.passwordConfirmation}
+                        label="Password Confirmation"
+                        type="password"
+                        name="passwordConfirmation"
+                        className="form-control"
+                        value={this.state.passwordConfirmation}
+                        placeholder="Password Confirmation"
+                        />
+                    {/* Email */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.email}
+                        label="Email"
+                        type="text"
+                        name="email"
+                        className="form-control"
+                        value={this.state.email}
+                        placeholder="Email"
+                        id="Email"
+                    />
+                    {/* Phone */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.phone}
+                        label="Phone"
+                        type="text"
+                        name="phone"
+                        className="form-control"
+                        value={this.state.phone}
+                        placeholder="Phone"
+                        id="phone"
+                    />
+                    {/* Sport */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.sport}
+                        label="Sport"
+                        type="text"
+                        name="sport"
+                        className="form-control"
+                        value={this.state.sport}
+                        placeholder="Sport"
+                        id="sport"
+                    />
+                    {/* Street Address */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.address}
+                        label="Address"
+                        type="text"
+                        name="address"
+                        className="form-control address"
+                        value={this.state.address}
+                        placeholder="Street address"
+                        id="address"
+                    />
+
+                    {/* City */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.city}
+                        type="text"
+                        name="city"
+                        className="form-control address"
+                        value={this.state.city}
+                        placeholder="City"
+                        id="city"
+                    />
+
+                    {/* State */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.state}
+                        type="text"
+                        name="state"
+                        className="form-control address"
+                        value={this.state.state}
+                        placeholder="State"
+                        id="state"
+                    />
+                    {/* Zip */}
+                    <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.zip}
+                        type="text"
+                        name="zip"
+                        className="form-control address"
+                        value={this.state.zip}
+                        placeholder="Zip"
+                        id="zip"
+                    />
+                    <button className="btn btn-primary form-btn mx-auto submit-btn" disabled={this.state.isLoading}>Submit</button>
                 </form>         
             </div>
         )

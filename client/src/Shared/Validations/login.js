@@ -11,6 +11,11 @@ module.exports = function validateInput(data) {
         errors.email = "This field is required.";
     }
 
+    // If the email doesn't match
+    if(!validator.isEmail(data.email)) {
+        errors.email = "Email is invalid.";
+    }
+
     // Field validator
     if(validator.isEmpty(data.password)) {
         errors.password = "This field is required.";
