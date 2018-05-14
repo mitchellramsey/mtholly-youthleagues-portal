@@ -7,20 +7,33 @@ const validation = require("../client/src/Shared/Validations/signup");
 // Middleware
 const middleware = require("../client/src/Shared/Middleware/authenticateMiddleware");
 //Kid Model
-const { Users } = require("../models");
+const { Users, Kids } = require("../models");
+
 
 //Register Child POST
 router.post("/", (req,res) => {
-    console.log(req.body);
-    Users.findAll({
-    }).then(function(user) {
-        // If user is found, compare passwords
-        if(user) {
-            // console.log(user.username) 
-        } else {
-            console.log("fal");
+    const kid = req.body;
+    Users.findOne({
+        where: {
+            id: kid.parentId
         }
+    }).then(parent => {
+        Kids.create({
+            first_name: kid.firstName,
+            last_name: kid.lastName,
+            age: kid.age,
+            gender: kid.gender,
+            sport: kid.sport,
+            years_exp: kid.years_exp,
+            comments: kid.comments,
+            UserId: parent.id
+        }).then(newkid => {
+            res.json(newkid);
+        });
+
     })
+    
+    
 });
 
 module.exports = router;

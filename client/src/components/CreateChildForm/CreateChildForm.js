@@ -1,5 +1,6 @@
 // Imports
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
@@ -13,26 +14,24 @@ import "../../components/LogIn/login.css";
 // ----------------------------------------------------------------------------------- //
 // Creating Register Child Form
 
+// Creating the Log in form component
 class CreateChildForm extends Component {
-
     constructor(props) {
         super(props);
-            // Setting state
-            this.state = {
-                firstName: "",
-                lastName: "",
-                age: "", 
-                gender: "",
-                sport: "",
-                years_exp: "",
-                comments: "",
-                isLoading: false
-            };
-
-        // Binding form submittion and input change to "this" specific one
+        // Setting state
+        this.state = {
+            firstName: "",
+            lastName: "",
+            age: "",
+            gender: "",
+            sport: "",
+            years_exp: "",
+            comments: "",
+            parentId: props.userId
+        };
+        // Binding methods to 'this'
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-
     }
 
     // Capturing form input
@@ -41,23 +40,10 @@ class CreateChildForm extends Component {
             [event.target.name]: event.target.value
         })
     };
-
-    // If state is true, run this function
-    isValid() {
-       const {errors, isValid } = validateInput(this.state);
-    // If state is false, set errors
-       if(!isValid) {
-           this.setState({ errors })
-       }
-       // Getting the boolean value back    
-       return isValid;
-    }
+    
 
     // On form submit
     handleFormSubmit = event => {
-        // When the form is submitted, reset any stored errors and disable the submit button during load time
-        // To prevent multiple events
-        this.setState({ errors: {}, isLoading: true });
         // Preventing default form behavior
         event.preventDefault();
 
@@ -78,7 +64,7 @@ class CreateChildForm extends Component {
     render() {
 
 
-        return(
+        return (
             <div className="col-md-6 text-center mx-auto">
                 <h3>Register Child</h3>
                 {/* Sign Up Form */}
@@ -176,7 +162,7 @@ class CreateChildForm extends Component {
                     <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                 </form>         
             </div>
-        );
+        )
     }
 }
 
