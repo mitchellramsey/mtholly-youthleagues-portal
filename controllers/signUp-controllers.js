@@ -1,16 +1,22 @@
 // Dependencies
 const express = require("express");
 // Express Router
+
 const router = express.Router();
 // Validations
+
 const validation = require("../client/src/Shared/Validations/signup");
 // Middleware
+
 const middleware = require("../client/src/Shared/Middleware/authenticateMiddleware");
 // Password encrpytion
+
 const bCrypt = require("bcrypt-nodejs");
+
 // User Model
 const { Users } = require("../models");
 
+// ----------------------------------------------------------------------------------- //
 // User Signup POST
 router.post("/", (req, res) => {
     const { errors, isValid } = validation(req.body);
@@ -63,4 +69,5 @@ router.post("/", (req, res) => {
     }
 });
 
+// ----------------------------------------------------------------------------------- //
 module.exports = router;

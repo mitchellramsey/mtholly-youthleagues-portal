@@ -1,13 +1,20 @@
 // Dependencies
 const express = require("express");
 const jwt = require("jsonwebtoken");
+
+// Config
 const config = require("../client/src/Shared/Config/config");
+
 // User Model
 const { Coach } = require("../models");
+
+// Pass Encrpytion
 const bCrypt = require("bcrypt-nodejs");
+
 // Express router
 const router = express.Router();
 
+// ----------------------------------------------------------------------------------- //
 // Auth route
 router.post("/", (req, res) => {
     // Req.body data
@@ -36,4 +43,5 @@ router.post("/", (req, res) => {
     })
 })
 
+// ----------------------------------------------------------------------------------- //
 module.exports = router;

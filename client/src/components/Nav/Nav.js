@@ -2,11 +2,16 @@
 import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { logout } from "../../actions/login";
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
+
+// Actions
+import { logout } from "../../actions/login";
+
+// CSS
 import "./nav.css";
 
+// ----------------------------------------------------------------------------------- //
 // Creating the Nav component
 class Nav extends Component {
 
@@ -22,17 +27,20 @@ class Nav extends Component {
     render() {
         // Acessing authenticated property
         const { isAuthenticated } = this.props.auth
+        const { username } = this.props.auth.user
         // Logged in user links
         const userLink = (
             <ul>
-                <li className="log-out"><Link to="/" className="links nav-item" onClick={this.logout.bind(this)}>Log Out</Link></li>
+                <li className="log-out">{username}<Link to="/" className="links nav-item" onClick={this.logout.bind(this)}>Log Out</Link></li>
                 <li><Link to="/" className="links nav-item">Home</Link></li>
             </ul>
         )
 
         /* Normal Nav links */
         const normalLinks = (
-            <ul>  </ul>  
+            <ul> 
+                <li><Link to="/" className="links nav-item">Home</Link></li>    
+            </ul>  
         )
 
         /* If user is authenticated render a certain link */
@@ -44,6 +52,7 @@ class Nav extends Component {
     }
 }
 
+// ----------------------------------------------------------------------------------- //
 // Setting PropTypes
 Nav.propTypes = {
     auth: PropTypes.object.isRequired,
@@ -61,5 +70,6 @@ function mapStateToProps(state) {
     };
 }
 
+// ----------------------------------------------------------------------------------- //
 // Exporting the Nav component and connecting
 export default connect(mapStateToProps, { logout })(Nav);

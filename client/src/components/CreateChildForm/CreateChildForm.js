@@ -3,10 +3,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
-import "../../components/LogIn/login.css";
+
+// Actions
 import validateInput from "../../Shared/Validations/signup";
 
-//Creating Register Child Form
+// CSS
+import "../../components/LogIn/login.css";
+
+// ----------------------------------------------------------------------------------- //
+// Creating Register Child Form
 
 class CreateChildForm extends Component {
 
@@ -57,34 +62,29 @@ class CreateChildForm extends Component {
         event.preventDefault();
 
         // If state is valid, perform the AJAX request
-        if(this.isValid()) {
-            this.props.userSignupRequest(this.state).then(
+       
+            this.props.childSignUp(this.state).then(
                 // Then, redirect
                 () => {
-                    this.props.addFlashMessage({
-                        type: "Success",
-                        text: "You have signed up successfully, Welcome."
-                    })
-                    this.props.history.push("/parent-portal") 
+                    this.props.history.push("/") 
                 },
                 // Setting errors
                 (err) => this.setState({ errors: err.response.data, isLoading: false })            
             );
-        }
+        
     }
 
     // Render the form
     render() {
-        // Setting the errors variable
-        const { errors } = this.state;
+
 
         return(
             <div className="col-md-6 text-center mx-auto">
-                <h3>Sign-up Form</h3>
+                <h3>Register Child</h3>
                 {/* Sign Up Form */}
                 <form className="form" method="POST" onSubmit={this.handleFormSubmit}>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.firstName })}>
+                    <div className={classnames("form-group")}>
                         <label htmlFor="firstName" className="control-label">First Name</label>
                             <input 
                                 type="text" 
@@ -94,11 +94,10 @@ class CreateChildForm extends Component {
                                 onChange={this.handleInputChange}
                                 value={this.state.firstName}
                             />
-                            {/* Error Handling */}
-                            {errors.firstName && <span className="help-block">{errors.firstName}</span>}
+
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.lastName })}>
+                    <div className={classnames("form-group")}>
                         <label htmlFor="lastName" className="control-label">Last Name</label>
                             <input 
                                 type="text" 
@@ -108,105 +107,86 @@ class CreateChildForm extends Component {
                                 onChange={this.handleInputChange}
                                 value={this.state.lastName}
                             />
-                            {/* Error Handling */}
-                            {errors.lastName && <span className="help-block">{errors.lastName}</span>}
+
                     </div>
                     {/* Will Validate this in the future */}
                     <div className="form-group">
-                        <label htmlFor="password" className="control-label">Password</label>
+                        <label htmlFor="age" className="control-label">Age</label>
                             <input
-                                value={this.state.password}
-                                name="password"
+                                value={this.state.age}
+                                name="age"
                                 className="form-control"
                                 onChange={this.handleInputChange}
-                                type="password"
-                                placeholder="Password Confirmation"
+                                type="number"
+                                placeholder="0"
                             />
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.phone })}>
-                        <label htmlFor="phoneNumber" className="control-label">Phone Number</label>
-                            <input 
-                                type="text" 
+                    <div className={classnames("form-group")}>
+                        <label htmlFor="gender" className="control-label">Gender</label>
+                            <select 
                                 className="form-control" 
-                                name="phone" 
-                                placeholder="Phone Number"
+                                name="gender" 
                                 onChange={this.handleInputChange}
-                                value={this.state.phone}
-                            />
-                            {/* Error Handling */}
-                            {errors.phone && <span className="help-block">{errors.phone}</span>}
+                                value={this.state.gender}
+                            >
+                            <option value="">Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            </select>
+
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.email })}>
-                        <label htmlFor="email" className="control-label">E-mail</label>
-                            <input 
-                                type="text" 
+                    <div className={classnames("form-group")}>
+                        <label htmlFor="sport" className="control-label">Sport</label>
+                            <select
                                 className="form-control" 
-                                name="email" 
-                                placeholder="E-mail"
+                                name="sport" 
                                 onChange={this.handleInputChange}
-                                value={this.state.email}
-                            />
-                            {/* Error Handling */}
-                            {errors.email && <span className="help-block">{errors.email}</span>}
+                                value={this.state.sport}
+                            >
+                            <option value="">Sport</option>
+                            {/* This needs to be loaded in from the Sports Table Database */}
+                            </select>
+
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.address })}>
-                        <label htmlFor="address"  className="control-label">Address</label>
+                    <div className={classnames("form-group")}>
+                        <label htmlFor="years_exp"  className="control-label">Years of Experience</label>
                             <input 
-                                type="text" 
+                                type="number" 
                                 className="form-control" 
-                                name="address" 
-                                placeholder="Address"
+                                name="years_exp" 
+                                placeholder="0"
                                 onChange={this.handleInputChange}
-                                value={this.state.address}
+                                value={this.state.years_exp}
                             />
-                            <input 
-                                type="text" 
+                    </div>
+                    <div className={classnames("form-group")}>
+                        <label htmlFor="years-exp"  className="control-label">Comments</label>
+                            <textarea 
+                                 
                                 className="form-control" 
-                                name="zip" 
-                                placeholder="Zip code"
+                                name="comments" 
+                                
                                 onChange={this.handleInputChange}
-                                value={this.state.zip}
+                                value={this.state.comments}
                             />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="city" 
-                                placeholder="City"
-                                onChange={this.handleInputChange}
-                                value={this.state.city}
-                            />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="state" 
-                                placeholder="State"
-                                onChange={this.handleInputChange}
-                                value={this.state.state}
-                            />
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="county" 
-                                placeholder="County"
-                                onChange={this.handleInputChange}
-                                value={this.state.county}
-                            />
-                            {/* Error Handling */}
-                            {errors.address && <span className="help-block">{errors.address}</span>}
                     </div>
                     <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                 </form>         
             </div>
         );
     }
+}
 
-
-
+// -------------------------------------------------------------------------------------------------
+//Setting PropTypes
+CreateChildForm.propTypes = {
+    childSignUp: PropTypes.func.isRequired,
 
 }
 
+// -------------------------------------------------------------------------------------------------
 // Exporting the page, and connecting the props with redux
-export default CreateChildForm;
+export default withRouter(CreateChildForm);

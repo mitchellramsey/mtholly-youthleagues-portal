@@ -1,24 +1,38 @@
+// Dependencies and Imports
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import setAuthorizationToken from "./utils/setAuthorizationToken";
+import jwt_decode from 'jwt-decode';
+import authenticateRoutes from "../src/utils/authenticateRoutes";
+
+// Redux root reducer
+import rootReducer from "./Shared/rootReducer/rootReducer";
+
+// Redux imports
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import rootReducer from "./Shared/rootReducer/rootReducer";
 import { createStore, applyMiddleware, compose } from "redux";
+
+// Actions
+import { setCurrentUser } from "./actions/login";
+
+// ------------------ Pages ----------------------- //
 import Landing from "./pages/Landing";
 import SignupPage from "./pages/SignupPage";
 import ParentPortal from "./pages/ParentPortal";
 import CoachesLogIn from "./pages/CoachesLogIn/CoachesLogIn";
 import CoachesSignUp from "./pages/CoachesSignUp/CoachSignUpPage";
-import authenticateRoutes from "../src/utils/authenticateRoutes";
-import './App.css';
-import setAuthorizationToken from "./utils/setAuthorizationToken";
-import { setCurrentUser } from "./actions/login";
-import jwt_decode from 'jwt-decode';
+import AdminLogInPage from "./pages/AdminLogInPage/AdminLogInPage";
 
+// ------------------ CSS ----------------------- //
+import './App.css';
+
+// Creating Redux store
 const store = createStore(
   rootReducer,
   compose(
-    applyMiddleware(thunk)
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
@@ -30,11 +44,14 @@ if(localStorage.jwtToken) {
 }
 
 
-
+// Main
 const App = () => (
+  // Redux store
   <Provider store={store}>
+  {/* React Router */}
     <Router>
       <div>
+        {/* React Switch for routing */}
         <Switch>
           {/* Homepage */}
           <Route exact path="/" component={Landing} />
@@ -42,10 +59,12 @@ const App = () => (
           <Route exact path="/parent-portal" component={authenticateRoutes(ParentPortal)} />
           <Route exact path="/coacheslogin" component={CoachesLogIn} />
           <Route exact path="/coachessignup" component={CoachesSignUp} />
+          <Route exact path="/adminlogin" component={AdminLogInPage} />
         </Switch>
       </div>
     </Router>
   </Provider>
 );
 
+// Exporting the App
 export default App;

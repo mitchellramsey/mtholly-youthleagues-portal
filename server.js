@@ -3,11 +3,12 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const db = require('./models');
-const passport = require("passport");
 const logger = require("morgan");
 const session = require("express-session");
 const flash = require("connect-flash");
 const cookieSession = require("cookie-session");
+
+// ----------------------------------------------------------------------------------- //
 
 // Initializing Express
 let app = express();
@@ -29,7 +30,11 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+// ----------------------------------------------------------------------------------- //
+
 // Requiring controllers
+// ----------------------------------------------------------------------------------- //
+
 const clientControllers = require("./controllers/client-controllers");
 app.use("/client-controllers", clientControllers);
 
@@ -63,10 +68,19 @@ app.use("/api/practice", practiceGetRoute);
 const teamGetRoute = require("./controllers/teamGetRoute");
 app.use("/api/teams", teamGetRoute);
 
+const registerChild = require("./controllers/registerChild-controllers");
+app.use("/api/registerChild", registerChild);
 
+const adminLogInControllers = require("./controllers/adminLogIncontrollers");
+app.use("/api/auth/admin", adminLogInControllers);
+// ----------------------------------------------------------------------------------- //
+
+// ----------------------------------------------------------------------------------- //
 // Starting the server
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
 });
+
+

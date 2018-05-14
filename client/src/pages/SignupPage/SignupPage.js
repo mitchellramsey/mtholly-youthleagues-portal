@@ -1,15 +1,24 @@
 // Imports
 import React, { Component } from "react";
-import MainHeader from "../../components/MainHeader";
-import SignupForm from "../../components/SignUpForm";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+// Actions
 import { userSignupRequest } from "../../actions/signupActions";
 import { addFlashMessage } from "../../actions/flashMessages";
+
+// Component
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import Nav from "../../components/Nav";
-import PropTypes from "prop-types";
+import MainHeader from "../../components/MainHeader";
+import SignupForm from "../../components/SignUpForm";
+
+
+// CSS
 import "../Landing/landing.css";
 
+
+// ----------------------------------------------------------------------------------- //
 // Signup Page
 class SignupPage extends Component {
 
@@ -42,11 +51,13 @@ class SignupPage extends Component {
     }
 };
 
+// ----------------------------------------------------------------------------------- //
 // Setting propTypes
 SignupPage.propTypes = {
     userSignupRequest: PropTypes.func.isRequired,
     addFlashMessage: PropTypes.func.isRequired
 }
 
+// ----------------------------------------------------------------------------------- //
 // Exporting the page, and connecting the props with redux
 export default connect(null, { userSignupRequest, addFlashMessage })(SignupPage);

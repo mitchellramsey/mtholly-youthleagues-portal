@@ -1,16 +1,23 @@
 // Imports
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+// Component
 import MainHeader from "../../components/MainHeader";
 import CoachSignUpForm from "../../components/CoachSignUpForm/CoachSignUpForm";
-import { connect } from "react-redux";
-import { coachSignupRequest } from "../../actions/coachSignUpRequest";
-import { addFlashMessage } from "../../actions/flashMessages";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import Nav from "../../components/Nav";
-import PropTypes from "prop-types";
+
+// Actions
+import { coachSignupRequest } from "../../actions/coachSignUpRequest";
+import { addFlashMessage } from "../../actions/flashMessages";
+
+// CSS
 import "../Landing/landing.css";
 
-// Signup Page
+// ----------------------------------------------------------------------------------- //
+// Coach Signup Page
 class CoachSignUpPage extends Component {
 
     // Render the page
@@ -42,11 +49,13 @@ class CoachSignUpPage extends Component {
     }
 };
 
+// ----------------------------------------------------------------------------------- //
 // Setting propTypes
 CoachSignUpPage.propTypes = {
     coachSignupRequest: PropTypes.func.isRequired,
     addFlashMessage: PropTypes.func.isRequired
 }
 
+// ----------------------------------------------------------------------------------- //
 // Exporting the page, and connecting the props with redux
 export default connect(null, { coachSignupRequest, addFlashMessage })(CoachSignUpPage);

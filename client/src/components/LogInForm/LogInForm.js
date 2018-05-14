@@ -1,11 +1,21 @@
 // Imports
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { loginRequest } from "../../actions/login";
-import validateInput from "../../Shared/Validations/login";
 import { connect } from "react-redux";
+// To be fixed
+// import classnames from "classnames";
 import PropTypes from "prop-types";
+
+// Actions
+import { loginRequest } from "../../actions/login";
+
+// Validation 
+import validateInput from "../../Shared/Validations/login";
+
+// CSS
 import "./loginform.css";
+
+// ----------------------------------------------------- //
 
 
 // Creating the Log in form component
@@ -54,7 +64,7 @@ class LogInForm extends Component {
                 (res) => this.context.router.history.push("/parent-portal"),
                 (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
             )
-        }
+        } 
     };
 
     // Render the form
@@ -70,13 +80,14 @@ class LogInForm extends Component {
                 <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>
                     <Link to="/parent-portal" className="links">Continue to Parent Portal</Link>
                 </button>
+
             </div>
         )
         // Log in form
         const loginFormArea = (
             <form className="form text-center">
                 {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className="form-group">
+                <div className="form-group">
                         <label htmlFor="email" className="control-label">Email</label>
                             <input
                                 value={this.state.email}
@@ -87,6 +98,7 @@ class LogInForm extends Component {
                                 id="email"
                             />
                             {/* Error Handling */} 
+                            {/* {errors.email && <span className="help-block">{errors.email}</span>} */}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
                     <div className="form-group">
@@ -98,8 +110,20 @@ class LogInForm extends Component {
                                 type="password"
                                 placeholder="Password"
                             />
+                            {/* Error Handling */} 
+                            {/* {errors.password && <span className="help-block">{errors.password}</span>} */}
                     </div>
                     <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
+
+                    <h5>Need an account?</h5>
+                    <span>Click <Link to="/signup">here</Link></span>
+                    
+                    <h4>Coaches Access Portal</h4>
+                    <span>Log In <Link to="/coacheslogin">here</Link></span>
+
+                    <h4>Administrative Access Portal</h4>
+                    <span>Log In <Link to="/adminlogin">here</Link></span>
+                    
                 </form>
         )
 
@@ -113,16 +137,12 @@ class LogInForm extends Component {
                 <div>
                     { isAuthenticated ? continueButton : loginFormArea }
                 </div>
-
-                <h5>Need an account?</h5>
-                <span>Click <Link to="/signup">here</Link></span>
-
-                <h4>Administrative Access Portal</h4>
-                <span>Log In <Link to="/coacheslogin">here</Link></span>
             </div>
         )
     }
 }
+
+// ----------------------------------------------------------------------------------- //
 // Setting propTypes
 LogInForm.propTypes = {
     auth: PropTypes.object.isRequired,
@@ -140,6 +160,7 @@ function mapStateToProps(state) {
     };
 }
 
+// ----------------------------------------------------------------------------------- //
 // Exporting the form component and connecting it with redux
 export default connect(mapStateToProps, { loginRequest })(LogInForm);
 

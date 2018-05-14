@@ -3,8 +3,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
+
+// Validation
+import validateInput from "../../Shared/Validations/coachessignup";
+
+// CSS
 import "../../components/LogIn/login.css";
-import validateInput from "../../Shared/Validations/signup";
+
+// ---------------------------------------------------------------------------- //
 
 // Creating the Signup form
 class CoachSignupForm extends Component {
@@ -18,6 +24,8 @@ class CoachSignupForm extends Component {
                 address: "", 
                 city: "",
                 state: "",
+                password: "",
+                passwordConfirmation: "",
                 zip: "",
                 sport: "",
                 phone: "",
@@ -86,7 +94,7 @@ class CoachSignupForm extends Component {
                 {/* Sign Up Form */}
                 <form className="form" onSubmit={this.handleFormSubmit}>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={"form-group"}>
+                    <div className={classnames("form-group", { "has-error": errors.first_name })}>
                         <label htmlFor="first_name" className="control-label">First Name</label>
                             <input 
                                 type="text" 
@@ -97,10 +105,10 @@ class CoachSignupForm extends Component {
                                 value={this.state.first_name}
                             />
                             {/* Error Handling */}
-                            {/* {errors.firstName && <span className="help-block">{errors.firstName}</span>} */}
+                            {errors.first_name && <span className="help-block">{errors.first_name}</span>}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={"form-group"}>
+                    <div className={classnames("form-group", { "has-error": errors.last_name })}>
                         <label htmlFor="lastName" className="control-label">Last Name</label>
                             <input 
                                 type="text" 
@@ -111,10 +119,10 @@ class CoachSignupForm extends Component {
                                 value={this.state.last_name}
                             />
                             {/* Error Handling */}
-                            {/* {errors.lastName && <span className="help-block">{errors.lastName}</span>} */}
+                            {errors.last_name && <span className="help-block">{errors.last_name}</span>}
                     </div>
                     {/* Will Validate this in the future */}
-                    <div className="form-group">
+                    <div className={classnames("form-group", { "has-error": errors.password })}>
                         <label htmlFor="password" className="control-label">Password</label>
                             <input
                                 value={this.state.password}
@@ -124,9 +132,25 @@ class CoachSignupForm extends Component {
                                 type="password"
                                 placeholder="Password Confirmation"
                             />
+                            {/* Error Handling */}
+                            {errors.password && <span className="help-block">{errors.password}</span>}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={"form-group"}>
+                    <div className={classnames("form-group", { "has-error": errors.passwordConfirmation })}>
+                        <label htmlFor="passwordConfirmation" className="control-label">Password Confirmation</label>
+                            <input
+                                value={this.state.passwordConfirmation}
+                                name="passwordConfirmation"
+                                className="form-control"
+                                onChange={this.handleInputChange}
+                                type="password"
+                                placeholder="Password Confirmation"
+                            />
+                            {/* Error Handling */}
+                            {errors.passwordConfirmation && <span className="help-block">{errors.passwordConfirmation}</span>}
+                    </div>
+                    {/* "ClassNames NPM Package for conditional error handling styles" */}
+                    <div className={classnames("form-group", { "has-error": errors.phone })}>
                         <label htmlFor="phoneNumber" className="control-label">Phone Number</label>
                             <input 
                                 type="text" 
@@ -137,10 +161,10 @@ class CoachSignupForm extends Component {
                                 value={this.state.phone}
                             />
                             {/* Error Handling */}
-                            {/* {errors.phone && <span className="help-block">{errors.phone}</span>} */}
+                            {errors.phone && <span className="help-block">{errors.phone}</span>}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={"form-group"}>
+                    <div className={classnames("form-group", { "has-error": errors.email })}>
                         <label htmlFor="email" className="control-label">E-mail</label>
                             <input 
                                 type="text" 
@@ -151,10 +175,10 @@ class CoachSignupForm extends Component {
                                 value={this.state.email}
                             />
                             {/* Error Handling */}
-                            {/* {errors.email && <span className="help-block">{errors.email}</span>} */}
+                            {errors.email && <span className="help-block">{errors.email}</span>}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={"form-group"}>
+                    <div className={classnames("form-group", { "has-error": errors.sport })}>
                         <label htmlFor="sport" className="control-label">Sport</label>
                             <input 
                                 type="text" 
@@ -165,10 +189,10 @@ class CoachSignupForm extends Component {
                                 value={this.state.sport}
                             />
                             {/* Error Handling */}
-                            {/* {errors.sport && <span className="help-block">{errors.sport}</span>} */}
+                            {errors.sport && <span className="help-block">{errors.sport}</span>}
                     </div>
                     {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={"form-group"}>
+                    <div className={classnames("form-group", { "has-error": errors.address })}>
                         <label htmlFor="address"  className="control-label">Address</label>
                             <input 
                                 type="text" 
@@ -211,7 +235,7 @@ class CoachSignupForm extends Component {
                                 value={this.state.county}
                             />
                             {/* Error Handling */}
-                            {/* {errors.address && <span className="help-block">{errors.address}</span>} */}
+                            {errors.address && <span className="help-block">{errors.address}</span>}
                     </div>
                     <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                 </form>         
@@ -220,11 +244,14 @@ class CoachSignupForm extends Component {
     }
 }
 
+// ---------------------------------------------------------------------------------------------------- //
+
 // Setting Proptypes
 CoachSignupForm.propTypes = {
     coachSignupRequest: PropTypes.func.isRequired,
     addFlashMessage: PropTypes.func.isRequired
 }
 
+// ---------------------------------------------------------------------------------------------------- //
 // Exporting the signUpform, withRouter for proper redirect after log-in
 export default withRouter(CoachSignupForm);

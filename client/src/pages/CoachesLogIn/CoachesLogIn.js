@@ -1,12 +1,16 @@
 // Imports
 import React, { Component } from "react";
-import MainHeader from "../../components/MainHeader/MainHeader";
-import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
-import "../../pages/Landing/landing.css";
+
+// Component
 import CoachForm from "../../components/CoachForm/CoachForm";
 import Nav from "../../components/Nav/Nav";
+import MainHeader from "../../components/MainHeader/MainHeader";
+import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 
+// CSS
+import "../../pages/Landing/landing.css";
 
+// ----------------------------------------------------------------------------------- //
 // Creating the Coach Page
 class CoachesLogIn extends Component {
     // Render the page
@@ -35,5 +39,6 @@ class CoachesLogIn extends Component {
     }
 };
 
+// ----------------------------------------------------------------------------------- //
 // Export the page
 export default CoachesLogIn;

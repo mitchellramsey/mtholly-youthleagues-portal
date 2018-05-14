@@ -11,10 +11,11 @@ module.exports = function validateInput(data) {
     //     errors.firstName = "This field is required.";
     // }
 
-    // Field validator
-    // if(validator.isEmpty(data.lastName)) {
+    // // Field validator
+    // if(validator.isEmpty(data.firstName)) {
     //     errors.lastName = "This field is required.";
     // }
+   
 
     // // Field validator
     // if(validator.isEmpty(data.phone)) {
@@ -31,10 +32,20 @@ module.exports = function validateInput(data) {
     //     errors.email = "Email is invalid.";
     // }
 
-    // // If the sport doesn't match
-    // // if(!validator.isEmpty(data.sport)) {
-    // //     errors.sport = "This field is required.";
-    // // }
+    // // Field validator
+    // if(validator.isEmpty(data.password)) {
+    //     errors.password = "Password is invalid.";
+    // }
+
+    // // Field validator
+    // if(validator.isEmpty(data.passwordConfirmation)) {
+    //     errors.passwordConfirmation = "Password does not match.";
+    // }
+
+    // // If passwords are not equal
+    // if(!validator.equals(data.password, data.passwordConfirmation)) {
+    //     errors.passwordConfirmation = "Passwords do not match.";
+    // }
 
     // // Field validator
     // if(validator.isEmpty(data.address)) {

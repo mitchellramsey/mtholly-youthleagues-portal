@@ -5,7 +5,7 @@ import isEmpty from "lodash.isempty";
 // State
 const initialState = {
     isAuthenticated: false,
-    userDetails: {}
+    user: {}
 };
 
 // Authenticated reducer
