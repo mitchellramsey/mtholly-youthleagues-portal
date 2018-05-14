@@ -1,9 +1,45 @@
+/* Main styles*/
+/* ---------------------------------------------------- */
+
+h5,
+h4 {
+    padding-top: 40px;
+}
+
+
+ul {
+    list-style-type: none;
+    width: 100%;
+}
+
+li {
+    display: inline-block;
+}
+
+/* Classes */
+/* ---------------------------------------------------- */
+
+.form-btn {
+    margin-top: 7px;
+    border-radius: 0px;
+    display: block;
+}
+
+.submit-btn {
+    margin-top: 42px;
+}
+
+.help-block {
+    padding-top: 8px;
+}
+
 span.help-block {
     display: block;
 }
 
-#email {
-    margin-left: 40px;
+.form-control {
+    display: inline-block;
+    border-radius: 0px;
 }
 
 .continue> button {
@@ -16,11 +52,14 @@ span.help-block {
     border-color: #ecf9ff;
 }
 
-ul {
-    list-style-type: none;
-    width: 100%;
+/* Conditional error class */
+/* ---------------------------------------------------- */
+.form-group.has-error,
+.alert-danger {
+    color: red;
 }
 
-li {
-    display: inline-block;
+.address {
+    margin-bottom: -28px;
 }
+

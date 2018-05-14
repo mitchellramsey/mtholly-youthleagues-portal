@@ -4,7 +4,7 @@ import React, { Component } from "react";
 // Component
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import MainHeader from "../../components/MainHeader";
-import LogIn from "../../components/LogIn";
+import LogInForm from "../../components/LogInForm/LogInForm";
 import Nav from "../../components/Nav/Nav";
 
 // CSS
@@ -22,7 +22,7 @@ class Landing extends Component {
                     <div className="col-md-6 form">
                         <MainHeader/>
                         <FlashMessageList/>
-                        <LogIn
+                        <LogInForm
                             onSubmit={() => this.handleFormSubmit()}
                             onChange={() => this.handleInputChange()}
                             user={() => this.state.user}

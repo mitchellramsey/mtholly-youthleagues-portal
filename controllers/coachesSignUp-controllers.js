@@ -3,7 +3,7 @@ const express = require("express");
 // Express Router
 const router = express.Router();
 // Validations
-const validation = require("../client/src/Shared/Validations/signup");
+const validation = require("../client/src/Shared/Validations/coachessignup");
 // Middleware
 const middleware = require("../client/src/Shared/Middleware/authenticateMiddleware");
 // Password encrpytion
@@ -19,7 +19,7 @@ router.post("/", (req, res) => {
     // If theres an error, send it to the client   
     if (isValid) {
         // Deconstructing the variable
-        const { first_name, last_name, email, phone, password, address, city, state, zip, county, sport } = req.body;
+        const { first_name, last_name, email, phone, password, address, city, state, zip, sport } = req.body;
         // searching for an email
         Coach.findOne({
             where: {
@@ -44,7 +44,6 @@ router.post("/", (req, res) => {
                     city: city, 
                     state: state, 
                     zip:  zip,
-                    county: county,
                     sport: sport
                 }
                 // Else, create user
@@ -63,6 +62,21 @@ router.post("/", (req, res) => {
             }
         });
     }
+});
+
+// ----------------------------------------------------------------------------------- //
+
+// Route to check if an already exists during sign up - This activates OnBlur with the email field
+router.get("/:query", (req, res) => {
+    // Find the passed parameter within the email column
+    Coach.findOne({
+        where: {
+            email: req.params.query
+        }
+        // If it exists send that user email back
+    }).then(user => {
+        res.json({ user });
+    })
 });
 
 // ----------------------------------------------------------------------------------- //

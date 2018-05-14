@@ -8,3 +8,10 @@ export function coachSignupRequest(userData) {
         return axios.post("/api/coachsignup", userData)
     }
 }
+
+// Get route to get the passed input value from the email form text field
+export function isCoachExists(query) {
+    return dispatch => {
+        return axios.get(`/api/coachsignup/${query}`)
+    }
+}

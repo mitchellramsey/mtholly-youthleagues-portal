@@ -8,14 +8,17 @@ import classnames from "classnames";
 // Actions
 import validateInput from "../../Shared/Validations/signup";
 
+// Component
+import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
+
 // CSS
-import "../../components/LogIn/login.css";
+import "../../components/LogInForm/loginform.css";
 
 // ----------------------------------------------------------------------------------- //
 // Creating Register Child Form
 
 // Creating the Log in form component
-class CreateChildForm extends Component {
+class CreateChildForm extends Component { 
     constructor(props) {
         super(props);
         // Setting state
@@ -67,98 +70,88 @@ class CreateChildForm extends Component {
         return (
             <div className="col-md-6 text-center mx-auto">
                 <h3>Register Child</h3>
-                {/* Sign Up Form */}
-                <form className="form" method="POST" onSubmit={this.handleFormSubmit}>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group")}>
-                        <label htmlFor="firstName" className="control-label">First Name</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="firstName" 
-                                placeholder="First Name"
-                                onChange={this.handleInputChange}
-                                value={this.state.firstName}
-                            />
+                    {/* Sign Up Form */}
+                    <form className="form text-center">
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={this.firstName}
+                            label="First Name"
+                            type="text"
+                            field="firstName"
+                            className="form-control"
+                            value={this.state.firstName}
+                            placeholder="First Name"
+                        />
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={this.lastName}
+                            label="Last Name"
+                            type="text"
+                            field="lastName"
+                            className="form-control"
+                            value={this.state.ame}
+                            placeholder="Last Name"
+                        />
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={this.age}
+                            label="Age"
+                            type="text"
+                            field="age"
+                            className="form-control"
+                            value={this.state.age}
+                            placeholder="Age"
+                        />
+                        {/* "ClassNames NPM Package for conditional error handling styles" */}
+                        <div className={classnames("form-group")}>
+                            <label htmlFor="gender" className="control-label">Gender</label>
+                                <select 
+                                    className="form-control" 
+                                    name="gender" 
+                                    onChange={this.handleInputChange}
+                                    value={this.state.gender}
+                                >
+                                <option value="">Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                </select>
 
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group")}>
-                        <label htmlFor="lastName" className="control-label">Last Name</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                name="lastName" 
-                                placeholder="Last Name"
-                                onChange={this.handleInputChange}
-                                value={this.state.lastName}
-                            />
+                        </div>
+                        {/* "ClassNames NPM Package for conditional error handling styles" */}
+                        <div className={classnames("form-group")}>
+                            <label htmlFor="sport" className="control-label">Sport</label>
+                                <select
+                                    className="form-control" 
+                                    name="sport" 
+                                    onChange={this.handleInputChange}
+                                    value={this.state.sport}
+                                >
+                                <option value="">Sport</option>
+                                {/* This needs to be loaded in from the Sports Table Database */}
+                                </select>
 
-                    </div>
-                    {/* Will Validate this in the future */}
-                    <div className="form-group">
-                        <label htmlFor="age" className="control-label">Age</label>
-                            <input
-                                value={this.state.age}
-                                name="age"
-                                className="form-control"
-                                onChange={this.handleInputChange}
-                                type="number"
-                                placeholder="0"
-                            />
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group")}>
-                        <label htmlFor="gender" className="control-label">Gender</label>
-                            <select 
-                                className="form-control" 
-                                name="gender" 
-                                onChange={this.handleInputChange}
-                                value={this.state.gender}
-                            >
-                            <option value="">Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            </select>
-
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group")}>
-                        <label htmlFor="sport" className="control-label">Sport</label>
-                            <select
-                                className="form-control" 
-                                name="sport" 
-                                onChange={this.handleInputChange}
-                                value={this.state.sport}
-                            >
-                            <option value="">Sport</option>
-                            {/* This needs to be loaded in from the Sports Table Database */}
-                            </select>
-
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group")}>
-                        <label htmlFor="years_exp"  className="control-label">Years of Experience</label>
-                            <input 
-                                type="number" 
-                                className="form-control" 
-                                name="years_exp" 
-                                placeholder="0"
-                                onChange={this.handleInputChange}
-                                value={this.state.years_exp}
-                            />
-                    </div>
-                    <div className={classnames("form-group")}>
-                        <label htmlFor="years-exp"  className="control-label">Comments</label>
-                            <textarea 
-                                 
-                                className="form-control" 
-                                name="comments" 
-                                
-                                onChange={this.handleInputChange}
-                                value={this.state.comments}
-                            />
-                    </div>
+                        </div>
+                        <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={this.years_exp}
+                            label="Years of Experience"
+                            type="text"
+                            field="years_exp"
+                            className="form-control"
+                            value={this.state.years_exp}
+                            placeholder="Age"
+                        />
+                        <div className={classnames("form-group")}>
+                            <label htmlFor="years-exp"  className="control-label">Comments</label>
+                                <textarea 
+                                    
+                                    className="form-control" 
+                                    name="comments" 
+                                    
+                                    onChange={this.handleInputChange}
+                                    value={this.state.comments}
+                                />
+                        </div>
                     <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                 </form>         
             </div>

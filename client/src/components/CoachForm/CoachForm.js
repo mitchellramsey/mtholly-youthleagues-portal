@@ -2,11 +2,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import classnames from "classnames";
 import PropTypes from "prop-types";
 
 // Actions
 import { coachesLogInRequest } from "../../actions/coachesLogInRequest";
+
+// Component
+import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 
 // Validation
 import validateInput from "../../Shared/Validations/login";
@@ -60,7 +62,7 @@ class CoachForm extends Component {
             // To prevent multiple events
             this.setState({ errors: {}, isLoading: true });
             this.props.coachesLogInRequest(this.state).then(
-                (res) => this.context.router.history.push("/"),
+                (res) => this.context.router.history.push("/coacheslogin"),
                 (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
             )
         }
@@ -69,48 +71,45 @@ class CoachForm extends Component {
     // Render the form
     render() {
         // Setting the errors variable
-        const { isLoading, errors } = this.state;
+        const { errors, isLoading } = this.state;
         // Acessing authenticated property
         const { isAuthenticated } = this.props.auth;
 
         // Continue button
         const continueButton = (
             <div className="continue">
-                <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>
-                    <Link to="/parent-portal" className="links">Continue to Coach Portal</Link>
+                <button className="btn btn-primary form-btn mx-auto" onClick={this.handleFormSubmit}>
+                    <Link to="/coach-portal" className="links">Continue to Coach Portal</Link>
                 </button>
             </div>
         )
         // Log in form
         const loginFormArea = (
             <form className="form">
-                {/* "ClassNames NPM Package for conditional error handling styles" */}
-                <div className={classnames("form-group", { "has-error": errors.email })}>
-                        <label htmlFor="email" className="control-label">Email</label>
-                            <input
-                                value={this.state.email}
-                                name="email"
-                                onChange={this.handleInputChange}
-                                type="email"
-                                placeholder="Email"
-                                id="email"
-                            />
-                            {/* Error Handling */} 
-                            {errors.email && <span className="help-block">{errors.email}</span>} 
-                    </div>
-                    {/* "ClassNames NPM Package for conditional error handling styles" */}
-                    <div className={classnames("form-group", { "has-error": errors.password })}>
-                        <label htmlFor="password" className="control-label">Password</label>
-                            <input
-                                value={this.state.password}
-                                name="password"
-                                onChange={this.handleInputChange}
-                                type="password"
-                                placeholder="Password"
-                            />
-                            {/* Error Handling */} 
-                            {errors.password && <span className="help-block">{errors.password}</span>}
-                    </div>
+                {/* Email */}
+                <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.email}
+                        label="Email"
+                        type="text"
+                        field="email"
+                        className="form-control"
+                        value={this.state.email}
+                        placeholder="Email"
+                        id="email"
+                    />
+                {/* Password */}
+                <TextFieldGroup
+                        onChange={this.handleInputChange}
+                        errors={errors.password}
+                        label="Password"
+                        type="password"
+                        field="password"
+                        className="form-control"
+                        value={this.state.password}
+                        placeholder="Password"
+                        id="password"
+                    />
                     <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
 
                     <h5>Need an account?</h5>
@@ -122,6 +121,8 @@ class CoachForm extends Component {
         return (
             // Main page
             <div className="col-md-6 text-center mx-auto">
+            {/* Display possible log in error messages */}
+            { errors.form && <div className="alert alert-danger">{errors.form}</div>}
                 <h3>Coach Access Portal</h3>
                 {/* If authenticated, either render the log-in form or the continue button */}
                 <div>

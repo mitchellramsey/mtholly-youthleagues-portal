@@ -36,9 +36,12 @@ router.post("/", (req, res) => {
                 // Redirect/Add JWT
                 res.json({ token })
             } else {
-                // Hang, for now
-                res.status(401).json({ success: false })
+                // Display error message
+                res.status(401).json({ errors: { form: "The email or password does not match "} })
             }
+        } else {
+            // Display error message
+            res.status(401).json({ errors: { form: "The email or password does not match "} })
         }
     })
 })

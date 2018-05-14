@@ -10,7 +10,7 @@ import FlashMessageList from "../../components/FlashMessageList/FlashMessageList
 import Nav from "../../components/Nav";
 
 // Actions
-import { coachSignupRequest } from "../../actions/coachSignUpRequest";
+import { coachSignupRequest, isCoachExists } from "../../actions/coachSignUpRequest";
 import { addFlashMessage } from "../../actions/flashMessages";
 
 // CSS
@@ -23,8 +23,8 @@ class CoachSignUpPage extends Component {
     // Render the page
     render() {
 
-        // Decontruction the variable
-        const {coachSignupRequest, addFlashMessage} = this.props;
+        // Decontruction the object
+        const {coachSignupRequest, addFlashMessage, isCoachExists} = this.props;
 
         return (
             <div className="container-fluid">
@@ -36,6 +36,7 @@ class CoachSignUpPage extends Component {
                         <CoachSignUpForm
                             coachSignupRequest={coachSignupRequest}
                             addFlashMessage={addFlashMessage}
+                            isCoachExists={isCoachExists}
                         />
                     </div>
 
@@ -53,9 +54,10 @@ class CoachSignUpPage extends Component {
 // Setting propTypes
 CoachSignUpPage.propTypes = {
     coachSignupRequest: PropTypes.func.isRequired,
-    addFlashMessage: PropTypes.func.isRequired
+    addFlashMessage: PropTypes.func.isRequired,
+    isCoachExists: PropTypes.func.isRequired
 }
 
 // ----------------------------------------------------------------------------------- //
 // Exporting the page, and connecting the props with redux
-export default connect(null, { coachSignupRequest, addFlashMessage })(CoachSignUpPage);
+export default connect(null, { coachSignupRequest, addFlashMessage, isCoachExists })(CoachSignUpPage);

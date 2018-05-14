@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 // Actions
-import { userSignupRequest } from "../../actions/signupActions";
+import { userSignupRequest, isUserExists } from "../../actions/signupActions";
 import { addFlashMessage } from "../../actions/flashMessages";
 
 // Component
@@ -26,7 +26,7 @@ class SignupPage extends Component {
     render() {
 
         // Decontruction the variable
-        const {userSignupRequest, addFlashMessage} = this.props;
+        const {userSignupRequest, addFlashMessage, isUserExists} = this.props;
 
         return (
             <div className="container-fluid">
@@ -38,6 +38,7 @@ class SignupPage extends Component {
                         <SignupForm
                             userSignupRequest={userSignupRequest}
                             addFlashMessage={addFlashMessage}
+                            isUserExists={isUserExists}
                         />
                     </div>
 
@@ -55,9 +56,10 @@ class SignupPage extends Component {
 // Setting propTypes
 SignupPage.propTypes = {
     userSignupRequest: PropTypes.func.isRequired,
-    addFlashMessage: PropTypes.func.isRequired
+    addFlashMessage: PropTypes.func.isRequired,
+    isUserExists: PropTypes.func.isRequired
 }
 
 // ----------------------------------------------------------------------------------- //
 // Exporting the page, and connecting the props with redux
-export default connect(null, { userSignupRequest, addFlashMessage })(SignupPage);
+export default connect(null, { userSignupRequest, addFlashMessage, isUserExists })(SignupPage);

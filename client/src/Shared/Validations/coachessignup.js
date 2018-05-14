@@ -15,30 +15,11 @@ module.exports = function validateInput(data) {
     if(validator.isEmpty(data.last_name)) {
         errors.last_name = "This field is required.";
     }
-
-    // Field validator
-    if(validator.isEmpty(data.password)) {
-        errors.password = "This field is required.";
-    }
+   
 
     // Field validator
     if(validator.isEmpty(data.phone)) {
         errors.phone = "This field is required.";
-    }
-
-    // Field validator
-    if(validator.isEmpty(data.password)) {
-        errors.password = "This field is required.";
-    }
-
-    // Field validator
-    if(validator.isEmpty(data.passwordConfirmation)) {
-        errors.passwordConfirmation = "This field is required.";
-    }
-
-    // If passwords are not equal
-    if(!validator.equals(data.password, data.passwordConfirmation)) {
-        errors.passwordConfirmation = "Passwords do not match.";
     }
 
     // Field validator
@@ -52,13 +33,43 @@ module.exports = function validateInput(data) {
     }
 
     // Field validator
-    if(validator.isEmpty(data.sport)) {
-        errors.sport = "This field is required.";
+    if(validator.isEmpty(data.password)) {
+        errors.password = "Password is invalid.";
+    }
+
+    // Field validator
+    if(validator.isEmpty(data.passwordConfirmation)) {
+        errors.passwordConfirmation = "Password is invalid.";
+    }
+
+    // If passwords are not equal
+    if(!validator.equals(data.password, data.passwordConfirmation)) {
+        errors.passwordConfirmation = "Passwords do not match.";
     }
 
     // Field validator
     if(validator.isEmpty(data.address)) {
         errors.address = "This field is required.";
+    }
+
+    // Field validator
+    if(validator.isEmpty(data.city)) {
+        errors.city = "This field is required.";
+    }
+
+    // Field validator
+    if(validator.isEmpty(data.state)) {
+        errors.state = "This field is required.";
+    }
+
+    // Field validator
+    if(validator.isEmpty(data.zip)) {
+        errors.zip = "This field is required.";
+    }
+
+    // Field validator
+    if(validator.isEmpty(data.sport)) {
+        errors.sport = "This field is required.";
     }
 
     return {
