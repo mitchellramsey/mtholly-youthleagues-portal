@@ -79,7 +79,7 @@ module.exports = function (sequelize, Datatypes) {
 	});
 
 	Coach.associate = function (models) {
-		Coach.hasMany(models.Parent, {
+		Coach.hasMany(models.Users, {
 			onDelete: "cascade"
 		});
 

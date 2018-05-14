@@ -35,7 +35,7 @@ module.exports = function (sequelize, DataTypes) {
 
     sport: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         len: [0, 100]
       }
@@ -58,5 +58,13 @@ module.exports = function (sequelize, DataTypes) {
       }
     }
   });
+
+  Kids.associate = models => {
+    Kids.belongsTo(models.Users, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  }
   return Kids;
 };

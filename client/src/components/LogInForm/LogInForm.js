@@ -62,7 +62,8 @@ class LogInForm extends Component {
             this.setState({ errors: {}, isLoading: true });
             this.props.loginRequest(this.state).then(
                 (res) => this.context.router.history.push("/parent-portal"),
-                (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
+                (err) => this.setState({ errors: err.response.data.errors, isLoading: false }),
+                
             )
         } 
     };
