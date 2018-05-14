@@ -18,7 +18,7 @@ import "../../components/LogInForm/loginform.css";
 // Creating Register Child Form
 
 // Creating the Log in form component
-class CreateChildForm extends Component {
+class CreateChildForm extends Component { 
     constructor(props) {
         super(props);
         // Setting state
