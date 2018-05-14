@@ -62,7 +62,7 @@ class CoachForm extends Component {
             // To prevent multiple events
             this.setState({ errors: {}, isLoading: true });
             this.props.coachesLogInRequest(this.state).then(
-                (res) => this.context.router.history.push("/"),
+                (res) => this.context.router.history.push("/coacheslogin"),
                 (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
             )
         }
@@ -71,15 +71,15 @@ class CoachForm extends Component {
     // Render the form
     render() {
         // Setting the errors variable
-        const { isLoading } = this.state;
+        const { errors, isLoading } = this.state;
         // Acessing authenticated property
         const { isAuthenticated } = this.props.auth;
 
         // Continue button
         const continueButton = (
             <div className="continue">
-                <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>
-                    <Link to="/parent-portal" className="links">Continue to Coach Portal</Link>
+                <button className="btn btn-primary form-btn mx-auto" onClick={this.handleFormSubmit}>
+                    <Link to="/coach-portal" className="links">Continue to Coach Portal</Link>
                 </button>
             </div>
         )
@@ -89,9 +89,10 @@ class CoachForm extends Component {
                 {/* Email */}
                 <TextFieldGroup
                         onChange={this.handleInputChange}
+                        errors={errors.email}
                         label="Email"
                         type="text"
-                        name="email"
+                        field="email"
                         className="form-control"
                         value={this.state.email}
                         placeholder="Email"
@@ -100,9 +101,10 @@ class CoachForm extends Component {
                 {/* Password */}
                 <TextFieldGroup
                         onChange={this.handleInputChange}
+                        errors={errors.password}
                         label="Password"
                         type="password"
-                        name="password"
+                        field="password"
                         className="form-control"
                         value={this.state.password}
                         placeholder="Password"
@@ -119,6 +121,8 @@ class CoachForm extends Component {
         return (
             // Main page
             <div className="col-md-6 text-center mx-auto">
+            {/* Display possible log in error messages */}
+            { errors.form && <div className="alert alert-danger">{errors.form}</div>}
                 <h3>Coach Access Portal</h3>
                 {/* If authenticated, either render the log-in form or the continue button */}
                 <div>

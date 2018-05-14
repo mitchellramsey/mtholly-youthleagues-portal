@@ -72,7 +72,7 @@ class LogInForm extends Component {
     // Render the form
     render() {
         // Setting the errors variable
-        const { isLoading } = this.state;
+        const { isLoading, errors } = this.state;
         // Acessing authenticated property
         const { isAuthenticated } = this.props.auth;
 
@@ -91,10 +91,10 @@ class LogInForm extends Component {
                 {/* Email */}
                 <TextFieldGroup
                         onChange={this.handleInputChange}
-                        errors={this.email}
+                        errors={errors.email}
                         label="Email"
                         type="text"
-                        name="email"
+                        field="email"
                         className="form-control"
                         value={this.state.email}
                         placeholder="Email"
@@ -103,10 +103,10 @@ class LogInForm extends Component {
                 {/* Password */}
                 <TextFieldGroup
                         onChange={this.handleInputChange}
-                        errors={this.password}
+                        errors={errors.password}
                         label="Password"
                         type="password"
-                        name="password"
+                        field="password"
                         className="form-control"
                         value={this.state.password}
                         placeholder="Password"
@@ -131,7 +131,8 @@ class LogInForm extends Component {
             // Main page
             <div className="col-md-6 text-center mx-auto">
                 <h3>Parent Access Portal</h3>
-                
+                {/* Display possible log in error messages */}
+                { errors.form && <div className="alert alert-danger">{errors.form}</div>}
                 {/* If authenticated, either render the log-in form or the continue button */}
                 <div>
                     { isAuthenticated ? continueButton : loginFormArea }

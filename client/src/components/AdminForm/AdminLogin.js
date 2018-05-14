@@ -71,7 +71,7 @@ class AdminLogIn extends Component {
     // Render the form
     render() {
         // Setting the errors variable
-        const { isLoading } = this.state;
+        const { errors, isLoading } = this.state;
         // Acessing authenticated property
         const { isAuthenticated } = this.props.auth;
 
@@ -89,10 +89,10 @@ class AdminLogIn extends Component {
                 {/* Email */}
                 <TextFieldGroup
                         onChange={this.handleInputChange}
-                        errors={this.email}
+                        errors={errors.email}
                         label="Email"
                         type="text"
-                        name="email"
+                        field="email"
                         className="form-control"
                         value={this.state.email}
                         placeholder="Email"
@@ -101,10 +101,10 @@ class AdminLogIn extends Component {
                 {/* Password */}
                 <TextFieldGroup
                         onChange={this.handleInputChange}
-                        errors={this.email}
+                        errors={errors.email}
                         label="Password"
                         type="password"
-                        name="password"
+                        field="password"
                         className="form-control"
                         value={this.state.password}
                         placeholder="Password"

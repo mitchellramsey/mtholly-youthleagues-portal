@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 
 // CSS
-import "../../components/LogIn/login.css";
+import "../../components/LogInForm/loginform.css";
 
 // Actions
 import validateInput from "../../Shared/Validations/signup";
@@ -61,7 +61,7 @@ class SignupForm extends Component {
     }
 
     // Checking if user exists
-    checkUser(event) {
+    checkUser = event => {
         // Email field
         const field = event.target.name;
         // Value
@@ -70,7 +70,7 @@ class SignupForm extends Component {
         if(value !== "") {
             this.props.isUserExists(value).then(res => {
                 // Defining errors
-                let errors = this.state.errors
+                let errors = this.state.errors;
                 let invalid;
                 // If error
                 if(res.data.user) {
@@ -94,9 +94,10 @@ class SignupForm extends Component {
         event.preventDefault();
         // When the form is submitted, reset any stored errors and disable the submit button during load time
         // To prevent multiple events
-        this.setState({ errors: {} });
         // If state is valid, perform the AJAX request
         if(this.isValid()) {
+            this.setState({ errors: {}, isLoading: true });
+
             this.props.userSignupRequest(this.state).then(
                 // Then, redirect
                 () => {
@@ -107,7 +108,7 @@ class SignupForm extends Component {
                     this.props.history.push("/") 
                 },
                 // Setting errors
-                (err) => this.setState({ errors: err.response.data })            
+                (err) => this.setState({ errors: err.response.data, isLoading: false })            
             );
         }
     };
@@ -126,7 +127,6 @@ class SignupForm extends Component {
                         <TextFieldGroup
                             onChange={this.handleInputChange}
                             errors={errors.firstName}
-                            onBlur={this.checkUser}
                             label="First Name"
                             type="text"
                             field="firstName"
@@ -249,7 +249,7 @@ class SignupForm extends Component {
                             value={this.state.zip}
                             placeholder="Zip"
                         />
-                        <button className="btn btn-primary form-btn mx-auto submit-btn" disabled={this.state.isLoading || this.state.invalid}>Submit</button>
+                        <button className="btn btn-primary form-btn mx-auto submit-btn" disabled={this.state.isLoading}>Submit</button>
                     </form>         
             </div>
         )

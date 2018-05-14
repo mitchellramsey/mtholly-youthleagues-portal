@@ -10,7 +10,7 @@ import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 import validateInput from "../../Shared/Validations/coachessignup";
 
 // CSS
-import "../../components/LogIn/login.css";
+import "../../components/LogInForm/loginform.css";
 
 // ---------------------------------------------------------------------------- //
 
@@ -40,6 +40,7 @@ class CoachSignupForm extends Component {
         // Binding form submittion and input change to "this" specific one
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.checkUser = this.checkUser.bind(this);
     }
 
     // Capturing form input
@@ -58,6 +59,31 @@ class CoachSignupForm extends Component {
        }
        // Getting the boolean value back    
        return isValid;
+    }
+
+    // Checking if user exists
+    checkUser = event => {
+        // Email field
+        const field = event.target.name;
+        // Value
+        const value = event.target.value;
+        // If value doesnt equal an empty string, run this
+        if(value !== "") {
+            this.props.isCoachExists(value).then(res => {
+                // Defining errors
+                let errors = this.state.errors;
+                // If error
+                if(res.data.user) {
+                    // set error
+                    errors[field] = "This email is already taken";
+                } else {
+                    // Leave the field empty
+                    errors[field] = "";
+                }
+                // Set State with errors
+                this.setState({ errors });
+            });
+        }
     }
 
     // On form submit
@@ -101,11 +127,10 @@ class CoachSignupForm extends Component {
                         errors={errors.first_name}
                         label="First Name"
                         type="text"
-                        name="first_name"
+                        field="first_name"
                         className="form-control"
                         value={this.state.first_name}
                         placeholder="First Name"
-                        id="first_name"
                     />
                     {/* Last Name */}
                     <TextFieldGroup
@@ -113,11 +138,10 @@ class CoachSignupForm extends Component {
                         errors={errors.last_name}
                         label="Last Name"
                         type="text"
-                        name="last_name"
+                        field="last_name"
                         className="form-control"
                         value={this.state.last_name}
                         placeholder="Last Name"
-                        id="last_name"
                     />
                     {/* Password */}
                     <TextFieldGroup
@@ -125,11 +149,10 @@ class CoachSignupForm extends Component {
                         errors={errors.password}
                         label="Password"
                         type="password"
-                        name="password"
+                        field="password"
                         className="form-control"
                         value={this.state.password}
                         placeholder="Password"
-                        id="password"
                     />
                     {/* Password Confirmation */}
                     <TextFieldGroup
@@ -137,7 +160,7 @@ class CoachSignupForm extends Component {
                         errors={errors.passwordConfirmation}
                         label="Password Confirmation"
                         type="password"
-                        name="passwordConfirmation"
+                        field="passwordConfirmation"
                         className="form-control"
                         value={this.state.passwordConfirmation}
                         placeholder="Password Confirmation"
@@ -145,14 +168,14 @@ class CoachSignupForm extends Component {
                     {/* Email */}
                     <TextFieldGroup
                         onChange={this.handleInputChange}
+                        checkUser={this.checkUser}
                         errors={errors.email}
                         label="Email"
                         type="text"
-                        name="email"
+                        field="email"
                         className="form-control"
                         value={this.state.email}
                         placeholder="Email"
-                        id="Email"
                     />
                     {/* Phone */}
                     <TextFieldGroup
@@ -160,11 +183,10 @@ class CoachSignupForm extends Component {
                         errors={errors.phone}
                         label="Phone"
                         type="text"
-                        name="phone"
+                        field="phone"
                         className="form-control"
                         value={this.state.phone}
                         placeholder="Phone"
-                        id="phone"
                     />
                     {/* Sport */}
                     <TextFieldGroup
@@ -172,11 +194,10 @@ class CoachSignupForm extends Component {
                         errors={errors.sport}
                         label="Sport"
                         type="text"
-                        name="sport"
+                        field="sport"
                         className="form-control"
                         value={this.state.sport}
                         placeholder="Sport"
-                        id="sport"
                     />
                     {/* Street Address */}
                     <TextFieldGroup
@@ -184,11 +205,10 @@ class CoachSignupForm extends Component {
                         errors={errors.address}
                         label="Address"
                         type="text"
-                        name="address"
+                        field="address"
                         className="form-control address"
                         value={this.state.address}
                         placeholder="Street address"
-                        id="address"
                     />
 
                     {/* City */}
@@ -196,11 +216,10 @@ class CoachSignupForm extends Component {
                         onChange={this.handleInputChange}
                         errors={errors.city}
                         type="text"
-                        name="city"
+                        field="city"
                         className="form-control address"
                         value={this.state.city}
                         placeholder="City"
-                        id="city"
                     />
 
                     {/* State */}
@@ -208,24 +227,22 @@ class CoachSignupForm extends Component {
                         onChange={this.handleInputChange}
                         errors={errors.state}
                         type="text"
-                        name="state"
+                        field="state"
                         className="form-control address"
                         value={this.state.state}
                         placeholder="State"
-                        id="state"
                     />
                     {/* Zip */}
                     <TextFieldGroup
                         onChange={this.handleInputChange}
                         errors={errors.zip}
                         type="text"
-                        name="zip"
+                        field="zip"
                         className="form-control address"
                         value={this.state.zip}
                         placeholder="Zip"
-                        id="zip"
                     />
-                    <button className="btn btn-primary form-btn mx-auto submit-btn" disabled={this.state.isLoading}>Submit</button>
+                    <button className="btn btn-primary form-btn mx-auto submit-btn">Submit</button>
                 </form>         
             </div>
         )
@@ -237,7 +254,8 @@ class CoachSignupForm extends Component {
 // Setting Proptypes
 CoachSignupForm.propTypes = {
     coachSignupRequest: PropTypes.func.isRequired,
-    addFlashMessage: PropTypes.func.isRequired
+    addFlashMessage: PropTypes.func.isRequired,
+    isCoachExists: PropTypes.func.isRequired
 }
 
 // ---------------------------------------------------------------------------------------------------- //

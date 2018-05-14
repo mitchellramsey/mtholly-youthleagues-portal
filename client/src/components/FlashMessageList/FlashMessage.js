@@ -24,7 +24,7 @@ class FlashMessage extends Component {
 
     render() {
         // Deconstructing the variable
-        const { id, type, text } = this.props.message;
+        const { type, text } = this.props.message;
 
         // Div that renders alert boxes based on type
         return (

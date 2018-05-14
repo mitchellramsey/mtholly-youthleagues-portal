@@ -64,13 +64,12 @@ router.post("/", (req, res) => {
          
                 }).then(newUser => res.json({ success: true }))
                     // Catch errors
-                    .catch(err => res.status(500).json({ error: err }));
+                    .catch(err => res.status(500).json({ errors: err }));
             } 
-        });
-    }  else {
+        })
+    }  else if(!isValid) {
         // send errors
         res.status(400).json(errors);
-        console.log("x");
     }
 });
 
@@ -79,7 +78,7 @@ router.post("/", (req, res) => {
 // Route to check if an already exists during sign up - This activates OnBlur with the email field
 router.get("/:identifier", (req, res) => {
     // Find the passed paramter within the email column
-    Users.findAll({
+    Users.findOne({
         where: {
             email: req.params.identifier
         }
