@@ -22,7 +22,9 @@ import SignupPage from "./pages/SignupPage";
 import ParentPortal from "./pages/ParentPortal";
 import CoachesLogIn from "./pages/CoachesLogIn/CoachesLogIn";
 import CoachesSignUp from "./pages/CoachesSignUp/CoachSignUpPage";
+import CoachesPortal from "./pages/CoachesPage/CoachesPage";
 import AdminLogInPage from "./pages/AdminLogInPage/AdminLogInPage";
+
 
 // ------------------ CSS ----------------------- //
 import './App.css';
@@ -32,7 +34,7 @@ const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(thunk),
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
@@ -59,6 +61,7 @@ const App = () => (
           <Route exact path="/parent-portal" component={authenticateRoutes(ParentPortal)} />
           <Route exact path="/coacheslogin" component={CoachesLogIn} />
           <Route exact path="/coachessignup" component={CoachesSignUp} />
+          <Route exact path="/coachesportal" component={authenticateRoutes(CoachesPortal)} />
           <Route exact path="/adminlogin" component={AdminLogInPage} />
         </Switch>
       </div>
