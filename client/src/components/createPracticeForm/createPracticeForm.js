@@ -25,6 +25,7 @@ class CreatePracticeForm extends Component {
                 time: "",
                 location: "", 
                 team_association: "",
+                coachId: props.coachId,
                 errors: {}
             };
         
