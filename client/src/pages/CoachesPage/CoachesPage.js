@@ -62,6 +62,7 @@ class CoachPortal extends Component {
                     // Create Practice Form
                     <CreatePracticeForm createPracticePost={createPracticePost}
                                         addFlashMessage={addFlashMessage}
+                                        coachId={this.props.auth.user.id}
                     />
                     // If not toggled to true, hide the form
                     : null }
