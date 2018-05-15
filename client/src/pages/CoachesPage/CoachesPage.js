@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 // Component
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer/Footer";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import MainHeader from "../../components/MainHeader";
 import CreatePracticeForm from "../../components/createPracticeForm";
@@ -74,6 +75,7 @@ class CoachPortal extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </div>
         );
     }
