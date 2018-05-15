@@ -42,6 +42,10 @@ span.help-block {
     border-radius: 0px;
 }
 
+.btn-primary {
+    border-color: #fff;
+}
+
 .continue> button {
     background-color: #e2dfdf;
     border-color: #e2dfdf;
@@ -50,6 +54,15 @@ span.help-block {
 .continue> button:hover {
     background-color: #ecf9ff;
     border-color: #ecf9ff;
+}
+
+.coach-links {
+    background-color: rgba(24, 26, 31, 0.39);
+}
+
+.coach-links:hover {
+    background-color: #e2dfdf;
+    border-color: #000;
 }
 
 /* Conditional error class */

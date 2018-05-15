@@ -61,8 +61,8 @@ app.use("/api/sports", sportGetRoute);
 const gameGetRoute = require("./controllers/gameGetRoute");
 app.use("/api/games", gameGetRoute);
 
-const practiceGetRoute = require("./controllers/practiceGetRoute");
-app.use("/api/practice", practiceGetRoute);
+const createPractice = require("./controllers/createPractice");
+app.use("/api/createPractice", createPractice);
 
 const teamGetRoute = require("./controllers/teamGetRoute");
 app.use("/api/teams", teamGetRoute);

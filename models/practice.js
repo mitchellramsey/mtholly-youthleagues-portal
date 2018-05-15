@@ -11,7 +11,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TIME,
       allowNull: false,
       validate: {
-        isInt: true,
         len: [0, 100]
       }
     },
