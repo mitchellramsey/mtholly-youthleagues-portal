@@ -11,7 +11,7 @@ const flash = require("connect-flash");
 
 // Initializing Express
 let app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 // Setting up flash messages for session users
 app.use(flash());
 // Serving up the public folder to give static content
@@ -63,6 +63,9 @@ app.use("/api/games", gameGetRoute);
 
 const createPractice = require("./controllers/createPractice");
 app.use("/api/createPractice", createPractice);
+
+const practiceGetRoute = require("./controllers/practiceGetRoute");
+app.use("/api/practice", practiceGetRoute);
 
 const teamGetRoute = require("./controllers/teamGetRoute");
 app.use("/api/teams", teamGetRoute);

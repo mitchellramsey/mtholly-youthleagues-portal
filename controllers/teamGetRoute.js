@@ -7,7 +7,7 @@ const express = require("express");
 // Express Router
 const router = express.Router();
 // retrieve all teams from data base.
-router.get("/teams", function (req, res) {
+router.get("/", function (req, res) {
 	Team.findAll({})
 		.then(function (dbTeam) {
 			let teamsObj = {

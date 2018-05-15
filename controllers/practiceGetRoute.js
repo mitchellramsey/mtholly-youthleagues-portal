@@ -16,3 +16,5 @@ router.get("/", function (req, res) {
 			res.json(dbPractice);
 		});
 });
+
+module.exports = router;
