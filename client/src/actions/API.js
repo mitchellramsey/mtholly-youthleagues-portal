@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
+  // Gets all kids
   retrieveChildren: function(id) {
     return axios.get("/api/retrieveChildren/" + id);
   }

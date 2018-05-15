@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 
 // Validation
-import validateInput from "../../Shared/Validations/coachessignup";
+import validateInput from "../../Shared/Validations/createPractice";
 
 // CSS
 import "../../components/LogInForm/loginform.css";

@@ -3,8 +3,8 @@ import axios from "axios";
 
 // ----------------------------------------------------------------------------------- //
 // Test route for authentication middleware in express
-export function createPracticePost(data) {
+export function getPractice(data) {
     return dispatch => {
-        return axios.post("/api/createPractice", data);
+        return axios.post("/api/practiceGetRoute", data);
     }
 }

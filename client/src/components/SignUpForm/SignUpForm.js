@@ -115,7 +115,7 @@ class SignupForm extends Component {
 
     // Render the form
     render() {
-        // Setting the errors variable
+        // Setting the errors object
         const { errors } = this.state;
 
         return(
