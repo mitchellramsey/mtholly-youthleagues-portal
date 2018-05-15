@@ -62,7 +62,7 @@ class CoachForm extends Component {
             // To prevent multiple events
             this.setState({ errors: {}, isLoading: true });
             this.props.coachesLogInRequest(this.state).then(
-                (res) => this.context.router.history.push("/coacheslogin"),
+                (res) => this.context.router.history.push("/coachesportal"),
                 (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
             )
         }

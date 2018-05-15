@@ -7,7 +7,7 @@ const express = require("express");
 // Express Router
 const router = express.Router();
 
-router.get("/sports", function (req, res) {
+router.get("/", function (req, res) {
 	Sport.findAll({})
 		.then(function (dbSport) {
 

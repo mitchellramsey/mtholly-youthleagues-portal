@@ -7,9 +7,7 @@ const router = express.Router();
 
     router.get("/", function(req, res) {
         Coach.findAll({
-            where: {
-                TeamId: TeamId
-            }
+            
         })
         .then(function(dbCoach){
            

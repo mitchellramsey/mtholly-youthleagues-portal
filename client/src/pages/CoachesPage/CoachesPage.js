@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import Nav from "../../components/Nav";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import MainHeader from "../../components/MainHeader";
+import RenderRosters from "../../components/RenderRosters";
 
 // Actions
 import { addFlashMessage } from "../../actions/flashMessages";
@@ -29,7 +30,7 @@ class CoachPortal extends Component {
                     <div className="col-md-6 form">
                     <FlashMessageList />
                     <MainHeader />
-                        
+                    <RenderRosters />
                     </div>
 
                     <div className="col-md-6 form">
