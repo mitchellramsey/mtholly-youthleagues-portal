@@ -139,7 +139,7 @@ class CreateChildForm extends Component {
                             field="years_exp"
                             className="form-control"
                             value={this.state.years_exp}
-                            placeholder="Age"
+                            placeholder="Years of Experience"
                         />
                         <div className={classnames("form-group")}>
                             <label htmlFor="years-exp"  className="control-label">Comments</label>

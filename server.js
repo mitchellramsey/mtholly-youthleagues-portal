@@ -1,3 +1,4 @@
+
 // Dependencies
 const express = require("express");
 const path = require("path");
@@ -68,9 +69,11 @@ app.use("/api/teams", teamGetRoute);
 
 const registerChild = require("./controllers/registerChild-controllers");
 app.use("/api/registerChild", registerChild);
+app.use("/api/retrieveChildren", registerChild);
 
 const adminLogInControllers = require("./controllers/adminLogIncontrollers");
 app.use("/api/auth/admin", adminLogInControllers);
+
 // ----------------------------------------------------------------------------------- //
 
 // ----------------------------------------------------------------------------------- //
