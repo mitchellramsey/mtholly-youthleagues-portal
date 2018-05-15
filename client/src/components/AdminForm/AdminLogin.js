@@ -79,7 +79,7 @@ class AdminLogIn extends Component {
         const continueButton = (
             <div className="continue">
                 <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>
-                    <Link to="/admin-portal" className="links">Continue to Admin Portal</Link>
+                    <Link to="/adminportal" className="links">Continue to Admin Portal</Link>
                 </button>
             </div>
         )

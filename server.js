@@ -4,9 +4,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const db = require('./models');
 const logger = require("morgan");
-const session = require("express-session");
 const flash = require("connect-flash");
-const cookieSession = require("cookie-session");
 
 // ----------------------------------------------------------------------------------- //
 
@@ -77,7 +75,7 @@ app.use("/api/auth/admin", adminLogInControllers);
 
 // ----------------------------------------------------------------------------------- //
 // Starting the server
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
