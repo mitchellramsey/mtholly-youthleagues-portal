@@ -61,7 +61,12 @@ class CreatePracticeForm extends Component {
         // To prevent multiple events
         // If state is valid, perform the AJAX request
         if(this.isValid()) {
-            this.setState({ errors: {}, isLoading: true });
+            this.setState({ errors: {}, 
+                            date: "",
+                            time: "",
+                            location: "", 
+                            team_association: "",
+                        });
 
             this.props.createPracticePost(this.state).then(
                 // Then, redirect
@@ -73,7 +78,7 @@ class CreatePracticeForm extends Component {
            
                 },
                 // Setting errors
-                (err) => this.setState({ errors: err.response.data, isLoading: false })            
+                (err) => this.setState({ errors: err.response.data })            
             );
         }
     };
