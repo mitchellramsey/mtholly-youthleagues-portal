@@ -71,12 +71,11 @@ app.use("/api/teams", teamGetRoute);
 
 const registerChild = require("./controllers/registerChild-controllers");
 app.use("/api/registerChild", registerChild);
+app.use("/api/retrieveChildren", registerChild);
 
 const adminLogInControllers = require("./controllers/adminLogIncontrollers");
 app.use("/api/auth/admin", adminLogInControllers);
 
-const adminControllers = require("./controllers/adminControllers");
-app.use("/api/manager", adminControllers);
 // ----------------------------------------------------------------------------------- //
 
 // ----------------------------------------------------------------------------------- //
