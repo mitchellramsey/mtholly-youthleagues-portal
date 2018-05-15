@@ -13,6 +13,7 @@ const { Users, Kids } = require("../models");
 //Register Child POST
 router.post("/", (req,res) => {
     const kid = req.body;
+    console.log(kid);
     Users.findOne({
         where: {
             id: kid.parentId
@@ -34,6 +35,23 @@ router.post("/", (req,res) => {
     })
     
     
+});
+
+router.get("/:id", (req,res) => {
+    console.log("I made it here");
+    Users.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(parent => {
+        Kids.findAll({
+            where: {
+                UserId: parent.id
+            }
+        }).then(kids => {
+            res.json(kids);
+        });
+    });
 });
 
 module.exports = router;
