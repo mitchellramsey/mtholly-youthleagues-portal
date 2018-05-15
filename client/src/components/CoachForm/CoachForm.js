@@ -79,7 +79,7 @@ class CoachForm extends Component {
         const continueButton = (
             <div className="continue">
                 <button className="btn btn-primary form-btn mx-auto" onClick={this.handleFormSubmit}>
-                    <Link to="/coach-portal" className="links">Continue to Coach Portal</Link>
+                    <Link to="/coachesportal" className="links">Continue to Coach Portal</Link>
                 </button>
             </div>
         )
