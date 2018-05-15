@@ -37,4 +37,21 @@ router.post("/", (req,res) => {
     
 });
 
+router.get("/:id", (req,res) => {
+    console.log("I made it here");
+    Users.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(parent => {
+        Kids.findAll({
+            where: {
+                UserId: parent.id
+            }
+        }).then(kids => {
+            res.json(kids);
+        });
+    });
+});
+
 module.exports = router;

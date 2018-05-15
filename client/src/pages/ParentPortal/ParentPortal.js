@@ -12,6 +12,7 @@ import CreateChildForm from "../../components/CreateChildForm";
 // Actions
 import { childSignUp } from "../../actions/registerChild";
 import { addFlashMessage } from "../../actions/flashMessages";
+import API  from "../../actions/API";
 
 // CSS
 import "./ParentPortal.css";
@@ -22,10 +23,23 @@ class ParentPortal extends Component {
     constructor() {
         super();
         this.state = {
-            showChildForm: false
+            showChildForm: false,
+            kids: []
         }
 
     }
+
+    componentDidMount() {
+        this.getChildren(this.props.auth.user.id);
+      }
+
+    getChildren = (parentId) => {
+        API.retrieveChildren(parentId)
+          .then(res => this.setState({ kids: res.data }))
+          .catch(err => console.log(err));
+    };
+
+    
 
 
     
@@ -40,7 +54,7 @@ class ParentPortal extends Component {
 
     // Render the page
     render() {
-        const { childSignUp, addFlashMessage } = this.props; 
+        const { childSignUp, addFlashMessage} = this.props; 
 
         return (
             <div className="container-fluid">
@@ -50,6 +64,7 @@ class ParentPortal extends Component {
                     <FlashMessageList />
                     <MainHeader />
                         <button className="btn btn-success register" onClick={() => this.toggleChildForm()}>Register Child</button>
+                        
                         
                     </div>
 
@@ -77,7 +92,8 @@ class ParentPortal extends Component {
 ParentPortal.propTypes = {
     childSignUp: PropTypes.func.isRequired,
     addFlashMessage: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+   
 }
 
 
