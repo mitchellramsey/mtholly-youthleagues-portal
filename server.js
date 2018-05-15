@@ -1,3 +1,4 @@
+
 // Dependencies
 const express = require("express");
 const path = require("path");
@@ -73,11 +74,14 @@ app.use("/api/registerChild", registerChild);
 
 const adminLogInControllers = require("./controllers/adminLogIncontrollers");
 app.use("/api/auth/admin", adminLogInControllers);
+
+const adminControllers = require("./controllers/adminControllers");
+app.use("/api/manager", adminControllers);
 // ----------------------------------------------------------------------------------- //
 
 // ----------------------------------------------------------------------------------- //
 // Starting the server
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
