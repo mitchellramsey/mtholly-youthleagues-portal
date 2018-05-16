@@ -24,7 +24,7 @@ import CoachesLogIn from "./pages/CoachesLogIn/CoachesLogIn";
 import CoachesSignUp from "./pages/CoachesSignUp/CoachSignUpPage";
 import CoachesPortal from "./pages/CoachesPage/CoachesPage";
 import AdminLogInPage from "./pages/AdminLogInPage/AdminLogInPage";
-import AdminPortal from "./pages/AdminPage/AdminPage";
+import AdminPortal from "./pages/AdminPortal/";
 
 
 // ------------------ CSS ----------------------- //
@@ -64,7 +64,7 @@ const App = () => (
           <Route exact path="/coachessignup" component={CoachesSignUp} />
           <Route exact path="/coachesportal" component={authenticateRoutes(CoachesPortal)} />
           <Route exact path="/adminlogin" component={AdminLogInPage} />
-          <Route exact path="/adminportal" component={(AdminPortal)} />
+          <Route exact path="/adminportal" component={authenticateRoutes(AdminPortal)} />
         </Switch>
       </div>
     </Router>
