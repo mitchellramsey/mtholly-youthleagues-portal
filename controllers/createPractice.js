@@ -42,4 +42,22 @@ router.post("/", (req, res) => {
 });
 
 // ----------------------------------------------------------------------------------- //
+// Practice GET route
+
+// Find practices by coach Id
+router.get("/:id", (req, res) => {
+    Coach.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(foundPractices => {
+        Practice.findAll({
+        }).then(practices => {
+            res.json(practices);
+        })
+    });
+});
+
+
+// ----------------------------------------------------------------------------------- //
 module.exports = router;
