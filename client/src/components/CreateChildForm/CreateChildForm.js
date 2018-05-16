@@ -1,12 +1,11 @@
 // Imports
 import React, { Component } from "react";
-import { connect } from "react-redux";
+
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 
-// Actions
-import validateInput from "../../Shared/Validations/signup";
+
 
 // Component
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
