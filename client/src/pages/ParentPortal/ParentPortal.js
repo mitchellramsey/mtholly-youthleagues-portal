@@ -8,6 +8,7 @@ import Nav from "../../components/Nav";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import MainHeader from "../../components/MainHeader";
 import CreateChildForm from "../../components/CreateChildForm";
+import { List, ListItem, DeleteBtn } from "../../components/List";
 
 // Actions
 import { childSignUp } from "../../actions/registerChild";
@@ -31,13 +32,19 @@ class ParentPortal extends Component {
 
     componentDidMount() {
         this.getChildren(this.props.auth.user.id);
-      }
+    }
 
     getChildren = (parentId) => {
         API.retrieveChildren(parentId)
           .then(res => this.setState({ kids: res.data }))
           .catch(err => console.log(err));
-    };
+    }
+
+    removeChild = (kidId) => {
+        API.removeChild(kidId)
+            .then(res => this.getChildren(this.props.auth.user.id))
+            .catch(err => console.log(err));
+    }
 
     
 
@@ -63,8 +70,25 @@ class ParentPortal extends Component {
                     <div className="col-md-6 form">
                     <FlashMessageList />
                     <MainHeader />
-                        <button className="btn btn-success register" onClick={() => this.toggleChildForm()}>Register Child</button>
-                        
+                    <button className="btn btn-success register" onClick={() => this.toggleChildForm()}>Register Child</button>
+                    <div className="childList">
+                        <h1>Registered Children</h1>
+                        {this.state.kids.length ? (
+                            <List>
+                                {this.state.kids.map(kid => (
+                                    <ListItem key={kid.id} onClick={() => this.displayKidInfo(kid.id)} >
+                                        <strong>
+                                            {kid.first_name} {kid.last_name} - {kid.age} - {kid.sport}
+                                        </strong>
+                                        <DeleteBtn onClick={() => this.removeChild(kid.id)} />
+                                    </ListItem>
+                                ))}
+                            </List>
+                        ) : (
+                            <h3>No Children Registered</h3>
+                        )}
+                    </div>
+                       
                         
                     </div>
 

@@ -54,4 +54,14 @@ router.get("/:id", (req,res) => {
     });
 });
 
+router.delete("/:id", (req,res) => {
+    Kids.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(kids => {
+        res.json(kids);
+    });
+});
+
 module.exports = router;
