@@ -11,5 +11,14 @@ export default {
   //Delete a child 
   removeChild: function(id) {
     return axios.delete("/api/children/" + id);
+  },
+
+  //Create a sport
+  addSport: function(sport) {
+    return axios.post("/api/postsport");
+  },
+
+  getSports: function() {
+    return axios.get("/api/getsport");
   }
 }

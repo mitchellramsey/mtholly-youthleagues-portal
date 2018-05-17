@@ -8,12 +8,16 @@ import Nav from "../../components/Nav/Nav";
 import Footer from "../../components/Footer/Footer";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
+import TextFieldGroup from "../../components/TextFieldGroup";
 
 // Actions
 import { addFlashMessage } from "../../actions/flashMessages";
+import API from "../../actions/API";
 
 // CSS
-import "../../pages/Landing/landing.css";
+
+import "./AdminPortal.css";
+
 
 // ----------------------------------------------------------------------------------- //
 // Creating the Admin Page
@@ -25,8 +29,56 @@ class AdminPortal extends Component {
       
       this.state = {
         showMenu: false,
+        createSport: false,
+        name: "",
+        sports: []
       }
     }
+
+    //Calling for Sport API
+    componentDidMount() {
+      this.getSports();
+  }
+    // Toggle create sport form
+    toggleCreateSport () {
+      console.log(this);
+      this.setState({
+          createSport: !this.state.createSport
+      });
+  }
+
+  // Capturing form input
+  handleInputChange = event => {
+    this.setState({
+        [event.target.name]: event.target.value
+    })
+};
+
+getSports = () => {
+  API.getSports()
+    .then(res => this.setState({ sports: res.data }))
+    .catch(err => console.log(err));
+}
+
+
+// On form submit
+handleSportCreate = event => {
+    // Preventing default form behavior
+    event.preventDefault();
+
+    // If state is valid, perform the AJAX request
+   
+        API.createSport(this.state.name).then(
+            // Then, redirect
+            () => {
+                this.props.history.push("/adminportal") 
+            },
+            // Setting errors
+            (res) => this.getSports(),
+            (err) => this.setState({ errors: err.response.data, isLoading: false })            
+        );
+    
+}
 
   // Render the page
   render() {
@@ -39,6 +91,28 @@ class AdminPortal extends Component {
           <div className="col-md-6 form">
             <FlashMessageList />
             <MainHeader />
+            <div className="createSportSection">
+              <button className="btn btn-success createSport" onClick={() => this.toggleCreateSport()}>Create Sport</button>
+              
+              {
+                this.state.createSport
+                  ? <form className="form text-center" onSubmit={this.handleSportCreate}>
+                        <TextFieldGroup
+                          onChange={this.handleInputChange}
+                          errors={this.name}
+                          label="Create Sport"
+                          type="text"
+                          field="name"
+                          className="form-control"
+                          value={this.state.name}
+                          placeholder="Sport"
+                          />
+                        <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                    </form>                      
+                  : null
+               }
+               
+            </div>
 
           </div>
 
@@ -49,19 +123,7 @@ class AdminPortal extends Component {
           </div>
         </div>
 
-        <div>
-
-        <button>
-          Show menu
-        </button>
         
-        <div className="menu">
-          <button> Sports </button>
-          <button> Form Teams </button>
-        
-        </div>
-      </div>
-      <Footer/>
       </div>
     );
   }
