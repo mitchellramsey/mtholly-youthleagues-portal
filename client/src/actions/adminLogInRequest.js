@@ -17,6 +17,8 @@ export function setCurrentUser(user) {
 // Signup AJAX post
 export function adminLogInRequest(data) {
     return dispatch => {
+        console.log("I made it past dispatch");
+        console.log(data);
         return axios.post("/api/auth/admin", data).then(res => {
             // Saving token to user localStorage
             // Decoded token
