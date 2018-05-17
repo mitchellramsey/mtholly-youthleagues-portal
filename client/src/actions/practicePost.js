@@ -16,3 +16,11 @@ export function getPractice(id) {
         return axios.get(`/api/createPractice/${id}`);
     }
 }
+
+// ----------------------------------------------------------------------------------- //
+// Delete a practice
+export function deletePractice(id) {
+    return dispatch => {
+        return axios.delete(`/api/createPractice/${id}`);
+    }
+}

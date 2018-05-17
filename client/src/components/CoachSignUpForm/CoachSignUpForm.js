@@ -242,7 +242,7 @@ class CoachSignupForm extends Component {
                         value={this.state.zip}
                         placeholder="Zip"
                     />
-                    <button className="btn btn-primary form-btn mx-auto submit-btn">Submit</button>
+                    <button className="btn btn-primary form-btn mx-auto submit-btn button-actions">Submit</button>
                 </form>         
             </div>
         )

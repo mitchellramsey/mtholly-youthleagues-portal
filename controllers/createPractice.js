@@ -60,4 +60,17 @@ router.get("/:id", (req, res) => {
 
 
 // ----------------------------------------------------------------------------------- //
+// Delete a practice
+
+router.delete("/:id", (req,res) => {
+    Practice.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(practices => {
+        res.json(practices);
+    });
+});
+
+// ----------------------------------------------------------------------------------- //
 module.exports = router;

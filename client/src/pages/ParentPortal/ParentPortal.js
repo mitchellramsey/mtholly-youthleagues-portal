@@ -9,7 +9,7 @@ import Footer from "../../components/Footer/Footer";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import MainHeader from "../../components/MainHeader";
 import CreateChildForm from "../../components/CreateChildForm";
-import { List, ListItem, DeleteBtn } from "../../components/List";
+import { DeleteBtn } from "../../components/List";
 
 // Actions
 import { childSignUp } from "../../actions/registerChild";
@@ -71,24 +71,56 @@ class ParentPortal extends Component {
                     <div className="col-md-6 form">
                     <FlashMessageList />
                     <MainHeader />
-                    <button className="btn btn-success register" onClick={() => this.toggleChildForm()}>Register Child</button>
-                    <div className="childList">
-                        <h1>Registered Children</h1>
-                        {this.state.kids.length ? (
-                            <List>
-                                {this.state.kids.map(kid => (
-                                    <ListItem key={kid.id} onClick={() => this.displayKidInfo(kid.id)} >
-                                        <strong>
-                                            {kid.first_name} {kid.last_name} - {kid.age} - {kid.sport}
-                                        </strong>
-                                        <DeleteBtn onClick={() => this.removeChild(kid.id)} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        ) : (
-                            <h3>No Children Registered</h3>
-                        )}
+                    <div className="text-center">
+                        <h1 className="dashboard-title">Parent Dashboard</h1>
+                        <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
                     </div>
+                    <div className="childList">
+                        <h3>Registered Children</h3>
+                        {this.state.kids.length ? (
+                            <div className="coachDataDiv col-md-10 mr-auto">
+                                <div className="row text-center">
+                                        <div className="col-md-3">
+                                            <span className="data-header">First Name</span>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <span className="data-header">Last Name</span>
+                                        </div>
+                                        <div className="col-md-2">
+                                            <span className="data-header">Age</span>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <span className="data-header">Sport</span>
+                                        </div>
+                                        <div className="col-md-1">
+                                            <span className="data-header">X</span>
+                                        </div>
+                                    </div>
+                                
+                                    {this.state.kids.map(kid => (
+                                        <ul className="coachDataId" key={kid.id}>
+                                            <div className="col-md-3 coachListItem">
+                                                <li className="dateTime">{kid.first_name}</li>
+                                            </div>
+                                            <div className="col-md-3 coachListItem">
+                                                <li className="dateTime">{kid.last_name}</li>
+                                            </div>
+                                            <div className="col-md-2 coachListItem kid-num-col">
+                                                <li className="dateTime">{kid.age}</li>
+                                            </div>
+                                            <div className="col-md-3 coachListItem">
+                                                <li className="dateTime">{kid.sport}</li>
+                                            </div><div className="col-md-1 coachListItem">
+                                                <DeleteBtn onClick={() => this.removeChild(kid.id)}/>
+                                            </div>
+                                        </ul>
+                                    ))}
+                                
+                                </div>
+                            ) : (
+                                <h3>No Children Registered</h3>
+                            )}
+                        </div>
                        
                         
                     </div>

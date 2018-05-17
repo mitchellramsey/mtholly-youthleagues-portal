@@ -3,10 +3,28 @@
 /*  ------------------------------------- */
 .coachDataDiv {
     background-color: #ecf9ff;
+    padding: 17px;
+    border: 1px solid #000;
+}
+.coachDataId {
+    padding-left: 0px;
+}
+
+.coachListItem {
+    display: inline-block;
+    word-break: break-word;
+    text-align: center;
 }
 
 .data-header {
-    padding-right: 20px;
+    margin-left: -17px;
     font-weight: 900;
     font-size: 1.2rem;
+    border-bottom: 1px solid #000;
 }
+
+.dashboard-title {
+    display: inline-block;
+    border-bottom: 1px solid #000;
+}
+

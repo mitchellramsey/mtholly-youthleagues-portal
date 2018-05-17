@@ -110,7 +110,7 @@ class AdminLogIn extends Component {
                         placeholder="Password"
                         id="password"
                     />
-                    <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
+                    <button className="btn btn-primary form-btn mx-auto button-actions" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
                 </form>
         )
 

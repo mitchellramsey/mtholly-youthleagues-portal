@@ -56,11 +56,11 @@ span.help-block {
     border-color: #ecf9ff;
 }
 
-.coach-links {
+.button-actions {
     background-color: rgba(24, 26, 31, 0.39);
 }
 
-.coach-links:hover {
+.button-actions:hover {
     background-color: #e2dfdf;
     border-color: #000;
 }

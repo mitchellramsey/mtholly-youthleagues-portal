@@ -1,7 +1,25 @@
+
+/* Classes */
+/* ------------------------------------------------------ */
 .register {
    float: right;
+   border-radius: 0px;
 }
 
 .childList {
     clear: both;
+    padding-top: 42px;
+}
+
+.kid-num-col {
+    padding-left: 47px;
+}
+
+.delete-btn:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+  }
+  
+.delete-btn {
+transition: all 0.2s ease-in-out; 
 }
