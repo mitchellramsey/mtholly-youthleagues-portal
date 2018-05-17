@@ -55,20 +55,17 @@ app.use("/api/auth/coaches", coachLogInControllers);
 const coachGetRout = require("./controllers/coachGetRoute");
 app.use("/api/coaches", coachGetRout);
 
-const sportGetRoute = require("./controllers/sportGetRoute");
-app.use("/api/sports", sportGetRoute);
+const createSport = require("./controllers/createSport");
+app.use("/api/sports", createSport);
 
-const gameGetRoute = require("./controllers/gameGetRoute");
-app.use("/api/games", gameGetRoute);
+const createGame = require("./controllers/createGame");
+app.use("/api/games", createGame);
 
 const createPractice = require("./controllers/createPractice");
 app.use("/api/createPractice", createPractice);
 
-const practiceGetRoute = require("./controllers/practiceGetRoute");
-app.use("/api/practice", practiceGetRoute);
-
-const teamGetRoute = require("./controllers/teamGetRoute");
-app.use("/api/teams", teamGetRoute);
+const createTeam = require("./controllers/createTeam");
+app.use("/api/teams", createTeam);
 
 const registerChild = require("./controllers/registerChild-controllers");
 app.use("/api/registerChild", registerChild);
@@ -82,7 +79,7 @@ app.use("/api/auth/admin", adminLogInControllers);
 
 // ----------------------------------------------------------------------------------- //
 // Starting the server
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });

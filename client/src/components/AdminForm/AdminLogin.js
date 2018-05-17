@@ -62,7 +62,7 @@ class AdminLogIn extends Component {
             // To prevent multiple events
             this.setState({ errors: {}, isLoading: true });
             this.props.adminLogInRequest(this.state).then(
-                (res) => this.context.router.history.push("/"),
+                (res) => this.context.router.history.push("/adminportal"),
                 (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
             )
         }
