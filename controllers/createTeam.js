@@ -16,7 +16,8 @@ router.get("/:id", (req, res) => {
     }).then(foundTeams => {
         Team.findAll({
         }).then(teams => {
-            res.json(teams);
+			res.json(teams);
+			console.log(teams);
         })
     });
 });
