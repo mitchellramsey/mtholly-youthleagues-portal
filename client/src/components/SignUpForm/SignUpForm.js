@@ -31,9 +31,7 @@ class SignupForm extends Component {
                 city: "",
                 state: "",
                 county: "",
-                errors: {},
-                isLoading: false,
-                invalid: false
+                errors: {}
             };
         
         // Binding form submittion and input change to "this" specific one
@@ -76,11 +74,9 @@ class SignupForm extends Component {
                 if(res.data.user) {
                     // set error
                     errors[field] = "This email is already taken";
-                    let invalid = true;
                 } else {
                     // Leave the field empty
                     errors[field] = "";
-                    let invalid = false;
                 }
                 // Set State with errors
                 this.setState({ errors, invalid });

@@ -13,10 +13,10 @@ export default {
 
   //Create a sport
   addSport: function(sport) {
-    return axios.post("/api/sport");
+    return axios.post("/api/postsport");
   },
 
   getSports: function() {
-    return axios.get("/api/sport");
+    return axios.get("/api/getsport");
   }
 }

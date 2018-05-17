@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 // Component
 import Nav from "../../components/Nav/Nav";
+import Footer from "../../components/Footer/Footer";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import TextFieldGroup from "../../components/TextFieldGroup";
@@ -123,7 +124,6 @@ handleSportCreate = event => {
         </div>
 
         
-
       </div>
     );
   }
