@@ -124,7 +124,9 @@ class CreateChildForm extends Component {
                                     value={this.state.sport}
                                 >
                                 <option value="">Sport</option>
-                                {/* This needs to be loaded in from the Sports Table Database */}
+                                {this.props.sports.map(sport => (
+                                    <option value={sport.id}>{sport.name}</option>
+                                ))}
                                 </select>
 
                         </div>

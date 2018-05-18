@@ -16,7 +16,6 @@ import API from "../../actions/API";
 
 // CSS
 
-import "./AdminPortal.css";
 
 
 // ----------------------------------------------------------------------------------- //
@@ -68,10 +67,10 @@ handleSportCreate = event => {
 
     // If state is valid, perform the AJAX request
    
-        API.createSport(this.state.name).then(
+        API.addSport(this.state.name).then(
             // Then, redirect
             () => {
-                this.props.history.push("/adminportal") 
+                window.location.reload(); 
             },
             // Setting errors
             (res) => this.getSports(),
@@ -92,7 +91,7 @@ handleSportCreate = event => {
             <FlashMessageList />
             <MainHeader />
             <div className="createSportSection">
-              <button className="btn btn-success createSport" onClick={() => this.toggleCreateSport()}>Create Sport</button>
+              <button className="btn btn-primary createSport button-actions " onClick={() => this.toggleCreateSport()}>Create Sport</button>
               
               {
                 this.state.createSport
@@ -100,7 +99,7 @@ handleSportCreate = event => {
                         <TextFieldGroup
                           onChange={this.handleInputChange}
                           errors={this.name}
-                          label="Create Sport"
+                          label="Create League"
                           type="text"
                           field="name"
                           className="form-control"
@@ -112,6 +111,9 @@ handleSportCreate = event => {
                   : null
                }
                
+            </div>
+            <div className="showMenuSection">
+              <button className="btn btn-primary createSport button-actions " onClick={() => this.toggleCreateSport()}>Show Menu</button>
             </div>
 
           </div>

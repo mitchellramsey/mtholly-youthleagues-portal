@@ -35,6 +35,8 @@ class CoachForm extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
+    
+
     // Capturing form input
     handleInputChange = event => {
         this.setState({

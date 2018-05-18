@@ -2,9 +2,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
+import classnames from "classnames";
 
 // Component
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
+
 
 // Validation
 import validateInput from "../../Shared/Validations/coachessignup";
@@ -34,7 +36,8 @@ class CoachSignupForm extends Component {
                 email: "",
                 errors: {},
                 isLoading: false,
-                coach: true
+                coach: true,
+                
             };
         
         // Binding form submittion and input change to "this" specific one
@@ -42,6 +45,8 @@ class CoachSignupForm extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.checkUser = this.checkUser.bind(this);
     }
+
+    
 
     // Capturing form input
     handleInputChange = event => {
@@ -189,16 +194,22 @@ class CoachSignupForm extends Component {
                         placeholder="Phone"
                     />
                     {/* Sport */}
-                    <TextFieldGroup
-                        onChange={this.handleInputChange}
-                        errors={errors.sport}
-                        label="Sport"
-                        type="text"
-                        field="sport"
-                        className="form-control"
-                        value={this.state.sport}
-                        placeholder="Sport"
-                    />
+                    <div className={classnames("form-group")}>
+                        <label htmlFor="sport" className="control-label">Sport</label>
+                            <select
+                                className="form-control" 
+                                name="sport" 
+                                onChange={this.handleInputChange}
+                                value={this.state.sport}
+                            
+                            >
+                            <option value="">Sport</option>
+                            {this.props.sports.map(sport => (
+                                <option value={sport.id} key={sport.id}>{sport.name}</option>
+                            ))}
+                            </select>
+
+                    </div>
                     {/* Street Address */}
                     <TextFieldGroup
                         onChange={this.handleInputChange}

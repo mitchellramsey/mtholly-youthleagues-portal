@@ -15,7 +15,10 @@ export default {
 
   //Create a sport
   addSport: function(sport) {
-    return axios.post("/api/postsport");
+    const data = {
+      name: sport
+    }
+    return axios.post("/api/postsport", data);
   },
 
   getSports: function() {

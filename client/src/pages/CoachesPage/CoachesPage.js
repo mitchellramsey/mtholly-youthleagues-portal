@@ -30,7 +30,8 @@ class CoachPortal extends Component {
             createPracticeForm: false,
             showTeam: false,
             showSchedule: false,
-            practices: []
+            practices: [],
+          
         }       
     }
 
@@ -108,6 +109,7 @@ class CoachPortal extends Component {
                             addFlashMessage={addFlashMessage}
                             coachId={this.props.auth.user.id}
                             retrievePractices={this.retrievePractices}
+                            
                         />
                         // If not toggled to true, hide the form
                             :null

@@ -24,9 +24,9 @@ router.post("/", (req,res) => {
             last_name: kid.lastName,
             age: kid.age,
             gender: kid.gender,
-            sport: kid.sport,
             years_exp: kid.years_exp,
             comments: kid.comments,
+            SportId: kid.sport,
             UserId: parent.id
         }).then(newkid => {
             res.json(newkid);

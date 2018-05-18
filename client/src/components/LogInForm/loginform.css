@@ -3,7 +3,7 @@
 
 h5,
 h4 {
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 
@@ -20,9 +20,10 @@ li {
 /* ---------------------------------------------------- */
 
 .form-btn {
-    margin-top: 7px;
+    /* margin-top: 7px; */
     border-radius: 0px;
     display: block;
+    margin: 7px auto 0;
 }
 
 .submit-btn {

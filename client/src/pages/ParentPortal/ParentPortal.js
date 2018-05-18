@@ -26,13 +26,15 @@ class ParentPortal extends Component {
         super();
         this.state = {
             showChildForm: false,
-            kids: []
+            kids: [],
+            sports: []
         }
 
     }
 
     componentDidMount() {
         this.getChildren(this.props.auth.user.id);
+        this.getSports();
     }
 
     getChildren = (parentId) => {
@@ -46,6 +48,12 @@ class ParentPortal extends Component {
             .then(res => this.getChildren(this.props.auth.user.id))
             .catch(err => console.log(err));
     }
+
+    getSports = () => {
+        API.getSports()
+          .then(res => this.setState({ sports: res.data }))
+          .catch(err => console.log(err));
+      }
 
     
 
@@ -133,6 +141,7 @@ class ParentPortal extends Component {
                                         childSignUp={childSignUp}
                                         addFlashMessage={addFlashMessage}
                                         userId={this.props.auth.user.id}
+                                        sports={this.state.sports}
                                     />
                                     : null
                             }

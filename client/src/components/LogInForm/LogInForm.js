@@ -78,7 +78,7 @@ class LogInForm extends Component {
 
         // Continue button
         const continueButton = (
-            <div className="continue">
+            <div className="continue text-center">
                 <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>
                     <Link to="/parent-portal" className="links">Continue to Parent Portal</Link>
                 </button>

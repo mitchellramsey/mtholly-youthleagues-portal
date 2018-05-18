@@ -14,6 +14,8 @@ router.get("/", function (req, res) {
 });
 
 router.post('/', function (req, res) {
+	console.log("Body: ");
+	console.log(req.body);
 
 	// Deconstructing the variable
 	const {	name } = req.body;
