@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
                     city: city, 
                     state: state, 
                     zip:  zip,
-                    sport: sport
+                    SportId: sport
                 }
                 // Else, create user
                 Coach.create(data).then(function(newUser, created) {

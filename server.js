@@ -60,7 +60,7 @@ app.use("/api/getsport", createSport);
 app.use("/api/postsport", createSport);
 
 const createGame = require("./controllers/createGame");
-app.use("/api/games", createGame);
+app.use("/api/createGame", createGame);
 
 const createPractice = require("./controllers/createPractice");
 app.use("/api/createPractice", createPractice);

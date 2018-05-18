@@ -35,6 +35,8 @@ class CoachForm extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
+    
+
     // Capturing form input
     handleInputChange = event => {
         this.setState({
@@ -110,7 +112,7 @@ class CoachForm extends Component {
                         placeholder="Password"
                         id="password"
                     />
-                    <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
+                    <button className="btn btn-primary form-btn mx-auto button-actions" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
 
                     <h5>Need an account?</h5>
                     <span>Click <Link to="/coachessignup">here</Link></span>

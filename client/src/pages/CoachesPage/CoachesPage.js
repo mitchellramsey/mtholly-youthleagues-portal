@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import moment from "moment";
+
 
 // Component
 import Nav from "../../components/Nav";
@@ -9,12 +11,11 @@ import Footer from "../../components/Footer/Footer";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import MainHeader from "../../components/MainHeader";
 import CreatePracticeForm from "../../components/createPracticeForm";
-import { List, ListItem } from "../../components/List";
+import { DeleteBtn } from "../../components/List";
 
 // Actions
 import { addFlashMessage } from "../../actions/flashMessages";
-import { createPracticePost } from "../../actions/practicePost";
-import { getPractice } from "../../actions/practicePost";
+import { createPracticePost, getPractice, deletePractice } from "../../actions/practicePost";
 
 // CSS
 import "./coachespage.css";
@@ -29,20 +30,32 @@ class CoachPortal extends Component {
             createPracticeForm: false,
             showTeam: false,
             showSchedule: false,
-            practices: []
+            practices: [],
+          
         }       
     }
 
+    // Update state after data is called
     componentDidMount() {
         this.retrievePractices(this.props.auth.user.id);
     }
 
+    
+    // Axios request to get the coaches Id and practices
     retrievePractices = practiceData =>  {
         this.props.getPractice(practiceData)
             .then(res => this.setState({ practices: res.data }))
                 // Handle errors
                 .catch(err => console.log(err));
 
+    }
+
+    // Delete practices
+    deleteCoachPractices = id => {
+        this.props.deletePractice(id)
+            .then(res => this.retrievePractices(this.props.auth.user.id))
+                // Handle errors
+                .catch(err => console.log(err));
     }
 
 
@@ -78,10 +91,13 @@ class CoachPortal extends Component {
                         <FlashMessageList />
                         {/* Buttons to render certain data */}
                         <div className="button-div text-center">
+
+                        <h3 className="dashboard-title">Coach Dashboard</h3>
+
                             <ul className="mx-auto">
-                                <li><button className="btn btn-primary form-btn coach-links" onClick={() => this.togglePracticeForm()}>Create Practice</button></li>
-                                <li><button className="btn btn-primary form-btn coach-links">Show Team</button></li>
-                                <li><button className="btn btn-primary form-btn coach-links" onClick={() => this.toggleScheduleDiv()}>Show Schedule</button></li>
+                                <li><button className="btn btn-primary form-btn button-actions" onClick={() => this.togglePracticeForm()}>Create Practice</button></li>
+                                <li><button className="btn btn-primary form-btn button-actions">Show Team</button></li>
+                                <li><button className="btn btn-primary form-btn button-actions" onClick={() => this.toggleScheduleDiv()}>Show Schedule</button></li>
                             </ul>
                         </div> 
 
@@ -92,6 +108,8 @@ class CoachPortal extends Component {
                             createPracticePost={createPracticePost}
                             addFlashMessage={addFlashMessage}
                             coachId={this.props.auth.user.id}
+                            retrievePractices={this.retrievePractices}
+                            
                         />
                         // If not toggled to true, hide the form
                             :null
@@ -101,21 +119,46 @@ class CoachPortal extends Component {
                         {/* Show schedule div */}
                         { this.state.showSchedule ? 
                             <div className="coachDataDiv col-md-8 mx-auto">
-                                <ul className="text-center">
-                                    <li className="coachData">
-                                        <span className="data-header">Date</span>
-                                        <span className="data-header">Time</span>
-                                        <span className="data-header">Location</span>
-                                        <span className="data-header">Team Association</span>
-                                    </li>
-                                </ul>
-                                <ul>
+                                <div className="row text-center">
+                                    <div className="col-md-3">
+                                            <span className="data-header">Date</span>
+                                        </div>
+                                        <div className="col-md-2">
+                                            <span className="data-header">Time</span>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <span className="data-header">Location</span>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <span className="data-header">Association</span>
+                                        </div>
+                                        <div className="col-md-1">
+                                            <span className="data-header">X</span>
+                                        </div>
+                                    </div>
+
+                                
+                                    
                                         {this.state.practices.map(practice => (
-                                            <li key={practice.id}>
-                                                    {practice.date} - {practice.time} - {practice.location} - {practice.team_association}
-                                            </li>  
+                                            <ul className="coachDataId" key={practice.id}>
+                                                <div className="col-md-3 coachListItem">
+                                                    <li className="dateTime">{moment(practice.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
+                                                </div>
+                                                <div className="col-md-2 coachListItem">
+                                                    <li className="dateTime">{moment(practice.time, "HH:mm:ss").format("hh:MM p")}</li>
+                                                </div>
+                                                <div className="col-md-3 coachListItem">
+                                                    <li className="dateTime">{practice.location}</li>
+                                                </div>
+                                                <div className="col-md-3 coachListItem">
+                                                    <li className="dateTime">{practice.team_association}</li>
+                                                </div> 
+                                                <div className="col-md-1 coachListItem">
+                                                    <DeleteBtn onClick={() => this.deleteCoachPractices(practice.id)}/>
+                                                </div> 
+                                            </ul>
                                         ))}
-                                </ul>
+                                
                             </div>
                         // If not toggled to true, hide the form
                             :null
@@ -141,6 +184,7 @@ CoachPortal.propTypes = {
     addFlashMessage: PropTypes.func.isRequired,
     createPracticePost: PropTypes.func.isRequired,
     getPractice: PropTypes.func.isRequired,
+    deletePractice: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 }
 
@@ -152,4 +196,4 @@ function mapStateToProps(state) {
 }
 
 // Exporting the page, and connecting the props with redux
-export default connect(mapStateToProps, { addFlashMessage, createPracticePost, getPractice })(CoachPortal);
+export default connect(mapStateToProps, { addFlashMessage, createPracticePost, getPractice, deletePractice })(CoachPortal);

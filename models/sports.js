@@ -12,8 +12,17 @@ module.exports = function (sequelize, DataTypes) {
   Sport.associate = function (models) {
 		Sport.hasMany(models.Team, {
 			onDelete: "cascade"
+    });
+    
+    Sport.hasMany(models.Kids, {
+			onDelete: "cascade"
+    });
+    
+    Sport.hasMany(models.Coach, {
+			onDelete: "cascade"
 		});
   };
+
     
   return Sport;
 };

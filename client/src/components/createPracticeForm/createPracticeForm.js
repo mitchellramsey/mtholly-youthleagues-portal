@@ -78,7 +78,8 @@ class CreatePracticeForm extends Component {
            
                 },
                 // Setting errors
-                (err) => this.setState({ errors: err.response.data })            
+                (err) => this.setState({ errors: err.response.data }),
+                this.props.retrievePractices(this.state.coachId)            
             );
         }
     };
@@ -98,22 +99,22 @@ class CreatePracticeForm extends Component {
                             onChange={this.handleInputChange}
                             errors={errors.date}
                             label="Date"
-                            type="text"
+                            type="date"
                             field="date"
                             className="form-control"
                             value={this.state.date}
-                            placeholder="Date"
+                            placeholder="MM/DD/YY"
                     />
                     {/* Time */}
                     <TextFieldGroup
                             onChange={this.handleInputChange}
                             errors={errors.time}
                             label="Time"
-                            type="text"
+                            type="time"
                             field="time"
                             className="form-control"
                             value={this.state.time}
-                            placeholder="time"
+                            placeholder="hh:MM"
                     />
                     {/* Location */}
                     <TextFieldGroup
@@ -137,7 +138,7 @@ class CreatePracticeForm extends Component {
                             value={this.state.team_association}
                             placeholder="Team Association"
                     />
-                    <button className="btn btn-primary form-btn mx-auto submit-btn" disabled={this.state.isLoading}>Submit</button>
+                    <button className="btn btn-primary form-btn mx-auto submit-btn button-actions" disabled={this.state.isLoading}>Submit</button>
                 </form>
             </div>
         )
