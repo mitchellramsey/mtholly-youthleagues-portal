@@ -23,5 +23,10 @@ export default {
 
   getSports: function() {
     return axios.get("/api/getsport");
+  },
+
+  createTeam: function(teamData) {
+    
+    return axios.post("/api/teams", teamData);
   }
 }

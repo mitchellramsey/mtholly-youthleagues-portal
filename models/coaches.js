@@ -89,6 +89,10 @@ module.exports = function (sequelize, Datatypes) {
 				allowNull: false
 			}
 		});
+
+		Coach.belongsTo(models.Team, {
+			
+		});
 	};
 
 	return Coach;

@@ -117,7 +117,7 @@ class ParentPortal extends Component {
                                                 <li className="dateTime">{kid.age}</li>
                                             </div>
                                             <div className="col-md-3 coachListItem">
-                                                <li className="dateTime">{kid.sport}</li>
+                                                <li className="dateTime">{kid.Sport.name}</li>
                                             </div><div className="col-md-1 coachListItem">
                                                 <DeleteBtn onClick={() => this.removeChild(kid.id)}/>
                                             </div>

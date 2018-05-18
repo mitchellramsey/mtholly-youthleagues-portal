@@ -55,13 +55,13 @@ class AdminLogIn extends Component {
     // On form submit
     handleFormSubmit = event => {
         // Preventing default form behavior
-        console.log("I made it to handle form submit");
+       
         event.preventDefault();
 
         if(this.isValid()) {
             // When the form is submitted, reset any stored errors and disable the submit button during load time
             // To prevent multiple events
-            console.log("I made it past isValid");
+            
             this.setState({ errors: {}, isLoading: true });
             this.props.adminLogInRequest(this.state).then(
                 (res) => this.context.router.history.push("/adminportal"),

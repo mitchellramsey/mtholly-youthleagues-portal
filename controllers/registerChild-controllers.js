@@ -7,7 +7,7 @@ const validation = require("../client/src/Shared/Validations/signup");
 // Middleware
 const middleware = require("../client/src/Shared/Middleware/authenticateMiddleware");
 //Kid Model
-const { Users, Kids } = require("../models");
+const { Users, Kids, Sport } = require("../models");
 
 
 //Register Child POST
@@ -47,7 +47,8 @@ router.get("/:id", (req,res) => {
         Kids.findAll({
             where: {
                 UserId: parent.id
-            }
+            },
+            include: [Sport]
         }).then(kids => {
             res.json(kids);
         });

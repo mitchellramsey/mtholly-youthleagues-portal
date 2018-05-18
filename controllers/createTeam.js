@@ -23,32 +23,16 @@ router.get("/:id", (req, res) => {
 
 // post or add new sport to data base.
 router.post("/", (req, res) => {
-
-	// Deconstructing the object
-	const {
-		sport,
-		coaches,
-		kids,
-		sportId
-	} = req.body;
-
-	// Find the associated Id
-	Sport.findOne({
-		where: {
-			id: Team.SportId
-		}
-	}).then(foundCoach => {
-		// team form object
-		const data = {
-			sport: sport,
-			coaches: coaches,
-			kids: kids,
-			SportId: sportId
-		}
-		// Create the team
-		Team.create(data).then(newTeam => {
-			res.json(newTeam);
-		})
+	//Deconstructing the variable
+	const { sportID, teamName } = req.body;
+	console.log(req.body);
+	console.log(`Sport ID: ${sportID}` )
+	//Creating a Team
+	Team.create({
+		teamName:teamName,
+		SportId: sportID
+	}).then(function (sports) {
+		res.json(sports);
 	})
 
 });
