@@ -20,14 +20,16 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         len: [0, 100]
       }
-    },
-    team_association: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [0, 100]
-      }
     }
+    
   });
+
+  Practice.associate = models => {
+    Practice.belongsTo(models.Team, {
+			foreignKey: {
+				allowNull: false
+			}
+		});
+  }
   return Practice;
 };
