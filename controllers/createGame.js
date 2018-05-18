@@ -35,7 +35,7 @@ router.post("/", (req, res) => {
                 id: GamesInfo.TeamId
             }
         }).then(foundCoach => {
-                // Practice form object
+                // Game form object
                 const data = {
                     date: date,
                     time: time,
@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
 					team2: team2,
                     TeamId: teamId
                 }
-                // Create the practice
+                // Create the game
                 GamesInfo.create(data).then(newGame => {
                     res.json(newGame);
                 })  

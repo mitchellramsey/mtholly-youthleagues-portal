@@ -56,7 +56,8 @@ const coachGetRout = require("./controllers/coachGetRoute");
 app.use("/api/coaches", coachGetRout);
 
 const createSport = require("./controllers/createSport");
-app.use("/api/sports", createSport);
+app.use("/api/getsport", createSport);
+app.use("/api/postsport", createSport);
 
 const createGame = require("./controllers/createGame");
 app.use("/api/games", createGame);

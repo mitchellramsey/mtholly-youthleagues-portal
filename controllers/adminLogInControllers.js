@@ -16,30 +16,28 @@ const router = express.Router();
 // Auth route
 router.post("/", (req, res) => {
     // Req.body data
+    console.log(req.body);
     const { email, password } = req.body;
     // Find a Coach by email
     Admin.findOne({
         where: {
-            email: email
+            email: email,
+            userPassword: password
         } 
-    }).then(function(user) {
-        // If user is found, compare passwords
-        if(user) {
-            if(bCrypt.compareSync(password, user.password)) {
-                // Apply JWT after log-in
-                const token = jwt.sign({
-                    id: user.id,
-                    username: user.email
-                }, config.jwtSecret);
-                // Redirect/Add JWT
-                res.json({ token })
-            } else {
-                // Hang, for now
-                res.status(401).json({ success: false })
-            }
-        }
+    }).then(admin => {
+        console.log("I passed the if statement");
+        console.log("ADMIN:");
+        console.log(admin);
+        // Apply JWT after log-in
+        const token = jwt.sign({
+            id: admin.id,
+            username: admin.email
+            }, config.jwtSecret);
+            // Redirect/Add JWT
+            res.json({ token })
+        })
     })
-})
+
 
 // ----------------------------------------------------------------------------------- //
 module.exports = router;

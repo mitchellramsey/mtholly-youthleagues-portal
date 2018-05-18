@@ -7,7 +7,7 @@ const {
 const express = require("express");
 // Express Router
 const router = express.Router();
-// retrieve all teams from data base.
+// retrieve all sports from data base.
 router.get("/:id", (req, res) => {
     Sport.findOne({
         where: {
@@ -23,7 +23,7 @@ router.get("/:id", (req, res) => {
 });
 
 
-// post or add new team to data base.
+// post or add new sport to data base.
 router.post("/", (req, res) => {
    
 
@@ -37,14 +37,14 @@ router.post("/", (req, res) => {
 			id: Team.SportId
 		}
 	}).then(foundCoach => {
-			// Practice form object
+			// team form object
 			const data = {
 				sport: sport,
 				coaches: coaches,
 				kids: kids,
 				SportId: sportId
 			}
-			// Create the practice
+			// Create the team
 			Team.create(data).then(newTeam => {
 				res.json(newTeam);
 			})  
