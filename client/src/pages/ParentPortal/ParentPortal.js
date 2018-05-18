@@ -55,10 +55,6 @@ class ParentPortal extends Component {
           .then(res => this.setState({ sports: res.data }))
           .catch(err => console.log(err));
       }
-
-    
-
-
     
 
     // Toggle child form on click
@@ -84,6 +80,7 @@ class ParentPortal extends Component {
                         <h1 className="dashboard-title">Parent Dashboard</h1>
                         <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
                     </div>
+                    <div className="payPal">{PayPal}</div>
                     <div className="childList">
                         <h3>Registered Children</h3>
                         {this.state.kids.length ? (
