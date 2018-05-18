@@ -26,7 +26,6 @@ import CoachesPortal from "./pages/CoachesPage/CoachesPage";
 import AdminLogInPage from "./pages/AdminLogInPage/AdminLogInPage";
 import AdminPortal from "./pages/AdminPortal/";
 
-
 // ------------------ CSS ----------------------- //
 import './App.css';
 

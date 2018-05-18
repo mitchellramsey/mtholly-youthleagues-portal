@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import PayPal from "../../PayPal/PayPal";
 
 // Component
 import Nav from "../../components/Nav";
