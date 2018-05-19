@@ -51,7 +51,7 @@ module.exports = function (sequelize, DataTypes) {
     },
 
     paidFor: {
-      type: DataTypes.Boolean
+      type: DataTypes.BOOLEAN
     }
   });
 
