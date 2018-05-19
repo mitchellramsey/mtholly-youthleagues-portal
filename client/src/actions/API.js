@@ -47,5 +47,9 @@ export default {
 
   assignCoach: function(data) {
     return axios.put("/api/coach", data);
+  },
+
+  retrieveKidInfo: function(kidId) {
+    return axios.get("/api/kidInfo/" + kidId);
   }
 }

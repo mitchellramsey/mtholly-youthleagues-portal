@@ -74,6 +74,9 @@ app.use("/api/registerChild", registerChild);
 app.use("/api/retrieveChildren", registerChild);
 app.use("/api/children", registerChild);
 
+const retrieveKidInfo = require("./controllers/retrieveKidInfo");
+app.use("/api/kidInfo/", retrieveKidInfo);
+
 const assignChildren = require("./controllers/assignChildren");
 app.use("/api/assignChildren", assignChildren);
 app.use("/api/children", assignChildren);
