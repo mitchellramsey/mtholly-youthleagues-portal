@@ -26,7 +26,14 @@ export default {
   },
 
   createTeam: function(teamData) {
-    
     return axios.post("/api/teams", teamData);
+  },
+
+  findKids: function(sportId) {
+    return axios.get("/api/assignChildren/" + sportId);
+  },
+
+  findCoaches: function(sportId) {
+    return axios.get("/api/assignCoach/" + sportId);
   }
 }

@@ -65,6 +65,15 @@ class AdminPortal extends Component {
     });
 }
 
+  assignPeople () {
+    API.findKids(this.state.sport)
+      .then(res => this.setState({ players: res.data});
+        API.findCoaches(this.state.sport)
+        .then(res => this.setState({ coaches: res.data, assignPeople: !this.state.assignPeople, optionDisabled: true}),
+      ))
+      .catch(err => console.log(err));
+  }
+
   // Capturing form input
   handleInputChange = event => {
     this.setState({
@@ -213,6 +222,12 @@ handleTeamCreate = event => {
                           />
                         <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                     </form>                      
+                  : null
+               }
+
+               {
+                this.state.assignPeople
+                  ? <div>Test</div>                      
                   : null
                }
             </div>

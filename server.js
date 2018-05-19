@@ -73,6 +73,10 @@ app.use("/api/registerChild", registerChild);
 app.use("/api/retrieveChildren", registerChild);
 app.use("/api/children", registerChild);
 
+const assignPeople = require("./controllers/assignPeople");
+app.use("/api/assignChildren", assignPeople);
+app.use("/api/assignCoach", assignPeople);
+
 const adminLogInControllers = require("./controllers/adminLogIncontrollers");
 app.use("/api/auth/admin", adminLogInControllers);
 
