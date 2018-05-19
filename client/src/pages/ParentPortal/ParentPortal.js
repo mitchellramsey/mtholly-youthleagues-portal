@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import PayPal from "../../PayPal/PayPal";
 
 // Component
 import Nav from "../../components/Nav";
@@ -26,13 +27,15 @@ class ParentPortal extends Component {
         super();
         this.state = {
             showChildForm: false,
-            kids: []
+            kids: [],
+            sports: []
         }
 
     }
 
     componentDidMount() {
         this.getChildren(this.props.auth.user.id);
+        this.getSports();
     }
 
     getChildren = (parentId) => {
@@ -47,9 +50,11 @@ class ParentPortal extends Component {
             .catch(err => console.log(err));
     }
 
-    
-
-
+    getSports = () => {
+        API.getSports()
+          .then(res => this.setState({ sports: res.data }))
+          .catch(err => console.log(err));
+      }
     
 
     // Toggle child form on click
@@ -71,15 +76,21 @@ class ParentPortal extends Component {
                     <div className="col-md-6 form">
                     <FlashMessageList />
                     <MainHeader />
-                    <button className="btn btn-success register" onClick={() => this.toggleChildForm()}>Register Child</button>
+                    <div className="text-center">
+                        <h1 className="dashboard-title">Parent Dashboard</h1>
+                        <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
+                    </div>
+                    <div className="paypal">Pay with PayPal
+                    <PayPal/>
+                    </div>
                     <div className="childList">
-                        <h1>Registered Children</h1>
-                        {this.state.kids.length ? (
+                        <h3>Registered Children</h3>
+                         {this.state.kids.length ? (
                             <List>
                                 {this.state.kids.map(kid => (
                                     <ListItem key={kid.id} onClick={() => this.displayKidInfo(kid.id)} >
                                         <strong>
-                                            {kid.first_name} {kid.last_name} - {kid.age} - {kid.sport}
+                                            {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name}
                                         </strong>
                                         <DeleteBtn onClick={() => this.removeChild(kid.id)} />
                                     </ListItem>
@@ -88,7 +99,7 @@ class ParentPortal extends Component {
                         ) : (
                             <h3>No Children Registered</h3>
                         )}
-                    </div>
+                        </div>
                        
                         
                     </div>
@@ -101,6 +112,7 @@ class ParentPortal extends Component {
                                         childSignUp={childSignUp}
                                         addFlashMessage={addFlashMessage}
                                         userId={this.props.auth.user.id}
+                                        sports={this.state.sports}
                                     />
                                     : null
                             }

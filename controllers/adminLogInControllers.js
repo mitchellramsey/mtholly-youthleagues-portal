@@ -16,7 +16,7 @@ const router = express.Router();
 // Auth route
 router.post("/", (req, res) => {
     // Req.body data
-    console.log(req.body);
+   
     const { email, password } = req.body;
     // Find a Coach by email
     Admin.findOne({
@@ -25,9 +25,7 @@ router.post("/", (req, res) => {
             userPassword: password
         } 
     }).then(admin => {
-        console.log("I passed the if statement");
-        console.log("ADMIN:");
-        console.log(admin);
+        
         // Apply JWT after log-in
         const token = jwt.sign({
             id: admin.id,

@@ -3,6 +3,15 @@
 .jumbotron {
     border-radius: 0px;
     background-color: #ecf9ff;
+    background: linear-gradient( rgba(255, 255, 255, 0.425), rgba(255, 255, 255, 0.712) ),
+                url("../../assets/images/frontPageLogo.jpg") 
+                #fff no-repeat;
+    background-size: cover;
+    height: 211px;
+}
+
+h1 {
+    text-shadow: 1px 1px 1px white;
 }
 
 /* ---------------------------------------------------- */

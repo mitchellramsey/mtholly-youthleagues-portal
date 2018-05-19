@@ -1,17 +1,15 @@
 // Imports
 import React, { Component } from "react";
-
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
-
 
 
 // Component
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 
 // CSS
-import "../../components/LogInForm/loginform.css";
+import "./createchildform.css";
 
 // ----------------------------------------------------------------------------------- //
 // Creating Register Child Form
@@ -70,7 +68,7 @@ class CreateChildForm extends Component {
             <div className="col-md-6 text-center mx-auto">
                 <h3>Register Child</h3>
                     {/* Sign Up Form */}
-                    <form className="form text-center" onSubmit={this.handleFormSubmit}>
+                    <form className="form text-center child-form" onSubmit={this.handleFormSubmit}>
                         <TextFieldGroup
                             onChange={this.handleInputChange}
                             errors={this.firstName}
@@ -126,7 +124,9 @@ class CreateChildForm extends Component {
                                     value={this.state.sport}
                                 >
                                 <option value="">Sport</option>
-                                {/* This needs to be loaded in from the Sports Table Database */}
+                                {this.props.sports.map(sport => (
+                                    <option value={sport.id}>{sport.name}</option>
+                                ))}
                                 </select>
 
                         </div>
@@ -151,7 +151,7 @@ class CreateChildForm extends Component {
                                     value={this.state.comments}
                                 />
                         </div>
-                    <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                    <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                 </form>         
             </div>
         )

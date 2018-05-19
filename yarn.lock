@@ -7214,6 +7214,9 @@ react-paypal-express-checkout@^1.0.4:
     babel-runtime "^6.6.1"
     prop-types "^15.5.10"
     react-async-script-loader "^0.3.0"
+react-moment@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-moment/-/react-moment-0.7.0.tgz#9ccb5c87be683d08c253b48469167443f09c3d89"
 
 react-redux@^5.0.7:
   version "5.0.7"

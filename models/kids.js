@@ -33,14 +33,6 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
 
-    sport: {
-      type: DataTypes.STRING,
-      // allowNull: false,
-      validate: {
-        len: [0, 100]
-      }
-    },
-
     years_exp: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -56,11 +48,21 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         len: [0, 100]
       }
+    },
+
+    paidFor: {
+      type: DataTypes.Boolean
     }
   });
 
   Kids.associate = models => {
     Kids.belongsTo(models.Users, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
+    Kids.belongsTo(models.Sport, {
       foreignKey: {
         allowNull: false
       }

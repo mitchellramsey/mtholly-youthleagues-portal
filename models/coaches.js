@@ -47,13 +47,6 @@ module.exports = function (sequelize, Datatypes) {
 				len: [0, 100]
 			}
 		},
-		sport: {
-			type: Datatypes.STRING,
-			allowNull: false,
-			validate: {
-				len: [0, 100]
-			}
-		},
 		phone: {
 			type: Datatypes.STRING,
 			allowNull: false,
@@ -89,6 +82,16 @@ module.exports = function (sequelize, Datatypes) {
 
 		Coach.hasMany(models.Practice, {
 			onDelete: "cascade"
+		});
+
+		Coach.belongsTo(models.Sport, {
+			foreignKey: {
+				allowNull: false
+			}
+		});
+
+		Coach.belongsTo(models.Team, {
+			
 		});
 	};
 

@@ -2,9 +2,9 @@
 import axios from "axios";
 
 //  -------------------------------------------------------
-// Adding a team from Admin portal
-export function addTeam(data) {
+// Adding a Sport from Admin portal
+export function addSport(data) {
     return dispatch => {
-        return axios.post("/api/teamPost", data);
+        return axios.post("/api/sportPost", data);
     }
 }

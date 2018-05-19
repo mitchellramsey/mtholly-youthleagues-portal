@@ -245,7 +245,7 @@ class SignupForm extends Component {
                             value={this.state.zip}
                             placeholder="Zip"
                         />
-                        <button className="btn btn-primary form-btn mx-auto submit-btn" disabled={this.state.isLoading}>Submit</button>
+                        <button className="btn btn-primary form-btn mx-auto submit-btn button-actions" disabled={this.state.isLoading}>Submit</button>
                     </form>         
             </div>
         )

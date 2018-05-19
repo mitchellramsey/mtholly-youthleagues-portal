@@ -60,7 +60,7 @@ app.use("/api/getsport", createSport);
 app.use("/api/postsport", createSport);
 
 const createGame = require("./controllers/createGame");
-app.use("/api/games", createGame);
+app.use("/api/createGame", createGame);
 
 const createPractice = require("./controllers/createPractice");
 app.use("/api/createPractice", createPractice);
@@ -73,6 +73,10 @@ app.use("/api/registerChild", registerChild);
 app.use("/api/retrieveChildren", registerChild);
 app.use("/api/children", registerChild);
 
+const assignPeople = require("./controllers/assignPeople");
+app.use("/api/assignChildren", assignPeople);
+app.use("/api/assignCoach", assignPeople);
+
 const adminLogInControllers = require("./controllers/adminLogIncontrollers");
 app.use("/api/auth/admin", adminLogInControllers);
 
@@ -80,7 +84,7 @@ app.use("/api/auth/admin", adminLogInControllers);
 
 // ----------------------------------------------------------------------------------- //
 // Starting the server
-db.sequelize.sync().then(function() {
+db.sequelize.sync({}).then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });

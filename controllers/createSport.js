@@ -15,9 +15,10 @@ router.get("/", function (req, res) {
 
 router.post('/', function (req, res) {
 
+
 	// Deconstructing the variable
 	const {	name } = req.body;
-	// searching for all sports
+	// creating a sport
 	Sport.create({
 		name:name
 	}).then(function (sports) {

@@ -7,7 +7,7 @@ const validation = require("../client/src/Shared/Validations/signup");
 // Middleware
 const middleware = require("../client/src/Shared/Middleware/authenticateMiddleware");
 //Kid Model
-const { Users, Kids } = require("../models");
+const { Users, Kids, Sport } = require("../models");
 
 
 //Register Child POST
@@ -24,9 +24,9 @@ router.post("/", (req,res) => {
             last_name: kid.lastName,
             age: kid.age,
             gender: kid.gender,
-            sport: kid.sport,
             years_exp: kid.years_exp,
             comments: kid.comments,
+            SportId: kid.sport,
             UserId: parent.id
         }).then(newkid => {
             res.json(newkid);
@@ -47,7 +47,8 @@ router.get("/:id", (req,res) => {
         Kids.findAll({
             where: {
                 UserId: parent.id
-            }
+            },
+            include: [Sport]
         }).then(kids => {
             res.json(kids);
         });

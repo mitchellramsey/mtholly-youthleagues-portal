@@ -13,6 +13,7 @@ import Footer from "../../components/Footer/Footer";
 // Actions
 import { coachSignupRequest, isCoachExists } from "../../actions/coachSignUpRequest";
 import { addFlashMessage } from "../../actions/flashMessages";
+import API  from "../../actions/API";
 
 // CSS
 import "../Landing/landing.css";
@@ -20,6 +21,23 @@ import "../Landing/landing.css";
 // ----------------------------------------------------------------------------------- //
 // Coach Signup Page
 class CoachSignUpPage extends Component {
+    constructor() {
+        super();
+        this.state = {
+            sports: []
+        }
+
+    }
+
+    componentDidMount() {
+        this.getSports();
+    }
+
+    getSports = () => {
+        API.getSports()
+          .then(res => this.setState({ sports: res.data }))
+          .catch(err => console.log(err));
+    }
 
     // Render the page
     render() {
@@ -38,6 +56,8 @@ class CoachSignUpPage extends Component {
                             coachSignupRequest={coachSignupRequest}
                             addFlashMessage={addFlashMessage}
                             isCoachExists={isCoachExists}
+                            sports={this.state.sports}
+                        
                         />
                     </div>
 

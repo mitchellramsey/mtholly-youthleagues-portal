@@ -12,4 +12,6 @@ Admin.destroy({
         userPassword: "admin",
         phone: "777-777-7777",
         email: "admin@leaguemanager.com"
-    }));
+    })).then(data => {
+        process.exit(0)
+    });
