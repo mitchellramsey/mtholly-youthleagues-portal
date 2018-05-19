@@ -48,6 +48,10 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         len: [0, 100]
       }
+    },
+
+    paidFor: {
+      type: DataTypes.Boolean
     }
   });
 
