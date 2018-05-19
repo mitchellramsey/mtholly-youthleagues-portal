@@ -29,3 +29,11 @@ transition: all 0.2s ease-in-out;
     position: absolute;
     text-align: center;
 }
+
+.child-info {
+    background-color: #fff;
+    width: 75%;
+    margin: 10px auto;
+    padding: 10px;
+
+}

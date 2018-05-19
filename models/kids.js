@@ -67,6 +67,8 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false
       }
     });
+
+    Kids.belongsTo(models.Team);
   }
   return Kids;
 };

@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 // Setting up flash messages for session users
 app.use(flash());
 // Serving up the public folder to give static content
-app.use(express.static("public"));
+app.use(express.static("client/build"));
 
 // Parse application/JSON
 app.use(bodyParser.json());
@@ -67,15 +67,23 @@ app.use("/api/createPractice", createPractice);
 
 const createTeam = require("./controllers/createTeam");
 app.use("/api/teams", createTeam);
+app.use("/api/findteams/", createTeam);
 
 const registerChild = require("./controllers/registerChild-controllers");
 app.use("/api/registerChild", registerChild);
 app.use("/api/retrieveChildren", registerChild);
 app.use("/api/children", registerChild);
 
-const assignPeople = require("./controllers/assignPeople");
-app.use("/api/assignChildren", assignPeople);
-app.use("/api/assignCoach", assignPeople);
+const retrieveKidInfo = require("./controllers/retrieveKidInfo");
+app.use("/api/kidInfo/", retrieveKidInfo);
+
+const assignChildren = require("./controllers/assignChildren");
+app.use("/api/assignChildren", assignChildren);
+app.use("/api/children", assignChildren);
+
+const assignCoach = require("./controllers/assignCoach");
+app.use("/api/assignCoach", assignCoach);
+app.use("/api/coach", assignCoach);
 
 const adminLogInControllers = require("./controllers/adminLogIncontrollers");
 app.use("/api/auth/admin", adminLogInControllers);

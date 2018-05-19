@@ -27,10 +27,19 @@ class ParentPortal extends Component {
         super();
         this.state = {
             showChildForm: false,
+            showChildTeam: false,
             kids: [],
-            sports: []
+            sports: [],
+            kidInfo: []
         }
 
+    }
+    
+
+    displayKidInfo = (kidId) => {
+        API.retrieveKidInfo(kidId)
+           .then(res => this.setState({kidInfo: res.data, showChildTeam:!this.state.showChildTeam}))
+           .catch(err => console.log(err));
     }
 
     componentDidMount() {
@@ -88,12 +97,14 @@ class ParentPortal extends Component {
                          {this.state.kids.length ? (
                             <List>
                                 {this.state.kids.map(kid => (
-                                    <ListItem key={kid.id} onClick={() => this.displayKidInfo(kid.id)} >
-                                        <strong>
-                                            {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name}
-                                        </strong>
-                                        <DeleteBtn onClick={() => this.removeChild(kid.id)} />
-                                    </ListItem>
+                                    <li className="list-group-item" >
+                                    <h3>
+                                    <button className="btn btn-primary kidButton button-actions" onClick={() => this.displayKidInfo(kid.id)} value={kid.id}>
+                                        <h3><strong> {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name}</strong></h3>
+                                    </button>
+                                    <DeleteBtn onClick={() => this.removeChild(kid.id)} />
+                                    </h3>
+                                  </li>
                                 ))}
                             </List>
                         ) : (
@@ -115,6 +126,21 @@ class ParentPortal extends Component {
                                         sports={this.state.sports}
                                     />
                                     : null
+                            }
+                            {
+                                this.state.showChildTeam
+                                ? <div>
+                                    <div className="child-info text-center">
+                                        <h3>Team Name: {this.state.kidInfo.Team.teamName}</h3>
+                                    </div>
+                                    <div className="child-info text-center">
+                                        <h3>Practice Schedule: </h3>
+                                    </div>
+                                    <div className="child-info text-center">
+                                        <h3>Game Schedule: </h3>
+                                    </div>
+                                  </div>
+                                : null
                             }
                         </div>
                     </div>
