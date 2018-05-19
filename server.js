@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 // Setting up flash messages for session users
 app.use(flash());
 // Serving up the public folder to give static content
-app.use(express.static("public"));
+app.use(express.static("client/build"));
 
 // Parse application/JSON
 app.use(bodyParser.json());
