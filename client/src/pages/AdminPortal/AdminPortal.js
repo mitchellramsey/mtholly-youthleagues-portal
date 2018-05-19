@@ -17,6 +17,9 @@ import API from "../../actions/API";
 // CSS
 import "./AdminPortal.css";
 
+// Validation
+import "../../Shared/Validations/league";
+
 
 // ----------------------------------------------------------------------------------- //
 // Creating the Admin Page
@@ -223,7 +226,7 @@ handleTeamCreate = event => {
             <FlashMessageList />
             <MainHeader />
             <div className="createSportSection">
-              <button className="btn btn-primary createSport button-actions " onClick={() => this.toggleCreateSport()}>Create Sport</button>
+              <button className="btn btn-primary createSport button-actions" onClick={() => this.toggleCreateSport()}>Create Sport</button>
               
               {
                 this.state.createSport
@@ -275,7 +278,7 @@ handleTeamCreate = event => {
             <div className="landing-bg">
             {
                 this.state.createTeam
-                  ? <form className="form text-center adminSportInput" onSubmit={this.handleTeamCreate}>
+                  ? <form className="form text-center adminSportInput mx-auto child-form" onSubmit={this.handleTeamCreate}>
                         <TextFieldGroup
                           onChange={this.handleInputChange}
                           errors={this.name}
@@ -286,7 +289,7 @@ handleTeamCreate = event => {
                           value={this.state.teamName}
                           placeholder="Team Name"
                           />
-                        <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                        <button className="btn btn-primary form-btn button-actions" disabled={this.state.isLoading}>Submit</button>
                     </form>                      
                   : null
                }
@@ -294,7 +297,7 @@ handleTeamCreate = event => {
                {
                 this.state.assignPeople
                   ? <div className="assignTeams">
-                      <form className="form text-center assignPlayers" onSubmit={this.handleAssignPlayer}>
+                      <form className="form text-center assignPlayers mx-auto child-form" onSubmit={this.handleAssignPlayer}>
                         <h3>Assign Players</h3>
                         <select
                           className="adminSportInput form-control" 
@@ -318,10 +321,10 @@ handleTeamCreate = event => {
                           <option value={team.id} key={team.id}>{team.teamName}</option>
                           ))}
                         </select>
-                        <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                        <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                       </form>
                     <div className="assignCoaches">
-                        <form className="form text-center assignCoaches" onSubmit={this.handleAssignCoach}>
+                        <form className="form text-center assignCoaches mx-auto child-form" onSubmit={this.handleAssignCoach}>
                           <h3>Assign Coaches</h3>
                           <select
                             className="adminSportInput form-control" 
@@ -345,7 +348,7 @@ handleTeamCreate = event => {
                             <option value={team.id} key={team.id}>{team.teamName}</option>
                             ))}
                           </select>
-                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                          <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                         </form>
                     </div>
                     

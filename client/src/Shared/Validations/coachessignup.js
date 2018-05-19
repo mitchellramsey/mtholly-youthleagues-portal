@@ -68,7 +68,7 @@ module.exports = function validateInput(data) {
     }
 
     // Field validator
-    if(validator.isEmpty(data.sport)) {
+    if(data.sport === "required") {
         errors.sport = "This field is required.";
     }
 

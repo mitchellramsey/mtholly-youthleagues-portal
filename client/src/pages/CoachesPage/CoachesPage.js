@@ -30,8 +30,7 @@ class CoachPortal extends Component {
             createPracticeForm: false,
             showTeam: false,
             showSchedule: false,
-            practices: [],
-          
+            practices: []
         }       
     }
 
