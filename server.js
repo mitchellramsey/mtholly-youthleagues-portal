@@ -85,7 +85,7 @@ const assignCoach = require("./controllers/assignCoach");
 app.use("/api/assignCoach", assignCoach);
 app.use("/api/coach", assignCoach);
 
-const adminLogInControllers = require("./controllers/adminLogIncontrollers");
+const adminLogInControllers = require("./controllers/adminLogInControllers");
 app.use("/api/auth/admin", adminLogInControllers);
 
 // ----------------------------------------------------------------------------------- //
