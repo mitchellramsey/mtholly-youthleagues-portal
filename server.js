@@ -11,7 +11,7 @@ const flash = require("connect-flash");
 
 // Initializing Express
 let app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 3001;
 // Setting up flash messages for session users
 app.use(flash());
 // Serving up the public folder to give static content
