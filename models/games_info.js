@@ -37,5 +37,17 @@ module.exports = function (sequelize, DataTypes) {
 			}
 		}
 	});
+
+	GamesInfo.associate = models => {
+		GamesInfo.belongsToMany(models.Team, {
+		  through: [models.Sport]
+		});
+
+		// GamesInfo.hasMany(models.Team, {
+		// 	onDelete: "cascade"
+		//   });
+	}
+	
+	  
 	return GamesInfo;
 };

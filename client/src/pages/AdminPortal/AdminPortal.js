@@ -391,7 +391,7 @@ handleGameCreate = event => {
                   ? <div className="assignTeams">
                       <form className="form text-center assignPlayers" onSubmit={this.handleGameCreate}>
                         <h3>Create Game</h3>
-                          <div className="col-md-3">
+                          <div className="col-md-2">
                               <li className="dateTime">{moment(this.state.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
                           </div>
                           <div className="col-md-2 coachListItem">
