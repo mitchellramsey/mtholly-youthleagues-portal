@@ -11,7 +11,7 @@ import "../LogInForm/loginform.css";
 // ---------------------------------------------------------------------------------------
 const TextFieldGroup = ({ id, value, className, label, errors, type, onChange, placeholder, name, checkUser, field }) => {
     return (
-      <div className={classnames("form-group", { "has-error": errors })}>
+      <div className={classnames("form-group text-center", { "has-error": errors })}>
         <h4><label className="control-label">{label}</label></h4>
             <input
                 onBlur={checkUser}

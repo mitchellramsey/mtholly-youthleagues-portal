@@ -9,16 +9,15 @@ const express = require("express");
 const router = express.Router();
 // retrieve all sports from data base.
 router.get("/:id", (req, res) => {
-	Sport.findOne({
+	Team.findAll({
 		where: {
-			id: req.params.id
+			SportId: req.params.id
 		}
-	}).then(foundTeams => {
-		Team.findAll({}).then(teams => {
+	}).then(teams => {
 			res.json(teams);
 		})
 	});
-});
+
 
 
 // post or add new sport to data base.

@@ -40,7 +40,11 @@ class AdminPortal extends Component {
         teamName: "",
         teams: [],
         coaches: [],
-        players: []
+        players: [],
+        playerId: "",
+        playerTeam: "",
+        coachId: "",
+        coachTeam: ""
       }
       this.handleInputChange = this.handleInputChange.bind(this);
       
@@ -65,14 +69,15 @@ class AdminPortal extends Component {
     });
 }
 
-  assignPeople () {
-    API.findKids(this.state.sport)
-      .then(res => this.setState({ players: res.data});
-        API.findCoaches(this.state.sport)
-        .then(res => this.setState({ coaches: res.data, assignPeople: !this.state.assignPeople, optionDisabled: true}),
-      ))
-      .catch(err => console.log(err));
-  }
+assignPeople () {
+  this.getChildren(this.state.sport);
+  this.getCoaches(this.state.sport);
+  this.getTeams(this.state.sport);
+  this.setState({
+    assignPeople: !this.state.assignPeople,
+    optionDisabled: true
+});
+}
 
   // Capturing form input
   handleInputChange = event => {
@@ -84,6 +89,27 @@ class AdminPortal extends Component {
   getSports = () => {
     API.getSports()
       .then(res => this.setState({ sports: res.data }))
+      .catch(err => console.log(err));
+  }
+
+  getChildren = (sportId) => {
+    API.findKids(sportId)
+      .then(result => {
+        console.log(result.data);
+        this.setState({ players: result.data })})
+      .catch(err => console.log(err));
+  }
+
+  getCoaches = (sportId) => {
+    API.findCoaches(sportId)
+      .then(results => {
+        this.setState({ coaches: results.data })})
+      .catch(err => console.log(err));
+  }
+
+  getTeams = (sportId) => {
+    API.findTeams(sportId)
+      .then(res => this.setState({ teams: res.data }))
       .catch(err => console.log(err));
   }
 
@@ -123,6 +149,46 @@ handleSportCreate = event => {
             (res) => this.getSports(),
             (err) => this.setState({ errors: err.response.data, isLoading: false })            
         );
+}
+
+// On form submit
+handleAssignPlayer = event => {
+  // Preventing default form behavior
+  event.preventDefault();
+  // If state is valid, perform the AJAX request
+      const data = {
+        playerId: this.state.playerId,
+        teamId: this.state.playerTeam
+      }
+      API.assignPlayer(data).then(
+          // Then, redirect
+          () => {
+              window.location.reload(); 
+          },
+          // Setting errors
+          (res) => this.getSports(),
+          (err) => this.setState({ errors: err.response.data, isLoading: false })            
+      );
+}
+
+// On form submit
+handleAssignCoach = event => {
+  // Preventing default form behavior
+  event.preventDefault();
+  // If state is valid, perform the AJAX request
+      const data = {
+        coachId: this.state.coachId,
+        teamId: this.state.coachTeam
+      }
+      API.assignCoach(data).then(
+          // Then, redirect
+          () => {
+              window.location.reload(); 
+          },
+          // Setting errors
+          (res) => this.getSports(),
+          (err) => this.setState({ errors: err.response.data, isLoading: false })            
+      );
 }
 
 // On form submit
@@ -209,7 +275,7 @@ handleTeamCreate = event => {
             <div className="landing-bg">
             {
                 this.state.createTeam
-                  ? <form className="form text-center" onSubmit={this.handleTeamCreate}>
+                  ? <form className="form text-center adminSportInput" onSubmit={this.handleTeamCreate}>
                         <TextFieldGroup
                           onChange={this.handleInputChange}
                           errors={this.name}
@@ -227,7 +293,63 @@ handleTeamCreate = event => {
 
                {
                 this.state.assignPeople
-                  ? <div>Test</div>                      
+                  ? <div className="assignTeams">
+                      <form className="form text-center assignPlayers" onSubmit={this.handleAssignPlayer}>
+                        <h3>Assign Players</h3>
+                        <select
+                          className="adminSportInput form-control" 
+                          name="playerId" 
+                          onChange={this.handleInputChange}
+                          value={this.state.playerId}
+                        >
+                          <option value="">Player</option>
+                          {this.state.players.map(player => (
+                          <option value={player.id} key={player.id}>{player.first_name} {player.last_name}</option>
+                          ))}
+                        </select>
+                        <select
+                          className="adminSportInput form-control" 
+                          name="playerTeam" 
+                          onChange={this.handleInputChange}
+                          value={this.state.playerTeam}
+                        >
+                          <option value="">Team</option>
+                          {this.state.teams.map(team => (
+                          <option value={team.id} key={team.id}>{team.teamName}</option>
+                          ))}
+                        </select>
+                        <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                      </form>
+                    <div className="assignCoaches">
+                        <form className="form text-center assignCoaches" onSubmit={this.handleAssignCoach}>
+                          <h3>Assign Coaches</h3>
+                          <select
+                            className="adminSportInput form-control" 
+                            name="coachId" 
+                            onChange={this.handleInputChange}
+                            value={this.state.coachId}
+                          >
+                            <option value="">Coach</option>
+                            {this.state.coaches.map(coach => (
+                            <option value={coach.id} key={coach.id}>{coach.first_name} {coach.last_name}</option>
+                            ))}
+                          </select>
+                          <select
+                            className="adminSportInput form-control" 
+                            name="coachTeam" 
+                            onChange={this.handleInputChange}
+                            value={this.state.coachTeam}
+                          >
+                            <option value="">Team</option>
+                            {this.state.teams.map(team => (
+                            <option value={team.id} key={team.id}>{team.teamName}</option>
+                            ))}
+                          </select>
+                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                        </form>
+                    </div>
+                    
+                    </div>                      
                   : null
                }
             </div>

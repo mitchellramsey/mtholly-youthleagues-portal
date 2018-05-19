@@ -51,7 +51,7 @@ module.exports = function (sequelize, DataTypes) {
     },
 
     paidFor: {
-      type: DataTypes.Boolean
+      type: DataTypes.BOOLEAN
     }
   });
 
@@ -67,6 +67,8 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false
       }
     });
+
+    Kids.belongsTo(models.Team);
   }
   return Kids;
 };

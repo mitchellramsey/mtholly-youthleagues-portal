@@ -10,36 +10,31 @@ const middleware = require("../client/src/Shared/Middleware/authenticateMiddlewa
 const { Users, Kids, Sport, Coach } = require("../models");
 
 
-router.get("/:sportId", (req,res) => {
-    console.log("I made it here");
-    Kids.findAll({
-        where: {
-            SportId: req.params.id
-        }
-    }).then(kids => {
-            res.json(kids);
-        });
-    });
 
 router.get("/:sportId", (req,res) => {
-    console.log("I made it here");
     Coach.findAll({
         where: {
-            SportId: req.params.id
+            SportId: req.params.sportId,
+            TeamId: null
         }
     }).then(coach => {
         res.json(coach);
         });
-    });
+});
 
+router.put("/", (req,res) => {
+    const { coachId , teamId } = req.body;
 
-
-
-
-
-
-
-
+    Coach.update({
+        TeamId: teamId
+    }, {
+        where: {
+            id: coachId
+        }
+    }).then(coach => {
+        res.json(coach);
+    })
+});
 
 
 

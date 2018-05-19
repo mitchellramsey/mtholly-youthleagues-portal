@@ -67,15 +67,20 @@ app.use("/api/createPractice", createPractice);
 
 const createTeam = require("./controllers/createTeam");
 app.use("/api/teams", createTeam);
+app.use("/api/findteams/", createTeam);
 
 const registerChild = require("./controllers/registerChild-controllers");
 app.use("/api/registerChild", registerChild);
 app.use("/api/retrieveChildren", registerChild);
 app.use("/api/children", registerChild);
 
-const assignPeople = require("./controllers/assignPeople");
-app.use("/api/assignChildren", assignPeople);
-app.use("/api/assignCoach", assignPeople);
+const assignChildren = require("./controllers/assignChildren");
+app.use("/api/assignChildren", assignChildren);
+app.use("/api/children", assignChildren);
+
+const assignCoach = require("./controllers/assignCoach");
+app.use("/api/assignCoach", assignCoach);
+app.use("/api/coach", assignCoach);
 
 const adminLogInControllers = require("./controllers/adminLogIncontrollers");
 app.use("/api/auth/admin", adminLogInControllers);
@@ -84,7 +89,7 @@ app.use("/api/auth/admin", adminLogInControllers);
 
 // ----------------------------------------------------------------------------------- //
 // Starting the server
-db.sequelize.sync({}).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
