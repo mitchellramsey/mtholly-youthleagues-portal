@@ -12,7 +12,6 @@ import FlashMessageList from "../../components/FlashMessageList/FlashMessageList
 import TextFieldGroup from "../../components/TextFieldGroup";
 
 // Actions
-import { addFlashMessage } from "../../actions/flashMessages";
 import API from "../../actions/API";
 
 // CSS
@@ -249,132 +248,104 @@ handleGameCreate = event => {
 
   // Render the page
   render() {
-    const { addFlashMessage } = this.props;
 
     return (
       <div className="container-fluid">
         <Nav />
         <div className="row">
-          <div className="col-md-6 form">
-            <FlashMessageList />
-            <MainHeader />
-            <div className="createSportSection">
-              <button className="btn btn-primary createSport button-actions" onClick={() => this.toggleCreateSport()}>Create Sport</button>
-              
+            <div className="col-md-6 form">
+              <FlashMessageList />
+              <MainHeader />
+              <div className="createSportSection">
+                <button className="btn btn-primary createSport button-actions" onClick={() => this.toggleCreateSport()}>Create Sport</button>
+                
+                {
+                  this.state.createSport
+                    ? <form className="form text-center" onSubmit={this.handleSportCreate}>
+                          <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={this.name}
+                            label="Create League"
+                            type="text"
+                            field="name"
+                            className="form-control"
+                            value={this.state.name}
+                            placeholder="Sport"
+                            />
+                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                      </form>                      
+                    : null
+                }
+                
+              </div>
+              <hr/>
+              <div className="showMenuSection">
+                <select
+                  className="adminSportInput form-control" 
+                  name="sport" 
+                  onChange={this.handleInputChange}
+                  value={this.state.sport}
+                  disabled={this.state.optionDisabled}
+                  >
+                  <option value="">Sport</option>
+                  {this.state.sports.map(sport => (
+                  <option value={sport.id} key={sport.id}>{sport.name}</option>
+                  ))}
+                  </select>
+                {this.state.sport ?
+                  <div className="menuOptions">
+                    <button className="btn btn-primary adminMenu button-actions " onClick={() => this.createTeam()} disabled={this.state.optionDisabled}>Create Team</button>
+                    <button className="btn btn-primary adminMenu button-actions " onClick={() => this.assignPeople()} disabled={this.state.optionDisabled}>Assign Players/Coaches</button>
+                    <button className="btn btn-primary adminMenu button-actions " onClick={() => this.createSchedule()} disabled={this.state.optionDisabled}>Create Game Schedule</button>
+                    <button className="btn btn-primary adminMenu button-actions " onClick={() => this.resetMenu()}>Reset</button>
+                  </div>
+                : null}
+
+              </div>
+
+            </div>
+
+            <div className="col-md-6 form">
+              <div className="landing-bg">
               {
-                this.state.createSport
-                  ? <form className="form text-center" onSubmit={this.handleSportCreate}>
-                        <TextFieldGroup
-                          onChange={this.handleInputChange}
-                          errors={this.name}
-                          label="Create League"
-                          type="text"
-                          field="name"
-                          className="form-control"
-                          value={this.state.name}
-                          placeholder="Sport"
-                          />
-                        <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
-                    </form>                      
-                  : null
-               }
-               
-            </div>
-            <hr/>
-            <div className="showMenuSection">
-              <select
-                className="adminSportInput form-control" 
-                name="sport" 
-                onChange={this.handleInputChange}
-                value={this.state.sport}
-                disabled={this.state.optionDisabled}
-                >
-                <option value="">Sport</option>
-                {this.state.sports.map(sport => (
-                <option value={sport.id} key={sport.id}>{sport.name}</option>
-                ))}
-                </select>
-              {this.state.sport ?
-                <div className="menuOptions">
-                  <button className="btn btn-primary adminMenu button-actions " onClick={() => this.createTeam()} disabled={this.state.optionDisabled}>Create Team</button>
-                  <button className="btn btn-primary adminMenu button-actions " onClick={() => this.assignPeople()} disabled={this.state.optionDisabled}>Assign Players/Coaches</button>
-                  <button className="btn btn-primary adminMenu button-actions " onClick={() => this.createSchedule()} disabled={this.state.optionDisabled}>Create Game Schedule</button>
-                  <button className="btn btn-primary adminMenu button-actions " onClick={() => this.resetMenu()}>Reset</button>
-                </div>
-              : null}
+                  this.state.createTeam
+                    ? <form className="form text-center adminSportInput mx-auto child-form" onSubmit={this.handleTeamCreate}>
+                          <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={this.name}
+                            label="Create Team"
+                            type="text"
+                            field="teamName"
+                            className="form-control"
+                            value={this.state.teamName}
+                            placeholder="Team Name"
+                            />
+                          <button className="btn btn-primary form-btn button-actions" disabled={this.state.isLoading}>Submit</button>
+                      </form>                      
+                    : null
+                }
 
-            </div>
-
-          </div>
-
-          <div className="col-md-6 form">
-            <div className="landing-bg">
-            {
-                this.state.createTeam
-                  ? <form className="form text-center adminSportInput mx-auto child-form" onSubmit={this.handleTeamCreate}>
-                        <TextFieldGroup
-                          onChange={this.handleInputChange}
-                          errors={this.name}
-                          label="Create Team"
-                          type="text"
-                          field="teamName"
-                          className="form-control"
-                          value={this.state.teamName}
-                          placeholder="Team Name"
-                          />
-                        <button className="btn btn-primary form-btn button-actions" disabled={this.state.isLoading}>Submit</button>
-                    </form>                      
-                  : null
-               }
-
-               {
-                this.state.assignPeople
-                  ? <div className="assignTeams">
-                      <form className="form text-center assignPlayers mx-auto child-form" onSubmit={this.handleAssignPlayer}>
-                        <h3>Assign Players</h3>
-                        <select
-                          className="adminSportInput form-control" 
-                          name="playerId" 
-                          onChange={this.handleInputChange}
-                          value={this.state.playerId}
-                        >
-                          <option value="">Player</option>
-                          {this.state.players.map(player => (
-                          <option value={player.id} key={player.id}>{player.first_name} {player.last_name}</option>
-                          ))}
-                        </select>
-                        <select
-                          className="adminSportInput form-control" 
-                          name="playerTeam" 
-                          onChange={this.handleInputChange}
-                          value={this.state.playerTeam}
-                        >
-                          <option value="">Team</option>
-                          {this.state.teams.map(team => (
-                          <option value={team.id} key={team.id}>{team.teamName}</option>
-                          ))}
-                        </select>
-                        <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
-                      </form>
-                    <div className="assignCoaches">
-                        <form className="form text-center assignCoaches mx-auto child-form" onSubmit={this.handleAssignCoach}>
-                          <h3>Assign Coaches</h3>
+                {
+                  this.state.assignPeople
+                    ? <div className="assignTeams">
+                        <form className="form text-center assignPlayers mx-auto child-form" onSubmit={this.handleAssignPlayer}>
+                          <h3>Assign Players</h3>
                           <select
                             className="adminSportInput form-control" 
-                            name="coachId" 
+                            name="playerId" 
                             onChange={this.handleInputChange}
-                            value={this.state.coachId}
+                            value={this.state.playerId}
                           >
-                            <option value="">Coach</option>
-                            {this.state.coaches.map(coach => (
-                            <option value={coach.id} key={coach.id}>{coach.first_name} {coach.last_name}</option>
+                            <option value="">Player</option>
+                            {this.state.players.map(player => (
+                            <option value={player.id} key={player.id}>{player.first_name} {player.last_name}</option>
                             ))}
                           </select>
                           <select
                             className="adminSportInput form-control" 
-                            name="coachTeam" 
+                            name="playerTeam" 
                             onChange={this.handleInputChange}
-                            value={this.state.coachTeam}
+                            value={this.state.playerTeam}
                           >
                             <option value="">Team</option>
                             {this.state.teams.map(team => (
@@ -383,70 +354,94 @@ handleGameCreate = event => {
                           </select>
                           <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                         </form>
-                    </div>
-                    
-                    </div>                      
-                  : null
-               }
+                      <div className="assignCoaches">
+                          <form className="form text-center assignCoaches mx-auto child-form" onSubmit={this.handleAssignCoach}>
+                            <h3>Assign Coaches</h3>
+                            <select
+                              className="adminSportInput form-control" 
+                              name="coachId" 
+                              onChange={this.handleInputChange}
+                              value={this.state.coachId}
+                            >
+                              <option value="">Coach</option>
+                              {this.state.coaches.map(coach => (
+                              <option value={coach.id} key={coach.id}>{coach.first_name} {coach.last_name}</option>
+                              ))}
+                            </select>
+                            <select
+                              className="adminSportInput form-control" 
+                              name="coachTeam" 
+                              onChange={this.handleInputChange}
+                              value={this.state.coachTeam}
+                            >
+                              <option value="">Team</option>
+                              {this.state.teams.map(team => (
+                              <option value={team.id} key={team.id}>{team.teamName}</option>
+                              ))}
+                            </select>
+                            <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
+                          </form>
+                      </div>
+                      
+                      </div>                      
+                    : null
+                }
 
-               {
-                this.state.createSchedule
-                  ? <div className="assignTeams">
-                      <form className="form text-center assignPlayers" onSubmit={this.handleGameCreate}>
-                        <h3>Create Game</h3>
-                          <div className="col-md-2">
-                              <li className="dateTime">{moment(this.state.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
-                          </div>
-                          <div className="col-md-2 coachListItem">
-                              <li className="dateTime">{moment(this.state.time, "HH:mm:ss").format("hh:MM p")}</li>
-                          </div>
-                          <TextFieldGroup
-                          onChange={this.handleInputChange}
-                          errors={this.name}
-                          label="Location"
-                          type="text"
-                          field="location"
-                          className="form-control"
-                          value={this.state.location}
-                          placeholder="Location"
-                          />
-                         
-                        <select
-                          className="adminSportInput form-control" 
-                          name="team1" 
-                          onChange={this.handleInputChange}
-                          value={this.state.team1}
-                        >
-                          <option value="">Team1</option>
-                          {this.state.teams.map(team => (
-                          <option value={team.id} key={team.id}>{team.teamName}</option>
-                          ))}
-                        </select>
-                        <select
-                          className="adminSportInput form-control" 
-                          name="team2" 
-                          onChange={this.handleInputChange}
-                          value={this.state.team1}
-                        >
-                          <option value="">Team2</option>
-                          {this.state.teams.map(team => (
-                          <option value={team.id} key={team.id}>{team.teamName}</option>
-                          ))}
-                        </select>
-                        <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
-                      </form>       
-                      </div>               
-                  : null
-               }
+                {
+                  this.state.createSchedule
+                    ? <div className="assignTeams">
+                        <form className="form text-center assignPlayers" onSubmit={this.handleGameCreate}>
+                          <h3>Create Game</h3>
+                            <div className="col-md-2">
+                                <li className="dateTime">{moment(this.state.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
+                            </div>
+                            <div className="col-md-2 coachListItem">
+                                <li className="dateTime">{moment(this.state.time, "HH:mm:ss").format("hh:MM p")}</li>
+                            </div>
+                            <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={this.name}
+                            label="Location"
+                            type="text"
+                            field="location"
+                            className="form-control"
+                            value={this.state.location}
+                            placeholder="Location"
+                            />
+                          
+                          <select
+                            className="adminSportInput form-control" 
+                            name="team1" 
+                            onChange={this.handleInputChange}
+                            value={this.state.team1}
+                          >
+                            <option value="">Team1</option>
+                            {this.state.teams.map(team => (
+                            <option value={team.id} key={team.id}>{team.teamName}</option>
+                            ))}
+                          </select>
+                          <select
+                            className="adminSportInput form-control" 
+                            name="team2" 
+                            onChange={this.handleInputChange}
+                            value={this.state.team1}
+                          >
+                            <option value="">Team2</option>
+                            {this.state.teams.map(team => (
+                            <option value={team.id} key={team.id}>{team.teamName}</option>
+                            ))}
+                          </select>
+                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                        </form>       
+                        </div>               
+                    : null
+                }
 
+              </div>
             </div>
-    
-      
-      
+          </div>
+        <Footer />
       </div>
-      </div>
-             
-            </div>
     );
   }
 };
@@ -454,7 +449,6 @@ handleGameCreate = event => {
 // ----------------------------------------------------------------------------------- //
 // Setting propTypes
 AdminPortal.propTypes = {
-  addFlashMessage: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 }
 
@@ -466,4 +460,4 @@ function mapStateToProps(state) {
 }
 
 // Exporting the page, and connecting the props with redux
-export default connect(mapStateToProps, { addFlashMessage })(AdminPortal);
+export default connect(mapStateToProps)(AdminPortal);
