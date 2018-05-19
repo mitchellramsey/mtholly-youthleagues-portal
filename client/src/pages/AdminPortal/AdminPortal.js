@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import moment from "moment";
 
 // Component
 import Nav from "../../components/Nav/Nav";
@@ -47,7 +48,9 @@ class AdminPortal extends Component {
         playerId: "",
         playerTeam: "",
         coachId: "",
-        coachTeam: ""
+        coachTeam: "",
+        team1: "",
+        team2: ""
       }
       this.handleInputChange = this.handleInputChange.bind(this);
       
@@ -80,6 +83,13 @@ assignPeople () {
     assignPeople: !this.state.assignPeople,
     optionDisabled: true
 });
+}
+
+createSchedule() {
+  this.setState({
+    createSchedule: !this.state.createSchedule,
+    optionDisabled: true
+  });
 }
 
   // Capturing form input
@@ -210,6 +220,29 @@ handleTeamCreate = event => {
           },
           // Setting errors
           (res) => this.getSports(),
+          (err) => this.setState({ errors: err.response.data, isLoading: false })            
+      );
+}
+
+handleGameCreate = event => {
+  // Preventing default form behavior
+  event.preventDefault();
+  // If state is valid, perform the AJAX request
+      const gameData = {
+        date: this.state.date,
+        time: this.state.time,
+        location: this.state.location,
+        team1: this.state.team1,
+        team2: this.state.team2,
+        TeamID: this.state.team
+      }
+      API.createGame(gameData).then(
+          // Then, redirect
+          () => {
+              window.location.reload(); 
+          },
+          // Setting errors
+          (res) => this.getTeams(),
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
 }
@@ -355,12 +388,65 @@ handleTeamCreate = event => {
                     </div>                      
                   : null
                }
-            </div>
-          </div>
-        </div>
 
-        
+               {
+                this.state.createSchedule
+                  ? <div className="assignTeams">
+                      <form className="form text-center assignPlayers" onSubmit={this.handleGameCreate}>
+                        <h3>Create Game</h3>
+                          <div className="col-md-2">
+                              <li className="dateTime">{moment(this.state.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
+                          </div>
+                          <div className="col-md-2 coachListItem">
+                              <li className="dateTime">{moment(this.state.time, "HH:mm:ss").format("hh:MM p")}</li>
+                          </div>
+                          <TextFieldGroup
+                          onChange={this.handleInputChange}
+                          errors={this.name}
+                          label="Location"
+                          type="text"
+                          field="location"
+                          className="form-control"
+                          value={this.state.location}
+                          placeholder="Location"
+                          />
+                         
+                        <select
+                          className="adminSportInput form-control" 
+                          name="team1" 
+                          onChange={this.handleInputChange}
+                          value={this.state.team1}
+                        >
+                          <option value="">Team1</option>
+                          {this.state.teams.map(team => (
+                          <option value={team.id} key={team.id}>{team.teamName}</option>
+                          ))}
+                        </select>
+                        <select
+                          className="adminSportInput form-control" 
+                          name="team2" 
+                          onChange={this.handleInputChange}
+                          value={this.state.team1}
+                        >
+                          <option value="">Team2</option>
+                          {this.state.teams.map(team => (
+                          <option value={team.id} key={team.id}>{team.teamName}</option>
+                          ))}
+                        </select>
+                        <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                      </form>       
+                      </div>               
+                  : null
+               }
+
+            </div>
+    
+      
+      
       </div>
+      </div>
+             
+            </div>
     );
   }
 };
