@@ -139,25 +139,25 @@ class CoachPortal extends Component {
 
                                 
                                     
-                                        {this.state.practices.map(practice => (
-                                            <ul className="coachDataId" key={practice.id}>
-                                                <div className="col-md-3 coachListItem">
-                                                    <li className="dateTime">{moment(practice.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
-                                                </div>
-                                                <div className="col-md-2 coachListItem">
-                                                    <li className="dateTime">{moment(practice.time, "HH:mm:ss").format("hh:MM p")}</li>
-                                                </div>
-                                                <div className="col-md-3 coachListItem">
-                                                    <li className="dateTime">{practice.location}</li>
-                                                </div>
-                                                <div className="col-md-3 coachListItem">
-                                                    <li className="dateTime">{practice.team_association}</li>
-                                                </div> 
-                                                <div className="col-md-1 coachListItem">
-                                                    <DeleteBtn onClick={() => this.deleteCoachPractices(practice.id)}/>
-                                                </div> 
-                                            </ul>
-                                        ))}
+																	{this.state.practices.map(practice => (
+																			<ul className="coachDataId" key={practice.id}>
+																					<div className="col-md-3 coachListItem">
+																							<li className="dateTime">{moment(practice.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
+																					</div>
+																					<div className="col-md-2 coachListItem">
+																							<li className="dateTime">{moment(practice.time, "HH:mm:ss").format("hh:MM p")}</li>
+																					</div>
+																					<div className="col-md-3 coachListItem">
+																							<li className="dateTime">{practice.location}</li>
+																					</div>
+																					<div className="col-md-3 coachListItem">
+																							<li className="dateTime">{practice.team_association}</li>
+																					</div> 
+																					<div className="col-md-1 coachListItem">
+																							<DeleteBtn onClick={() => this.deleteCoachPractices(practice.id)}/>
+																					</div> 
+																			</ul>
+																	))}
                                 
                             </div>
                         // If not toggled to true, hide the form
