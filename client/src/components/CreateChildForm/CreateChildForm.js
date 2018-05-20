@@ -86,7 +86,7 @@ class CreateChildForm extends Component {
                             type="text"
                             field="lastName"
                             className="form-control"
-                            value={this.state.ame}
+                            value={this.state.lastName}
                             placeholder="Last Name"
                         />
                         <TextFieldGroup
@@ -125,7 +125,7 @@ class CreateChildForm extends Component {
                                 >
                                 <option value="">Sport</option>
                                 {this.props.sports.map(sport => (
-                                    <option value={sport.id}>{sport.name}</option>
+                                    <option key={sport.id} value={sport.id}>{sport.name}</option>
                                 ))}
                                 </select>
 

@@ -35,16 +35,21 @@ router.post("/", (req, res) => {
 		Coach.findOne({
 			where: {
 				id: Practice.CoachId
-			}
+			},
+			include: [
+				Team
+			]
 		}).then(foundCoach => {
 			// Practice form object
 			const data = {
 				date: date,
 				time: time,
 				location: location,
-				team_association: team_association,
+				team_association: Team,
 				CoachId: coachId
 			}
+
+			console.log(data);
 			// Create the practice
 			Practice.create(data).then(newPractice => {
 				res.json(newPractice);

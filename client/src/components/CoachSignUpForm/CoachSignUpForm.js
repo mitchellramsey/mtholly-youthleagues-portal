@@ -201,9 +201,9 @@ class CoachSignupForm extends Component {
                                 name="sport" 
                                 onChange={this.handleInputChange}
                                 value={this.state.sport}
-                            
+                                required="required"
                             >
-                            <option value="">Sport</option>
+                            <option value="" disabled="disabled">Sport</option>
                             {this.props.sports.map(sport => (
                                 <option value={sport.id} key={sport.id}>{sport.name}</option>
                             ))}
