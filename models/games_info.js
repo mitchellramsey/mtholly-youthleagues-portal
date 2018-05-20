@@ -39,9 +39,7 @@ module.exports = function (sequelize, DataTypes) {
 	});
 
 	GamesInfo.associate = models => {
-		GamesInfo.belongsToMany(models.Team, {
-		  through: [models.Sport]
-		});
+		GamesInfo.belongsToMany(models.Team, { through: 'sport' });
 
 		// GamesInfo.hasMany(models.Team, {
 		// 	onDelete: "cascade"

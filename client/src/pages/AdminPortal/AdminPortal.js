@@ -231,7 +231,7 @@ handleGameCreate = event => {
         location: this.state.location,
         team1: this.state.team1,
         team2: this.state.team2,
-        TeamID: this.state.team
+        TeamID: this.state.TeamID
       }
       API.createGame(gameData).then(
           // Then, redirect
