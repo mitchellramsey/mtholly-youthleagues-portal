@@ -49,7 +49,10 @@ class AdminPortal extends Component {
         coachId: "",
         coachTeam: "",
         team1: "",
-        team2: ""
+        team2: "",
+        date:"",
+        time: "",
+        location:""
       }
       this.handleInputChange = this.handleInputChange.bind(this);
       
@@ -58,7 +61,14 @@ class AdminPortal extends Component {
     //Calling for Sport API
     componentDidMount() {
       this.getSports();
+    }
+
+  componentWillUpdate(nextProps, nextState) {
+    if(nextState.sport !== this.state.sport){
+      this.findTeams(nextState.sport);
+    }
   }
+
     // Toggle create sport form
     toggleCreateSport () {
       this.setState({
@@ -104,6 +114,12 @@ createSchedule() {
       .catch(err => console.log(err));
   }
 
+  findTeams = (sportId) => {
+    API.findTeams(sportId)
+      .then(res => this.setState({ teams: res.data }))
+      .catch(err => console.log(err));
+  }
+
   getChildren = (sportId) => {
     API.findKids(sportId)
       .then(result => {
@@ -119,11 +135,6 @@ createSchedule() {
       .catch(err => console.log(err));
   }
 
-  getTeams = (sportId) => {
-    API.findTeams(sportId)
-      .then(res => this.setState({ teams: res.data }))
-      .catch(err => console.log(err));
-  }
 
   showMenu () {
     this.setState({
@@ -232,10 +243,11 @@ handleGameCreate = event => {
         time: this.state.time,
         location: this.state.location,
         team1: this.state.team1,
-        team2: this.state.team2,
-        TeamID: this.state.TeamID
+        team2: this.state.team2
       }
-      API.createGame(gameData).then(
+
+      console.log(gameData);
+      API.createTeam(gameData).then(
           // Then, redirect
           () => {
               window.location.reload(); 
@@ -390,14 +402,30 @@ handleGameCreate = event => {
                 {
                   this.state.createSchedule
                     ? <div className="assignTeams">
-                        <form className="form text-center assignPlayers" onSubmit={this.handleGameCreate}>
+                        <form className="form text-center findTeams" onSubmit={this.handleGameCreate}>
                           <h3>Create Game</h3>
-                            <div className="col-md-2">
-                                <li className="dateTime">{moment(this.state.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
-                            </div>
-                            <div className="col-md-2 coachListItem">
-                                <li className="dateTime">{moment(this.state.time, "HH:mm:ss").format("hh:MM p")}</li>
-                            </div>
+                          {/* Date */}
+                          <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            // errors={errors.date}
+                            label="Date"
+                            type="date"
+                            field="date"
+                            className="form-control"
+                            value={this.state.date}
+                            placeholder="MM/DD/YY"
+                    />
+                    {/* Time */}
+                    <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            // errors={errors.time}
+                            label="Time"
+                            type="time"
+                            field="time"
+                            className="form-control"
+                            value={this.state.time}
+                            placeholder="hh:MM"
+                    />
                             <TextFieldGroup
                             onChange={this.handleInputChange}
                             errors={this.name}
@@ -424,7 +452,7 @@ handleGameCreate = event => {
                             className="adminSportInput form-control" 
                             name="team2" 
                             onChange={this.handleInputChange}
-                            value={this.state.team1}
+                            value={this.state.team2}
                           >
                             <option value="">Team2</option>
                             {this.state.teams.map(team => (
