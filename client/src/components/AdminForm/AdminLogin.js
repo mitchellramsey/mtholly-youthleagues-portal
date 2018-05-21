@@ -103,7 +103,7 @@ class AdminLogIn extends Component {
                 {/* Password */}
                 <TextFieldGroup
                         onChange={this.handleInputChange}
-                        errors={errors.email}
+                        errors={errors.password}
                         label="Password"
                         type="password"
                         field="password"
@@ -121,6 +121,8 @@ class AdminLogIn extends Component {
             // Main page
             <div className="col-md-6 text-center mx-auto">
                 <h3>League Administrator Access Portal</h3>
+                {/* Display possible log in error messages */}
+            { errors.form && <div className="alert alert-danger">{errors.form}</div>}
                 {/* If authenticated, either render the log-in form or the continue button */}
                 <div>
                     { isAuthenticated ? continueButton : loginFormArea }

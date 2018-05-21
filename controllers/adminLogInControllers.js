@@ -26,13 +26,18 @@ router.post("/", (req, res) => {
         } 
     }).then(admin => {
         
-        // Apply JWT after log-in
-        const token = jwt.sign({
-            id: admin.id,
-            username: admin.email
-            }, config.jwtSecret);
-            // Redirect/Add JWT
-            res.json({ token })
+        if(admin) {
+            // Apply JWT after log-in
+            const token = jwt.sign({
+                id: admin.id,
+                username: admin.email
+                }, config.jwtSecret);
+                // Redirect/Add JWT
+                res.json({ token })
+            } else {
+                // Display error message
+                res.status(401).json({ errors: { form: "The email or password does not match "} })
+            }
         })
     })
 

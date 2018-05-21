@@ -10,7 +10,7 @@ import Footer from "../../components/Footer/Footer";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import MainHeader from "../../components/MainHeader";
 import CreateChildForm from "../../components/CreateChildForm";
-import { List, ListItem, DeleteBtn } from "../../components/List";
+import { List, DeleteBtn } from "../../components/List";
 
 // Actions
 import { childSignUp } from "../../actions/registerChild";

@@ -21,9 +21,11 @@ module.exports = function (sequelize, DataTypes) {
         }
       });
   
-      Team.hasMany(models.GamesInfo, {
-        onDelete: "cascade"
-      });
+      // Team.hasMany(models.GamesInfo, {
+      //   onDelete: "cascade"
+      // });
+
+      Team.belongsToMany(models.GamesInfo, {through: 'sport' });
       
       Team.hasMany(models.Kids, {
         onDelete: "cascade"

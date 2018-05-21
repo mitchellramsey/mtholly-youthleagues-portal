@@ -58,6 +58,7 @@ span.help-block {
 
 .button-actions {
     background-color: rgba(24, 26, 31, 0.39);
+    border-radius: 0px;
 }
 
 .button-actions:hover {
