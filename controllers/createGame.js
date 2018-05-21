@@ -37,13 +37,13 @@ router.post("/", (req, res) => {
 			location,
 			team1,
 			team2,
-			teamId
+			sportId
 		} = req.body;
 
 		// Find the associated Id
 		Team.findOne({
 			where: {
-				id: GamesInfo.TeamId
+				id: GamesInfo.SportId
 			}
 		}).then(foundGame => {
 			// Game form object
@@ -53,7 +53,7 @@ router.post("/", (req, res) => {
 				location: location,
 				team1: team1,
 				team2: team2,
-				TeamId: teamId
+				SportId: sportId
 			}
 			// Create the game
 			GamesInfo.create(data).then(newGame => {
