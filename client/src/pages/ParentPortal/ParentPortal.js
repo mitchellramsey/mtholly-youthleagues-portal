@@ -100,7 +100,7 @@ class ParentPortal extends Component {
                                     <li className="list-group-item" >
                                     <h3>
                                     <button className="btn btn-primary kidButton button-actions" onClick={() => this.displayKidInfo(kid.id)} value={kid.id}>
-                                        <h3><strong> {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name}</strong></h3>
+                                        <h4><strong> {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name}</strong></h4>
                                     </button>
                                     <DeleteBtn onClick={() => this.removeChild(kid.id)} />
                                     </h3>
