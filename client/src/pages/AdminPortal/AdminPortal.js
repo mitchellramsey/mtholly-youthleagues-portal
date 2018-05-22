@@ -243,7 +243,8 @@ handleGameCreate = event => {
         time: this.state.time,
         location: this.state.location,
         team1: this.state.team1,
-        team2: this.state.team2
+        team2: this.state.team2,
+        Sport
       }
 
       console.log(gameData);
