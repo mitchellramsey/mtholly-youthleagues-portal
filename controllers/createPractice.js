@@ -8,7 +8,8 @@ const validation = require("../client/src/Shared/Validations/createPractice");
 // User Model
 const {
 	Practice,
-	Coach
+	Coach,
+	Team
 } = require("../models");
 
 // ----------------------------------------------------------------------------------- //
@@ -27,7 +28,7 @@ router.post("/", (req, res) => {
 			date,
 			time,
 			location,
-			team_association,
+			team,
 			coachId
 		} = req.body;
 
@@ -35,17 +36,14 @@ router.post("/", (req, res) => {
 		Coach.findOne({
 			where: {
 				id: Practice.CoachId
-			},
-			include: [
-				Team
-			]
+			}
 		}).then(foundCoach => {
 			// Practice form object
 			const data = {
 				date: date,
 				time: time,
 				location: location,
-				team_association: Team,
+				TeamId: team,
 				CoachId: coachId
 			}
 
@@ -68,7 +66,11 @@ router.get("/:id", (req, res) => {
 			id: req.params.id
 		}
 	}).then(foundPractices => {
-		Practice.findAll({}).then(practices => {
+		Practice.findAll({
+			include: [
+				Team
+			]
+		}).then(practices => {
 			res.json(practices);
 		})
 	});
@@ -87,6 +89,25 @@ router.delete("/:id", (req, res) => {
 		res.json(practices);
 	});
 });
+
+// ----------------------------------------------------------------------------------- //
+router.get("/:id", (req, res) => {
+	Coach.findOne({
+		where: {
+			id: req.params.id
+		},
+		include: [
+			Team
+		]
+	}).then(teams => {
+		res.json(teams);
+		console.log(teams);
+	});
+});
+
+
+
+
 
 // ----------------------------------------------------------------------------------- //
 module.exports = router;

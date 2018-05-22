@@ -23,9 +23,9 @@ module.exports = function validateInput(data) {
 	}
 
 	// Field validator
-	if (validator.isEmpty(data.team_association)) {
-		errors.team_association = "This field is required.";
-	}
+	// if (validator.isEmpty(data.team_association)) {
+	// 	errors.team_association = "This field is required.";
+	// }
 
 	return {
 		errors,

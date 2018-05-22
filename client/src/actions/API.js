@@ -59,5 +59,12 @@ export default {
 
   retrieveKidInfo: function(kidId) {
     return axios.get("/api/kidInfo/" + kidId);
+  },
+  
+  childPaid: function (paymentId) {
+    const paidInfo = {
+      paymentId: paymentId
+    }
+    return axios.put("/api/paid", paidInfo)
   }
 }
