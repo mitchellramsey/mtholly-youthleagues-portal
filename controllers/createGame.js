@@ -50,10 +50,7 @@ router.post("/", (req, res) => {
 			const data = {
 				date: date,
 				time: time,
-				location: location,
-				team1: team1,
-				team2: team2,
-				SportId: sportId
+				location: location
 			}
 			// Create the game
 			GamesInfo.create(data).then(newGame => {
