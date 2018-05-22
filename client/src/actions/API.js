@@ -41,6 +41,10 @@ export default {
     return axios.get("/api/findteams/" + sportId);
   },
 
+  createNewGame: function(gameData) {
+    return axios.post("/api/createGame/", gameData);
+  },
+
   assignPlayer: function(data) {
     return axios.put("/api/children", data);
   },
@@ -51,5 +55,12 @@ export default {
 
   retrieveKidInfo: function(kidId) {
     return axios.get("/api/kidInfo/" + kidId);
+  },
+  
+  childPaid: function (paymentId) {
+    const paidInfo = {
+      paymentId: paymentId
+    }
+    return axios.put("/api/paid", paidInfo)
   }
 }

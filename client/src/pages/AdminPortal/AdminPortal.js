@@ -243,17 +243,18 @@ handleGameCreate = event => {
         time: this.state.time,
         location: this.state.location,
         team1: this.state.team1,
-        team2: this.state.team2
+        team2: this.state.team2,
+        sportId: this.state.sport
       }
 
       console.log(gameData);
-      API.createTeam(gameData).then(
+      API.createNewGame(gameData).then(
           // Then, redirect
           () => {
               window.location.reload(); 
           },
           // Setting errors
-          (res) => this.getTeams(),
+          
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
 }

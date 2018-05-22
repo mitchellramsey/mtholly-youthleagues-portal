@@ -90,7 +90,7 @@ class ParentPortal extends Component {
                         <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
                     </div>
                     <div className="paypal">Pay with PayPal
-                    <PayPal/>
+                    <PayPal kids = {this.state.kids}/>
                     </div>
                     <div className="childList">
                         <h3>Registered Children</h3>
@@ -100,7 +100,7 @@ class ParentPortal extends Component {
                                     <li className="list-group-item" >
                                     <h3>
                                     <button className="btn btn-primary kidButton button-actions" onClick={() => this.displayKidInfo(kid.id)} value={kid.id}>
-                                        <h3><strong> {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name}</strong></h3>
+                                        <h4><strong> {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name}</strong></h4>
                                     </button>
                                     <DeleteBtn onClick={() => this.removeChild(kid.id)} />
                                     </h3>
