@@ -90,7 +90,7 @@ class ParentPortal extends Component {
                         <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
                     </div>
                     <div className="paypal">Pay with PayPal
-                    <PayPal/>
+                    <PayPal kids = {this.state.kids}/>
                     </div>
                     <div className="childList">
                         <h3>Registered Children</h3>
