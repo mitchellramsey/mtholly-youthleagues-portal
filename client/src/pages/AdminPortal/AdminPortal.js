@@ -65,7 +65,7 @@ class AdminPortal extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     if(nextState.sport !== this.state.sport){
-      this.findTeams(nextState.sport);
+      this.getTeams(nextState.sport);
     }
   }
 
@@ -114,7 +114,7 @@ createSchedule() {
       .catch(err => console.log(err));
   }
 
-  findTeams = (sportId) => {
+  getTeams = (sportId) => {
     API.findTeams(sportId)
       .then(res => this.setState({ teams: res.data }))
       .catch(err => console.log(err));

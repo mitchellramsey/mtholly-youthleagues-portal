@@ -24,3 +24,11 @@ export function deleteGame(id) {
         return axios.delete(`/api/createGame/${id}`);
     }
 }
+
+// ----------------------------------------------------------------------------------- //
+// GET route to retrieve teams
+export function getTeams(id) {
+    return dispatch => {
+        return axios.get(`/api/createGame/${id}`);
+    }
+}

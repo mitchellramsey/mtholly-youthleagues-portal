@@ -16,6 +16,7 @@ import { DeleteBtn } from "../../components/List";
 // Actions
 import { addFlashMessage } from "../../actions/flashMessages";
 import { createPracticePost, getPractice, deletePractice } from "../../actions/practicePost";
+import API from "../../actions/API";
 
 // CSS
 import "./coachespage.css";
@@ -30,14 +31,17 @@ class CoachPortal extends Component {
             createPracticeForm: false,
             showTeam: false,
             showSchedule: false,
-            practices: []
+            practices: [],
+            team_association: []
         }       
     }
 
     // Update state after data is called
     componentDidMount() {
+        this.retrieveTeams(this.props.auth.user.id);
         this.retrievePractices(this.props.auth.user.id);
     }
+
 
     
     // Axios request to get the coaches Id and practices
@@ -46,6 +50,15 @@ class CoachPortal extends Component {
             .then(res => this.setState({ practices: res.data }))
                 // Handle errors
                 .catch(err => console.log(err));
+
+    }
+
+    // Retrieve teams associated with coaches
+    retrieveTeams = id => {
+        API.findTeams(id)
+            .then(res => this.setState({ team_association: res.data }))
+                // Handle errors
+                .catch(err =>console.log(err));
 
     }
 
@@ -92,6 +105,7 @@ class CoachPortal extends Component {
                         <div className="button-div text-center">
 
                         <h3 className="dashboard-title">Coach Dashboard</h3>
+                        <hr className="line"></hr>
 
                             <ul className="mx-auto">
                                 <li><button className="btn btn-primary form-btn button-actions" onClick={() => this.togglePracticeForm()}>Create Practice</button></li>
@@ -108,7 +122,8 @@ class CoachPortal extends Component {
                             addFlashMessage={addFlashMessage}
                             coachId={this.props.auth.user.id}
                             retrievePractices={this.retrievePractices}
-                            
+                            team_association={this.state.team_association}
+                            teamId={this.props.teamId}
                         />
                         // If not toggled to true, hide the form
                             :null
@@ -150,10 +165,10 @@ class CoachPortal extends Component {
 																							<li className="dateTime">{practice.location}</li>
 																					</div>
 																					<div className="col-md-3 coachListItem">
-																							<li className="dateTime">{practice.team_association}</li>
+																							<li className="dateTime">{practice.Team.teamName}</li>
 																					</div> 
 																					<div className="col-md-1 coachListItem">
-																							<DeleteBtn onClick={() => this.deleteCoachPractices(practice.id)}/>
+																							<DeleteBtn onClick={() => this.deleteCoachPractices(practice.teamid)}/>
 																					</div> 
 																			</ul>
 																	))}
@@ -171,6 +186,7 @@ class CoachPortal extends Component {
                         </div>
                     </div>
                 </div>
+                <hr className="line"></hr>
                 <Footer/>
             </div>
         );

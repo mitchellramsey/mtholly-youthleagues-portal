@@ -131,6 +131,7 @@ class LogInForm extends Component {
             // Main page
             <div className="col-md-6 text-center mx-auto">
                 <h3>Parent Access Portal</h3>
+                <hr className="line"></hr>
                 {/* Display possible log in error messages */}
                 { errors.form && <div className="alert alert-danger">{errors.form}</div>}
                 {/* If authenticated, either render the log-in form or the continue button */}
