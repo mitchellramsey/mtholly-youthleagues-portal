@@ -23,45 +23,67 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
 
-	const {
-		errors,
-		isValid
-	} = validation(req.body);
-
+	// const {
+	// 	errors,
+	// 	isValid
+	// } = validation(req.body);
+	
 	// If theres an error, send it to the client   
-	if (isValid) {
+	// if (isValid) {
 		// Deconstructing the object
-		const {
-			date,
-			time,
-			location,
-			team1,
-			team2,
-			sportId
-		} = req.body;
-
-		// Find the associated Id
+		const { date, time, location, team1, team2, sportId } = req.body;
+		// Creating Game Information for Team #1
 		Team.findOne({
 			where: {
-				id: GamesInfo.SportId
+				id: team2
 			}
-		}).then(foundGame => {
+		}).then(opponent => {
 			// Game form object
 			const data = {
 				date: date,
 				time: time,
 				location: location,
-				team1: team1,
-				team2: team2,
-				SportId: sportId
+				opponent: opponent.teamName,
+				TeamId: team1
 			}
-			// Create the game
-			GamesInfo.create(data).then(newGame => {
-				res.json(newGame);
+		// 	// Create the game for Team #1
+			GamesInfo.create(data).then(newGame1 => {
+				
+				// Create the game information for Team #2
+				Team.findOne({
+					where: {
+						id: team1
+					}
+				}).then(opponent => {
+					// Game form object
+					const data = {
+						date: date,
+						time: time,
+						location: location,
+						opponent: opponent.teamName,
+						TeamId: team2
+					}
+				// 	// Create the game for Team #2
+					GamesInfo.create(data).then(newGame2 => {
+						const newGames = {
+							newGame1: newGame1,
+							newGame2: newGame2
+						}
+						res.json(newGames);
+					});
+		
+				})
 			})
 		})
-	}
-});
+
+		
+			
+	})
+		
+
+		
+		
+
 
 
 
