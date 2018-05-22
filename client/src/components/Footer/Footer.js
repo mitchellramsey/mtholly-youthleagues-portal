@@ -11,9 +11,9 @@ class Footer extends Component {
     // Render the footer
     render() {
         return (
-            <nav className="navbar navbar-expand-lg footer">
-            {/*  */}
-            </nav> 
+            <div className="footer">
+                <hr className="line"></hr>
+            </div> 
         )
     }
 };

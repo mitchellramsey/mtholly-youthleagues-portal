@@ -117,6 +117,7 @@ class SignupForm extends Component {
         return(
             <div className="col-md-6 text-center mx-auto">
                 <h3>Sign-up Form</h3>
+                <hr className="line"></hr>
                 {/* Sign Up Form */}
                     <form className="form" onSubmit={this.handleFormSubmit}>
                         {/* First Name */}

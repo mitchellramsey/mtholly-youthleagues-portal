@@ -6,6 +6,7 @@ import MainHeader from "../../components/MainHeader/MainHeader";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import AdminLogin from "../../components/AdminForm/AdminLogin";
 import Nav from "../../components/Nav/Nav";
+import Footer from "../../components/Footer/Footer";
 
 // CSS
 import "../Landing/landing.css";
@@ -35,6 +36,7 @@ class AdminLogInPage extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </div>
         )
     }

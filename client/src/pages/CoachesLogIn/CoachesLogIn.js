@@ -6,6 +6,7 @@ import CoachForm from "../../components/CoachForm/CoachForm";
 import Nav from "../../components/Nav/Nav";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
+import Footer from "../../components/Footer/Footer";
 
 // CSS
 import "../../pages/Landing/landing.css";
@@ -34,6 +35,7 @@ class CoachesLogIn extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </div>
         )
     }

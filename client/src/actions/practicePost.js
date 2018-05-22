@@ -24,10 +24,3 @@ export function deletePractice(id) {
         return axios.delete(`/api/createPractice/${id}`);
     }
 }
-
-// Find associated teams
-export function getTeam(id) {
-    return dispatch => {
-        return axios.delete(`/api/createPractice/${id}`);
-    }
-}

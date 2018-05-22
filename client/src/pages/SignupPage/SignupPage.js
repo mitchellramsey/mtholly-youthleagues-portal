@@ -12,6 +12,7 @@ import FlashMessageList from "../../components/FlashMessageList/FlashMessageList
 import Nav from "../../components/Nav";
 import MainHeader from "../../components/MainHeader";
 import SignupForm from "../../components/SignUpForm";
+import Footer from "../../components/Footer/Footer";
 
 
 // CSS
@@ -47,6 +48,7 @@ class SignupPage extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </div>
         )
     }

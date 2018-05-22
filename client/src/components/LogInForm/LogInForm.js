@@ -114,13 +114,13 @@ class LogInForm extends Component {
                     />
                     <button className="btn btn-primary form-btn mx-auto button-actions" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
 
-                    <h5>Need an account?</h5>
+                    <h5 className="LoginHeadings">Need an account?</h5>
                     <span>Click <Link to="/signup">here</Link></span>
                     
-                    <h4>Coaches Access Portal</h4>
+                    <h4 className="LoginHeadings">Coaches Access Portal</h4>
                     <span>Log In <Link to="/coacheslogin">here</Link></span>
 
-                    <h4>Administrative Access Portal</h4>
+                    <h4 className="LoginHeadings">Administrative Access Portal</h4>
                     <span>Log In <Link to="/adminlogin">here</Link></span>
                     
                 </form>
@@ -131,6 +131,7 @@ class LogInForm extends Component {
             // Main page
             <div className="col-md-6 text-center mx-auto">
                 <h3>Parent Access Portal</h3>
+                <hr className="line"></hr>
                 {/* Display possible log in error messages */}
                 { errors.form && <div className="alert alert-danger">{errors.form}</div>}
                 {/* If authenticated, either render the log-in form or the continue button */}

@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
 			type: DataTypes.TIME,
 			allowNull: false,
 			validate: {
-				isInt: true,
+				
 				len: [0, 100]
 			}
 		},
@@ -22,30 +22,23 @@ module.exports = function (sequelize, DataTypes) {
 				len: [0, 100]
 			}
 		},
-		team1: {
-			type: DataTypes.STRING,
-			allowNull: false,
-			validate: {
-				len: [0, 100]
-			}
-		},
-		team2: {
+		opponent: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [0, 100]
 			}
 		}
+
 	});
 
 	GamesInfo.associate = models => {
-		GamesInfo.belongsToMany(models.Team, { through: 'sport' });
+		GamesInfo.belongsTo(models.Team, {
+			onDelete: "cascade"
+		});
 
-		// GamesInfo.hasMany(models.Team, {
-		// 	onDelete: "cascade"
-		//   });
 	}
 	
-	  
+	
 	return GamesInfo;
 };

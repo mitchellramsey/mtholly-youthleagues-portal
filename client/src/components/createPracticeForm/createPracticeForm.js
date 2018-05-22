@@ -2,6 +2,7 @@
 import React from "react";
 import { Component } from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 
 // Component
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
@@ -24,7 +25,7 @@ class CreatePracticeForm extends Component {
                 date: "",
                 time: "",
                 location: "", 
-                team_association: "",
+                team: "",
                 coachId: props.coachId,
                 errors: {}
             };
@@ -65,7 +66,7 @@ class CreatePracticeForm extends Component {
                             date: "",
                             time: "",
                             location: "", 
-                            team_association: "",
+                            team: ""
                         });
 
             this.props.createPracticePost(this.state).then(
@@ -128,16 +129,22 @@ class CreatePracticeForm extends Component {
                             placeholder="Location"
                     />
                     {/* Team associaton */}
-                    <TextFieldGroup
-                            onChange={this.handleInputChange}
-                            errors={errors.team_association}
-                            label="Team Association"
-                            type="text"
-                            field="team_association"
-                            className="form-control"
-                            value={this.state.team_association}
-                            placeholder="Team Association"
-                    />
+                    <div className={classnames("form-group")}>
+                        <label htmlFor="team" className="control-label">Team</label>
+                            <select
+                                className="form-control" 
+                                name="team" 
+                                onChange={this.handleInputChange}
+                                value={this.state.team}
+                                required="required"
+                            >
+                            <option value="" disabled="disabled">Team</option>
+                            {this.props.team_association.map(team => (
+                                <option value={team.id} key={team.id}>{team.teamName}</option>
+                            ))}
+                            </select>
+
+                    </div>
                     <button className="btn btn-primary form-btn mx-auto submit-btn button-actions" disabled={this.state.isLoading}>Submit</button>
                 </form>
             </div>
