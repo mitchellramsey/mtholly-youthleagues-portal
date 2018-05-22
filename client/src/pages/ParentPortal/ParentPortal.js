@@ -30,7 +30,8 @@ class ParentPortal extends Component {
             showChildTeam: false,
             kids: [],
             sports: [],
-            kidInfo: []
+            kidInfo: [],
+            games: []
         }
 
     }
@@ -65,6 +66,11 @@ class ParentPortal extends Component {
           .catch(err => console.log(err));
       }
     
+    getGame = (TeamId) => {
+    API.getGame()
+        .then(res => this.setState({ games: res.data }))
+        .catch(err => console.log(err));
+    }
 
     // Toggle child form on click
     toggleChildForm () {
@@ -100,7 +106,7 @@ class ParentPortal extends Component {
                                     <li className="list-group-item" >
                                     <h3>
                                     <button className="btn btn-primary kidButton button-actions" onClick={() => this.displayKidInfo(kid.id)} value={kid.id}>
-                                        <h3><strong> {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name}</strong></h3>
+                                        <h4><strong> {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name}</strong></h4>
                                     </button>
                                     <DeleteBtn onClick={() => this.removeChild(kid.id)} />
                                     </h3>
