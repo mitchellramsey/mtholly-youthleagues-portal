@@ -46,6 +46,7 @@ class ParentPortal extends Component {
     componentDidMount() {
         this.getChildren(this.props.auth.user.id);
         this.getSports();
+        this.getGame();
     }
 
     getChildren = (parentId) => {
@@ -143,7 +144,7 @@ class ParentPortal extends Component {
                                         <h3>Practice Schedule: </h3>
                                     </div>
                                     <div className="child-info text-center">
-                                        <h3>Game Schedule: </h3>
+                                        <h3>Game Schedule: {this.state.games} </h3>
                                     </div>
                                   </div>
                                 : null
