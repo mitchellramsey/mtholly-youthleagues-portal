@@ -37,11 +37,11 @@ router.post("/", (req, res) => {
                 res.json({ token })
             } else {
                 // Display error message
-                res.status(401).json({ errors: { form: "The email or password does not match "} })
+                res.status(401).json({ errors: { form: "The password does not match"} })
             }
         } else {
             // Display error message
-            res.status(401).json({ errors: { form: "The email or password does not match "} })
+            res.status(401).json({ errors: { form: "The email address does not exist"} })
         }
     })
 })

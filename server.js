@@ -77,6 +77,9 @@ app.use("/api/children", registerChild);
 const retrieveKidInfo = require("./controllers/retrieveKidInfo");
 app.use("/api/kidInfo/", retrieveKidInfo);
 
+const retrieveSchedules = require("./controllers/retrieveSchedules");
+app.use("/api/findSchedules/", retrieveSchedules);
+
 const assignChildren = require("./controllers/assignChildren");
 app.use("/api/assignChildren", assignChildren);
 app.use("/api/children", assignChildren);

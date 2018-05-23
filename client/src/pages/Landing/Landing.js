@@ -20,7 +20,7 @@ class Landing extends Component {
             <div className="container-fluid">
                 <Nav/>
                     <div className="row">
-                        <div className="col-md-6 form">
+                        <div className="col-md-6 form" id="homepage">
                             <MainHeader/>
                             <FlashMessageList/>
                             <LogInForm
@@ -35,7 +35,6 @@ class Landing extends Component {
                             </div>
                         </div>
                     </div>
-                <Footer/>
             </div>
         )
     }

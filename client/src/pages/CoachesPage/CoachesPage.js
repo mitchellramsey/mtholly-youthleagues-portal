@@ -31,8 +31,10 @@ class CoachPortal extends Component {
             createPracticeForm: false,
             showTeam: false,
             showSchedule: false,
+            showPractice: false,
             practices: [],
-            team_association: []
+            team_association: [],
+            schedules: []
         }       
     }
 
@@ -40,6 +42,7 @@ class CoachPortal extends Component {
     componentDidMount() {
         this.retrieveTeams(this.props.auth.user.id);
         this.retrievePractices(this.props.auth.user.id);
+        this.retrieveSchedules(this.props.auth.user.id);
     }
 
 
@@ -53,13 +56,21 @@ class CoachPortal extends Component {
 
     }
 
-    // Retrieve teams associated with coaches
+    // Retrieve teams for form dropdown
     retrieveTeams = id => {
         API.findTeams(id)
             .then(res => this.setState({ team_association: res.data }))
                 // Handle errors
                 .catch(err =>console.log(err));
 
+    }
+
+    // Retrieve teams with associated coaches
+    retrieveSchedules = (TeamId) => {
+        API.findSchedules(TeamId)
+            .then(res => this.setState({ schedules: res.data }))
+                // Handle errors
+                .catch(err => console.log(err));
     }
 
     // Delete practices
@@ -75,19 +86,39 @@ class CoachPortal extends Component {
     togglePracticeForm () {
         this.setState({
             createPracticeForm: !this.state.createPracticeForm,
-            showSchedule: false,
+            showPractice: false,
             showTeam: false
         });
     }
 
-    // Toggle schedule div
-    toggleScheduleDiv () {
+    // Toggle practice div
+    togglePracticeDiv () {
         this.setState({
-            showSchedule: !this.state.showSchedule,
+            showPractice: !this.state.showPractice,
             createPracticeForm: false,
             showTeam: false
         });
     }
+
+    // Toggle team div
+    toggleTeamDiv () {
+        this.setState({
+            showTeam: !this.state.showTeam,
+            createPracticeForm: false,
+            showPractice: false
+        })
+    }
+
+    // Toggle team div
+    toggleScheduleDiv () {
+        this.setState({
+            showSchedule: !this.state.showSchedule,
+            createPracticeForm: false,
+            showPractice: false,
+            showTeam: false
+        })
+    }
+
     
 
     // Render the page
@@ -108,9 +139,10 @@ class CoachPortal extends Component {
                         <hr className="line"></hr>
 
                             <ul className="mx-auto">
-                                <li><button className="btn btn-primary form-btn button-actions" onClick={() => this.togglePracticeForm()}>Create Practice</button></li>
-                                <li><button className="btn btn-primary form-btn button-actions">Show Team</button></li>
-                                <li><button className="btn btn-primary form-btn button-actions" onClick={() => this.toggleScheduleDiv()}>Show Schedule</button></li>
+                                <li><button className="btn btn-primary form-btn button-actions" onClick={() => this.togglePracticeForm()}>Create Practices</button></li>
+                                <li><button className="btn btn-primary form-btn button-actions" onClick={() => this.toggleTeamDiv()}>Assigned Teams</button></li>
+                                <li><button className="btn btn-primary form-btn button-actions" onClick={() => this.togglePracticeDiv()}>Show Practices</button></li>
+                                <li><button className="btn btn-primary form-btn button-actions" onClick={() => this.toggleScheduleDiv()}>Show Team Schedule</button></li>
                             </ul>
                         </div> 
 
@@ -130,8 +162,9 @@ class CoachPortal extends Component {
                         }
 
                         {/*  --------------------------------------------------- */}
+
                         {/* Show schedule div */}
-                        { this.state.showSchedule ? 
+                        { this.state.showPractice ? 
                             <div className="coachDataDiv col-md-8 mx-auto">
                                 <div className="row text-center">
                                     <div className="col-md-3">
@@ -150,34 +183,103 @@ class CoachPortal extends Component {
                                             <span className="data-header">X</span>
                                         </div>
                                     </div>
-
-                                
-                                    
-																	{this.state.practices.map(practice => (
-																			<ul className="coachDataId" key={practice.id}>
-																					<div className="col-md-3 coachListItem">
-																							<li className="dateTime">{moment(practice.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
-																					</div>
-																					<div className="col-md-2 coachListItem">
-																							<li className="dateTime">{moment(practice.time, "HH:mm:ss").format("hh:MM p")}</li>
-																					</div>
-																					<div className="col-md-3 coachListItem">
-																							<li className="dateTime">{practice.location}</li>
-																					</div>
-																					<div className="col-md-3 coachListItem">
-																							<li className="dateTime">{practice.Team.teamName}</li>
-																					</div> 
-																					<div className="col-md-1 coachListItem">
-																							<DeleteBtn onClick={() => this.deleteCoachPractices(practice.teamid)}/>
-																					</div> 
-																			</ul>
-																	))}
+                                 
+                                    {this.state.practices.map(practice => (
+                                            <ul className="coachDataId" key={practice.id}>
+                                                    <div className="col-md-3 coachListItem">
+                                                            <li className="dateTime">{moment(practice.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
+                                                    </div>
+                                                    <div className="col-md-2 coachListItem">
+                                                            <li className="dateTime">{moment(practice.time, "HH:mm:ss").format("hh:MM p")}</li>
+                                                    </div>
+                                                    <div className="col-md-3 coachListItem">
+                                                            <li className="dateTime">{practice.location}</li>
+                                                    </div>
+                                                    <div className="col-md-3 coachListItem">
+                                                            <li className="dateTime">{practice.Team.teamName}</li>
+                                                    </div> 
+                                                    <div className="col-md-1 coachListItem">
+                                                            <DeleteBtn onClick={() => this.deleteCoachPractices(practice.teamid)}/>
+                                                    </div> 
+                                                    <hr className="line"></hr>
+                                            </ul>
+                                    ))}
                                 
                             </div>
                         // If not toggled to true, hide the form
                             :null
                         }
                         {/*  --------------------------------------------------- */}
+
+                        {/* Show teams div */}
+                        { this.state.showTeam ? 
+                            <div className="coachDataDiv col-md-4 mx-auto">
+                                <div className="row text-center">
+                                    <div className="col-md-12">
+                                            <span className="data-header">Team Name</span>
+                                        </div>
+                                    </div>
+
+                                    {this.state.team_association.map(team => (
+                                            <ul className="coachDataId" key={team.id}>
+                                                    <div className="col-md-4 coachListItem">
+                                                            <li className="dateTime">Id: {team.id}</li>
+                                                    </div>
+                                                    <div className="col-md-8 coachListItem">
+                                                            <li className="dateTime">{team.teamName}</li>
+                                                    </div> 
+                                                    <hr className="line"></hr>
+                                            </ul>
+                                    ))}
+                            </div>
+                            // If not toggled to true, hide the form
+                            :null
+                        }
+
+                         {/*  --------------------------------------------------- */}
+
+                        {/* Show schedule div */}
+                        { this.state.showSchedule ? 
+                            <div className="coachDataDiv col-md-8 mx-auto">
+                                <div className="row text-center">
+                                    <div className="col-md-3">
+                                            <span className="data-header">Date</span>
+                                        </div>
+                                        <div className="col-md-2">
+                                            <span className="data-header">Time</span>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <span className="data-header">Location</span>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <span className="data-header">Opponent</span>
+                                        </div>
+                                    </div>
+                                 
+                                    {this.state.schedules.map(games => (
+                                            <ul className="coachDataId" key={games.id}>
+                                                    <div className="col-md-3 coachListItem">
+                                                            <li className="dateTime">{moment(games.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
+                                                    </div>
+                                                    <div className="col-md-2 coachListItem">
+                                                            <li className="dateTime">{moment(games.time, "HH:mm:ss").format("hh:MM p")}</li>
+                                                    </div>
+                                                    <div className="col-md-3 coachListItem">
+                                                            <li className="dateTime">{games.location}</li>
+                                                    </div>
+                                                    <div className="col-md-3 coachListItem">
+                                                            <li className="dateTime">{games.opponent}</li>
+                                                    </div> 
+                                                    <hr className="line"></hr>
+                                            </ul>
+                                    ))}
+                                
+                            </div>
+                        // If not toggled to true, hide the form
+                            :null
+                        }
+
+                    {/* End col-md-6 */}
                     </div>
 
                     <div className="col-md-6 form">
@@ -185,9 +287,10 @@ class CoachPortal extends Component {
                         {/*  */}
                         </div>
                     </div>
+                {/* End row */}
                 </div>
-                <hr className="line"></hr>
                 <Footer/>
+            {/* End container */}
             </div>
         );
     }
