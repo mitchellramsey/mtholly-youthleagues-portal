@@ -14,8 +14,12 @@ router.get("/:id", (req, res) => {
 		where: {
 			id: req.params.id
 		}
-	}).then(foundGames => {
-		GamesInfo.findAll({}).then(games => {
+	}).then(team => {
+		GamesInfo.findAll({
+			where: {
+				TeamId: team.id
+			}
+		}).then(games => {
 			res.json(games);
 		})
 	});
