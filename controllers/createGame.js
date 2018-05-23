@@ -8,7 +8,8 @@ const express = require("express");
 // Express Router
 const router = express.Router();
 
-
+// ----------------------------------------------------------------------------------- //
+// Finding games related to team
 router.get("/:id", (req, res) => {
 	Team.findOne({
 		where: {
@@ -25,16 +26,9 @@ router.get("/:id", (req, res) => {
 	});
 });
 
+// ----------------------------------------------------------------------------------- //
 router.post("/", (req, res) => {
 
-	// const {
-	// 	errors,
-	// 	isValid
-	// } = validation(req.body);
-	
-	// If theres an error, send it to the client   
-	// if (isValid) {
-		// Deconstructing the object
 		const { date, time, location, team1, team2, sportId } = req.body;
 		// Creating Game Information for Team #1
 		Team.findOne({
@@ -78,19 +72,8 @@ router.post("/", (req, res) => {
 		
 				})
 			})
-		})
-
-		
-			
+		})		
 	})
 		
-
-		
-		
-
-
-
-
-
-
+// ----------------------------------------------------------------------------------- //
 module.exports = router;

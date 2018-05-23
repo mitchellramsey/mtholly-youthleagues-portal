@@ -15,6 +15,7 @@
     overflow: scroll;
     height: 675px;
     width: 400px;
+    margin: 20px 0px;
 }
 
 ::-webkit-scrollbar {
@@ -34,4 +35,11 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555; 
+}
+
+/* IDs */
+/* ------------------------------------------------------------------------- */
+
+#registerchild {
+    padding-top: 15px;
 }

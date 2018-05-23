@@ -35,10 +35,16 @@ class Nav extends Component {
             </ul>
         )
 
-        /* If user is authenticated render a certain link */
+        const nonUserLink = (
+            <ul>
+                <li className="log-out"><Link to="/" className="links nav-item">Home</Link></li>
+            </ul>
+        )
+
+        /* If user is authenticated/not authenticated render a certain link */
         return (
             <nav className="navbar navbar-expand-lg">
-                { isAuthenticated ? userLink : null }
+                { !isAuthenticated ? nonUserLink : isAuthenticated ? userLink : null }
             </nav>
         )
     }

@@ -9,8 +9,9 @@ const middleware = require("../client/src/Shared/Middleware/authenticateMiddlewa
 //Kid Model
 const { Users, Kids, Sport, Team } = require("../models");
 
+// ----------------------------------------------------------------------------------- //
+// Retrieve Kid info
 router.get("/:kidId", (req,res) => {
-    console.log("I made it here");
     
     Kids.findOne({
         where: {
@@ -22,5 +23,5 @@ router.get("/:kidId", (req,res) => {
     });
 });
 
-
+// ----------------------------------------------------------------------------------- //
 module.exports = router;

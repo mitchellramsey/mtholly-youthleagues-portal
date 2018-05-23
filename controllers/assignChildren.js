@@ -9,7 +9,7 @@ const middleware = require("../client/src/Shared/Middleware/authenticateMiddlewa
 //Kid Model
 const { Users, Kids, Sport, Coach } = require("../models");
 
-
+// ----------------------------------------------------------------------------------- //
 router.get("/:sportId", (req,res) => {
  
     Kids.findAll({
@@ -23,6 +23,7 @@ router.get("/:sportId", (req,res) => {
         });
     });
 
+    // ----------------------------------------------------------------------------------- //
 router.put("/", (req,res) => {
     const { playerId , teamId } = req.body;
 
@@ -37,5 +38,5 @@ router.put("/", (req,res) => {
     })
 });
         
-
+// ----------------------------------------------------------------------------------- //
 module.exports = router;

@@ -9,7 +9,7 @@ const middleware = require("../client/src/Shared/Middleware/authenticateMiddlewa
 //Kid Model
 const { Users, Kids, Sport } = require("../models");
 
-
+// ----------------------------------------------------------------------------------- //
 //Register Child POST
 router.post("/", (req,res) => {
     const kid = req.body;
@@ -36,9 +36,9 @@ router.post("/", (req,res) => {
     
     
 });
+// ----------------------------------------------------------------------------------- //
 
 router.get("/:id", (req,res) => {
-    console.log("I made it here");
     Users.findOne({
         where: {
             id: req.params.id
@@ -55,6 +55,7 @@ router.get("/:id", (req,res) => {
     });
 });
 
+// ----------------------------------------------------------------------------------- //
 router.delete("/:id", (req,res) => {
     Kids.destroy({
         where: {

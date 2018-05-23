@@ -10,7 +10,7 @@ const middleware = require("../client/src/Shared/Middleware/authenticateMiddlewa
 const { Users, Kids, Sport, Coach } = require("../models");
 
 
-
+// ----------------------------------------------------------------------------------- //
 router.get("/:sportId", (req,res) => {
     Coach.findAll({
         where: {
@@ -22,6 +22,7 @@ router.get("/:sportId", (req,res) => {
         });
 });
 
+// ----------------------------------------------------------------------------------- //
 router.put("/", (req,res) => {
     const { coachId , teamId } = req.body;
 
@@ -36,6 +37,5 @@ router.put("/", (req,res) => {
     })
 });
 
-
-
+// ----------------------------------------------------------------------------------- //
 module.exports = router;

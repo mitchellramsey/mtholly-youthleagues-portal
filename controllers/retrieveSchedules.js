@@ -13,7 +13,7 @@ const {
 } = require("../models");
 
 // ----------------------------------------------------------------------------------- //
-
+// Retrieve teams assigned from coaches
 router.get("/:TeamId", (req, res) => {
     Team.findOne({
         where: {

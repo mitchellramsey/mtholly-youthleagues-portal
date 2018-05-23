@@ -5,16 +5,14 @@ const express = require("express");
 // Express Router
 const router = express.Router();
 
+// ----------------------------------------------------------------------------------- //
+// Find all coaches
     router.get("/", function(req, res) {
-        Coach.findAll({
-            
-        })
+        Coach.findAll({})
         .then(function(dbCoach){
-           
-            console.log(coachesObj);
-
             res.json(dbCoach);
         });
     });
 
-    module.exports = router;
+// ----------------------------------------------------------------------------------- //
+module.exports = router;
