@@ -37,9 +37,6 @@ module.exports = function (sequelize, DataTypes) {
 			onDelete: "cascade"
 		});
 
-		// GamesInfo.hasMany(models.Team, {
-		// 	onDelete: "cascade"
-		//   });
 	}
 	
 	

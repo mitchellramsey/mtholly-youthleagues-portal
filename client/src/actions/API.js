@@ -45,6 +45,10 @@ export default {
     return axios.post("/api/createGame/", gameData);
   },
 
+  getGame: function() {
+    return axios.get("/api/getGame");
+  },
+
   assignPlayer: function(data) {
     return axios.put("/api/children", data);
   },

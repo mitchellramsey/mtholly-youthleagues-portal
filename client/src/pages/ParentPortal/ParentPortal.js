@@ -30,7 +30,8 @@ class ParentPortal extends Component {
             showChildTeam: false,
             kids: [],
             sports: [],
-            kidInfo: []
+            kidInfo: [],
+            games: []
         }
 
     }
@@ -65,6 +66,11 @@ class ParentPortal extends Component {
           .catch(err => console.log(err));
       }
     
+    getGame = (TeamId) => {
+    API.getGame()
+        .then(res => this.setState({ games: res.data }))
+        .catch(err => console.log(err));
+    }
 
     // Toggle child form on click
     toggleChildForm () {
