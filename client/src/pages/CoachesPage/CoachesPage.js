@@ -87,7 +87,8 @@ class CoachPortal extends Component {
         this.setState({
             createPracticeForm: !this.state.createPracticeForm,
             showPractice: false,
-            showTeam: false
+            showTeam: false,
+            showSchedule: false
         });
     }
 
@@ -96,7 +97,8 @@ class CoachPortal extends Component {
         this.setState({
             showPractice: !this.state.showPractice,
             createPracticeForm: false,
-            showTeam: false
+            showTeam: false,
+            showSchedule: false
         });
     }
 
@@ -105,7 +107,8 @@ class CoachPortal extends Component {
         this.setState({
             showTeam: !this.state.showTeam,
             createPracticeForm: false,
-            showPractice: false
+            showPractice: false,
+            showSchedule: false,
         })
     }
 
