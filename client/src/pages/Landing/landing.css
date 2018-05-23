@@ -16,9 +16,12 @@
 }
 
 .line { 
-    margin: 25px 0;
     height: 1px;
     background: black;
     background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+}
+
+.homepage {
+    margin-bottom: 40px;
 }
 

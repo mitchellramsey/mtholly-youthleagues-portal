@@ -6,7 +6,6 @@ import FlashMessageList from "../../components/FlashMessageList/FlashMessageList
 import MainHeader from "../../components/MainHeader";
 import LogInForm from "../../components/LogInForm/LogInForm";
 import Nav from "../../components/Nav/Nav";
-import Footer from "../../components/Footer/Footer";
 
 // CSS
 import "./landing.css";
@@ -20,7 +19,7 @@ class Landing extends Component {
             <div className="container-fluid">
                 <Nav/>
                     <div className="row">
-                        <div className="col-md-6 form">
+                        <div className="col-md-6 form homepage">
                             <MainHeader/>
                             <FlashMessageList/>
                             <LogInForm
@@ -35,7 +34,6 @@ class Landing extends Component {
                             </div>
                         </div>
                     </div>
-                <Footer/>
             </div>
         )
     }

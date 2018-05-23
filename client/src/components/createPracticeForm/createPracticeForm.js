@@ -70,7 +70,6 @@ class CreatePracticeForm extends Component {
                         });
 
             this.props.createPracticePost(this.state).then(
-                // Then, redirect
                 () => {
                     this.props.addFlashMessage({
                         type: "Success",

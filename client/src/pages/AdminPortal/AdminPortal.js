@@ -339,7 +339,7 @@ handleGameCreate = event => {
 
                 {
                   this.state.assignPeople
-                    ? <div className="assignTeams">
+                    ? <div className="assignTeams col-md-6 mx-auto child-form">
                         <form className="form text-center assignPlayers mx-auto child-form" onSubmit={this.handleAssignPlayer}>
                           <h3>Assign Players</h3>
                           <select
@@ -401,7 +401,7 @@ handleGameCreate = event => {
 
                 {
                   this.state.createSchedule
-                    ? <div className="assignTeams">
+                    ? <div className="assignTeams col-md-6 mx-auto child-form">
                         <form className="form text-center findTeams" onSubmit={this.handleGameCreate}>
                           <h3>Create Game</h3>
                           {/* Date */}

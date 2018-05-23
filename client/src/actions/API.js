@@ -60,6 +60,10 @@ export default {
   retrieveKidInfo: function(kidId) {
     return axios.get("/api/kidInfo/" + kidId);
   },
+
+  findSchedules: function(teamId) {
+    return axios.get(`/api/findSchedules/${teamId}`)
+  },
   
   childPaid: function (paymentId) {
     const paidInfo = {
