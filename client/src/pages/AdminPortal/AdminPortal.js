@@ -246,7 +246,7 @@ handleGameCreate = event => {
         sportId: this.state.sport
       }
 
-      console.log(gameData);
+   
       API.createNewGame(gameData).then(
           // Then, redirect
           () => {

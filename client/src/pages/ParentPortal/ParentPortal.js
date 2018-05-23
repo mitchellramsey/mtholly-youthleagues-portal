@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import PayPal from "../../PayPal/PayPal";
+import moment from "moment";
 
 // Component
 import Nav from "../../components/Nav";
@@ -31,7 +32,8 @@ class ParentPortal extends Component {
             kids: [],
             sports: [],
             kidInfo: [],
-            games: []
+            games: [],
+            practices: []
         }
 
     }
@@ -39,7 +41,10 @@ class ParentPortal extends Component {
 
     displayKidInfo = (kidId) => {
         API.retrieveKidInfo(kidId)
-           .then(res => this.setState({kidInfo: res.data, showChildTeam:!this.state.showChildTeam}))
+           .then(res => {
+               const [ kid, gamesInfo, practiceInfo ] = res.data;
+               this.setState({kidInfo: kid, games: gamesInfo, practices:practiceInfo, showChildTeam: !this.state.showChildTeam})
+           })
            .catch(err => console.log(err));
     }
 
@@ -138,13 +143,41 @@ class ParentPortal extends Component {
                                 this.state.showChildTeam
                                 ? <div>
                                     <div className="child-info text-center">
-                                        <h3>Team Name: {this.state.kidInfo.Team.teamName}</h3>
+                                        <h3><strong>Team Name: {this.state.kidInfo.Team.teamName}</strong></h3>
                                     </div>
                                     <div className="child-info text-center">
-                                        <h3>Practice Schedule: </h3>
+                                        <h3><strong>Practice Schedule: </strong></h3>
+                                        {this.state.practices.length ? (
+                                            <div>
+                                            <h4><strong>Date - Time - Location</strong></h4>
+                                            <List>
+                                                {this.state.practices.map(practice => (
+                                                    <li className="list-group-item" >
+                                                       <h4> {moment(practice.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")} - {moment(practice.time, "HH:mm:ss").format("hh:MM p")} - {practice.location}</h4>
+                                                    </li>
+                                                ))}
+                                            </List>
+                                            </div>
+                                        ) : (
+                                            <h4>No Practices Scheduled</h4>
+                                        )}
                                     </div>
                                     <div className="child-info text-center">
-                                        <h3>Game Schedule: {this.state.games} </h3>
+                                        <h3><strong>Game Schedule:</strong></h3>
+                                        {this.state.games.length ? (
+                                            <div>
+                                            <h4><strong>Date - Time - Location - Opponent</strong></h4>
+                                            <List>
+                                                {this.state.games.map(game => (
+                                                    <li className="list-group-item" >
+                                                       <h4> {moment(game.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")} - {moment(game.time, "HH:mm:ss").format("hh:MM p")} - {game.location} - {game.opponent}</h4>
+                                                    </li>
+                                                ))}
+                                            </List>
+                                            </div>
+                                        ) : (
+                                            <h4>No Games Scheduled</h4>
+                                        )}
                                     </div>
                                   </div>
                                 : null
