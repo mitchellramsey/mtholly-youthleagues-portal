@@ -34,6 +34,7 @@ class CoachPortal extends Component {
             showPractice: false,
             practices: [],
             team_association: [],
+            teams: [],
             schedules: []
         }       
     }
@@ -61,7 +62,7 @@ class CoachPortal extends Component {
         API.coachFindTeams(id)
             .then(res => {
                 console.log(res.data);
-                this.setState({ team_association: res.data.Team })
+                this.setState({ teams: res.data.Team })
             })
                 // Handle errors
                 .catch(err =>console.log(err));
@@ -227,12 +228,12 @@ class CoachPortal extends Component {
                                     </div>
 
                                     
-                                        <ul className="coachDataId" key={this.state.team_association.id}>
+                                        <ul className="coachDataId" key={this.state.teams.id}>
                                                 <div className="col-md-4 coachListItem">
-                                                        <li className="dateTime">Id: {this.state.team_association.id}</li>
+                                                        <li className="dateTime">Id: {this.state.teams.id}</li>
                                                 </div>
                                                 <div className="col-md-8 coachListItem">
-                                                        <li className="dateTime">{this.state.team_association.teamName}</li>
+                                                        <li className="dateTime">{this.state.teams.teamName}</li>
                                                 </div> 
                                                 <hr className="line"></hr>
                                         </ul>
