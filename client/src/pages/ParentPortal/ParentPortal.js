@@ -78,6 +78,12 @@ class ParentPortal extends Component {
         .catch(err => console.log(err));
     }
 
+    payForChild = (payInfo) => {
+        API.childPaid(payInfo)
+            .then(res => this.getChildren(this.props.auth.user.id))
+            .catch(err => console.log(err));
+    }
+
     // Toggle child form on click
     toggleChildForm () {
         this.setState({
@@ -101,7 +107,7 @@ class ParentPortal extends Component {
                         <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
                     </div>
                     <div className="paypal">Pay with PayPal
-                    <PayPal kids = {this.state.kids}/>
+                    <PayPal payForChild = {this.payForChild} parentId = {this.props.auth.user.id}/>
                     </div>
                     <div className="childList">
                         <h3>Registered Children</h3>
