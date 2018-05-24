@@ -66,6 +66,9 @@ app.use("/api/getGame", createGame);
 const createPractice = require("./controllers/createPractice");
 app.use("/api/createPractice", createPractice);
 
+const coachFindTeams = require("./controllers/coachFindTeams");
+app.use("/api/coachFindTeams/", coachFindTeams);
+
 const createTeam = require("./controllers/createTeam");
 app.use("/api/teams", createTeam);
 app.use("/api/findteams/", createTeam);

@@ -58,8 +58,11 @@ class CoachPortal extends Component {
 
     // Retrieve teams for form dropdown
     retrieveTeams = id => {
-        API.findTeams(id)
-            .then(res => this.setState({ team_association: res.data }))
+        API.coachFindTeams(id)
+            .then(res => {
+                console.log(res.data);
+                this.setState({ team_association: res.data.Team })
+            })
                 // Handle errors
                 .catch(err =>console.log(err));
 
@@ -223,17 +226,17 @@ class CoachPortal extends Component {
                                         </div>
                                     </div>
 
-                                    {this.state.team_association.map(team => (
-                                            <ul className="coachDataId" key={team.id}>
-                                                    <div className="col-md-4 coachListItem">
-                                                            <li className="dateTime">Id: {team.id}</li>
-                                                    </div>
-                                                    <div className="col-md-8 coachListItem">
-                                                            <li className="dateTime">{team.teamName}</li>
-                                                    </div> 
-                                                    <hr className="line"></hr>
-                                            </ul>
-                                    ))}
+                                    
+                                        <ul className="coachDataId" key={this.state.team_association.id}>
+                                                <div className="col-md-4 coachListItem">
+                                                        <li className="dateTime">Id: {this.state.team_association.id}</li>
+                                                </div>
+                                                <div className="col-md-8 coachListItem">
+                                                        <li className="dateTime">{this.state.team_association.teamName}</li>
+                                                </div> 
+                                                <hr className="line"></hr>
+                                        </ul>
+
                             </div>
                             // If not toggled to true, hide the form
                             :null

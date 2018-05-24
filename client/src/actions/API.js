@@ -41,6 +41,10 @@ export default {
     return axios.get("/api/findteams/" + sportId);
   },
 
+  coachFindTeams: function(id) {
+    return axios.get(`/api/coachFindTeams/${id}`);
+  },
+
   createNewGame: function(gameData) {
     return axios.post("/api/createGame/", gameData);
   },
