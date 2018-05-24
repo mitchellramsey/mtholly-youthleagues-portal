@@ -5,6 +5,8 @@ const express = require("express");
 // Express Router
 const router = express.Router();
 
+// ----------------------------------------------------------------------------------- //
+// Find all sports
 router.get("/", function (req, res) {
 	Sport.findAll({})
 		.then(function (dbSport) {
@@ -13,8 +15,9 @@ router.get("/", function (req, res) {
 		});
 });
 
+// ----------------------------------------------------------------------------------- //
+// Create a new sport
 router.post('/', function (req, res) {
-
 
 	// Deconstructing the variable
 	const {	name } = req.body;

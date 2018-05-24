@@ -38,6 +38,12 @@ class ParentPortal extends Component {
 
     }
     
+// ---------------------------------------------------------------------------------------------------------
+    componentDidMount() {
+        this.getChildren(this.props.auth.user.id);
+        this.getSports();
+        this.getGame();
+    }
 
     displayKidInfo = (kidId) => {
         API.retrieveKidInfo(kidId)
@@ -46,12 +52,6 @@ class ParentPortal extends Component {
                this.setState({kidInfo: kid, games: gamesInfo, practices:practiceInfo, showChildTeam: !this.state.showChildTeam})
            })
            .catch(err => console.log(err));
-    }
-
-    componentDidMount() {
-        this.getChildren(this.props.auth.user.id);
-        this.getSports();
-        this.getGame();
     }
 
     getChildren = (parentId) => {
@@ -80,7 +80,6 @@ class ParentPortal extends Component {
 
     // Toggle child form on click
     toggleChildForm () {
-        console.log(this);
         this.setState({
             showChildForm: !this.state.showChildForm
         });
@@ -109,7 +108,7 @@ class ParentPortal extends Component {
                          {this.state.kids.length ? (
                             <List>
                                 {this.state.kids.map(kid => (
-                                    <li className="list-group-item" >
+                                    <li className="list-group-item" key={kid.id}>
                                     <h3>
                                     <button className="btn btn-primary kidButton button-actions" onClick={() => this.displayKidInfo(kid.id)} value={kid.id}>
                                         <h4><strong> {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name}</strong></h4>

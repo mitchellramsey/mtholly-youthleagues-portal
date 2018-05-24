@@ -7,6 +7,8 @@ const {
 const express = require("express");
 // Express Router
 const router = express.Router();
+
+// ----------------------------------------------------------------------------------- //
 // retrieve all sports from data base.
 router.get("/:id", (req, res) => {
 	Team.findAll({
@@ -19,7 +21,7 @@ router.get("/:id", (req, res) => {
 	});
 
 
-
+// ----------------------------------------------------------------------------------- //
 // post or add new sport to data base.
 router.post("/", (req, res) => {
 	//Deconstructing the variable
@@ -36,5 +38,5 @@ router.post("/", (req, res) => {
 
 });
 
-
+// ----------------------------------------------------------------------------------- //
 module.exports = router;
