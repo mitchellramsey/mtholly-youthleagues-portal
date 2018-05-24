@@ -69,10 +69,7 @@ export default {
     return axios.get(`/api/findSchedules/${teamId}`)
   },
   
-  childPaid: function (paymentId) {
-    const paidInfo = {
-      paymentId: paymentId
-    }
+  childPaid: function (paidInfo) {
     return axios.put("/api/paid", paidInfo)
   }
 }

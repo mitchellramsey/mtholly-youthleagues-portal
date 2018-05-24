@@ -95,6 +95,8 @@ app.use("/api/coach", assignCoach);
 const adminLogInControllers = require("./controllers/adminLogInControllers");
 app.use("/api/auth/admin", adminLogInControllers);
 
+const payForChild = require("./controllers/payForChild-controller");
+app.use("/api/paid", payForChild);
 // ----------------------------------------------------------------------------------- //
 
 // ----------------------------------------------------------------------------------- //
