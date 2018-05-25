@@ -46,6 +46,12 @@ span.help-block {
     border-color: #fff;
 }
 
+.btn-primary:disabled,
+.btn-primary:disabled:hover {
+    background-color: lightgrey;
+    border-color: #fff;
+}
+
 .continue> button {
     background-color: #e2dfdf;
     border-color: #e2dfdf;
