@@ -297,7 +297,7 @@ handleGameCreate = event => {
                             value={this.state.name}
                             placeholder="Sport"
                             />
-                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                          <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                       </form>                      
                     : null
                 }
@@ -479,7 +479,7 @@ handleGameCreate = event => {
                             <option value={team.id} key={team.id}>{team.teamName}</option>
                             ))}
                           </select>
-                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                          <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                         </form>       
                         </div>               
                     : null

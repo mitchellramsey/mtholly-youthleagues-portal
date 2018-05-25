@@ -2,7 +2,6 @@
 import axios from "axios";
 
 // ----------------------------------------------------------------------------------- //
-// Test route for authentication middleware in express
 export function createGamePost(data) {
     return dispatch => {
         return axios.post("/api/createGame", data);

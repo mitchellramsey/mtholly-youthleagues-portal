@@ -29,10 +29,10 @@ router.post("/", (req, res) => {
             where: {
                 email: email
             }
-        }).then(function(user) {
+        }).then(function(user, err) {
             // If the email already exists
             if (user) {
-                errors.email = "This email is already in use";
+                res.status(400).json(errors);
             } else if(!user) {
 
                 // Generating hashed passwords
@@ -52,11 +52,6 @@ router.post("/", (req, res) => {
                 }
                 // Else, create user
                 Users.create(data).then(function(newUser, created) {
-                    // If it is a user that already exists
-                    if (!newUser) {
-                        return false;
-                        console.log("already exists")
-                    }
                     // If new user
                     if (newUser) {
                         return newUser;
@@ -64,7 +59,7 @@ router.post("/", (req, res) => {
          
                 }).then(newUser => res.json({ success: true }))
                     // Catch errors
-                    .catch(err => res.status(500).json({ errors: err }));
+                    .catch(err => console.log(err));
             } 
         })
     }  else if(!isValid) {

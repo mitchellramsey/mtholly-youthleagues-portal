@@ -38,7 +38,7 @@ class CoachSignupForm extends Component {
                 errors: {},
                 isLoading: false,
                 coach: true,
-                
+                invalid: false,
             };
         
         // Binding form submittion and input change to "this" specific one
@@ -78,16 +78,20 @@ class CoachSignupForm extends Component {
             this.props.isCoachExists(value).then(res => {
                 // Defining errors
                 let errors = this.state.errors;
+                let invalid;
                 // If error
                 if(res.data.user) {
                     // set error
                     errors[field] = "This email is already taken";
+                    // Disables the submit button until an un-used email is typed in the field
+                    invalid = true
                 } else {
                     // Leave the field empty
                     errors[field] = "";
+                    invalid = false
                 }
                 // Set State with errors
-                this.setState({ errors });
+                this.setState({ errors, invalid });
             });
         }
     }
@@ -260,7 +264,7 @@ class CoachSignupForm extends Component {
                         value={this.state.zip}
                         placeholder="Zip"
                     />
-                    <button className="btn btn-primary form-btn mx-auto submit-btn button-actions">Submit</button>
+                    <button className="btn btn-primary form-btn mx-auto submit-btn button-actions" disabled={this.state.isLoading || this.state.invalid}>Submit</button>
                 </form>         
             </div>
         )

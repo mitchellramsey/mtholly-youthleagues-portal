@@ -33,6 +33,7 @@ class SignupForm extends Component {
                 state: "",
                 county: "",
                 isLoading: false,
+                invalid: false,
                 errors: {}
             };
         
@@ -76,9 +77,12 @@ class SignupForm extends Component {
                 if(res.data.user) {
                     // set error
                     errors[field] = "This email is already taken";
+                    // Disables the submit button until an un-used email is typed in the field
+                    invalid = true
                 } else {
                     // Leave the field empty
                     errors[field] = "";
+                    invalid = false
                 }
                 // Set State with errors
                 this.setState({ errors, invalid });
@@ -253,7 +257,7 @@ class SignupForm extends Component {
                             value={this.state.zip}
                             placeholder="Zip"
                         />
-                        <button className="btn btn-primary form-btn mx-auto submit-btn button-actions" disabled={this.state.isLoading}>Submit</button>
+                        <button className="btn btn-primary form-btn mx-auto submit-btn button-actions" disabled={this.state.isLoading || this.state.invalid}>Submit</button>
                     </form>         
             </div>
         )

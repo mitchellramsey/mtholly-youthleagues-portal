@@ -206,7 +206,7 @@ class CoachPortal extends Component {
                                                             <li className="dateTime">{practice.Team.teamName}</li>
                                                     </div> 
                                                     <div className="col-md-1 coachListItem">
-                                                            <DeleteBtn onClick={() => this.deleteCoachPractices(practice.teamid)}/>
+                                                            <DeleteBtn onClick={() => this.deleteCoachPractices(practice.id)}/>
                                                     </div> 
                                                     <hr className="line"></hr>
                                             </ul>

@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
         }).then(function(user) {
             // If the email already exists
             if (user) {
-                return console.log("That email is already in use.");
+                res.status(400).json(errors);
             } else {
 
                 // Generating hashed passwords
@@ -48,19 +48,19 @@ router.post("/", (req, res) => {
                 }
                 // Else, create user
                 Coach.create(data).then(function(newUser, created) {
-                    // If it is a user that already exists
-                    if (!newUser) {
-                        return false;
-                        console.log("already exists")
-                    }
                     // If new user
                     if (newUser) {
                         return newUser;
                     }
          
                 }).then(newUser => res.json({ success: true }))
+                    // Catch errors
+                    .catch(err => console.log(err));
             }
-        });
+        })
+    }   else if(!isValid) {
+        // send errors
+        res.status(400).json(errors);
     }
 });
 
