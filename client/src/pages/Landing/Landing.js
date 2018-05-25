@@ -29,7 +29,7 @@ class Landing extends Component {
                             />
                         </div>
 
-                        <div className="col-md-6 home-bg">
+                        <div className="col-md-6 home-bg homepage">
                             <div className="landing-bg">
                             </div>
                         </div>

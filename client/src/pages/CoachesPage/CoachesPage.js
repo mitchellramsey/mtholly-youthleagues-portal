@@ -161,7 +161,7 @@ class CoachPortal extends Component {
                             addFlashMessage={addFlashMessage}
                             coachId={this.props.auth.user.id}
                             retrievePractices={this.retrievePractices}
-                            team_association={this.state.team_association}
+                            teams={this.state.teams}
                             teamId={this.props.teamId}
                         />
                         // If not toggled to true, hide the form
@@ -172,7 +172,7 @@ class CoachPortal extends Component {
 
                         {/* Show schedule div */}
                         { this.state.showPractice ? 
-                            <div className="coachDataDiv col-md-8 mx-auto">
+                            <div className="coachDataDiv col-md-8 mx-auto homepage">
                                 <div className="row text-center">
                                     <div className="col-md-3">
                                             <span className="data-header">Date</span>
@@ -220,7 +220,7 @@ class CoachPortal extends Component {
 
                         {/* Show teams div */}
                         { this.state.showTeam ? 
-                            <div className="coachDataDiv col-md-4 mx-auto">
+                            <div className="coachDataDiv col-md-4 mx-auto homepage">
                                 <div className="row text-center">
                                     <div className="col-md-12">
                                             <span className="data-header">Team Name</span>
@@ -247,7 +247,7 @@ class CoachPortal extends Component {
 
                         {/* Show schedule div */}
                         { this.state.showSchedule ? 
-                            <div className="coachDataDiv col-md-8 mx-auto">
+                            <div className="coachDataDiv col-md-8 mx-auto homepage">
                                 <div className="row text-center">
                                     <div className="col-md-3">
                                             <span className="data-header">Date</span>

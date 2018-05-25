@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Loading from "react-loading-animation";
 
 // Actions
 import { adminLogInRequest } from "../../actions/adminLogInRequest";
@@ -76,6 +77,11 @@ class AdminLogIn extends Component {
         const { errors, isLoading } = this.state;
         // Acessing authenticated property
         const { isAuthenticated } = this.props.auth;
+
+        // Loading Spinner
+        if(isLoading) {
+            return <Loading/>
+        }
 
         // Continue button
         const continueButton = (

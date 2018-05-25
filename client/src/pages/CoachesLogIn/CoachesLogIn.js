@@ -19,7 +19,7 @@ class CoachesLogIn extends Component {
             <div className="container-fluid">
                 <Nav/>
                 <div className="row">
-                    <div className="col-md-6 form">
+                    <div className="col-md-6 form homepage">
                         <MainHeader/>
                         <FlashMessageList/>
                         <CoachForm

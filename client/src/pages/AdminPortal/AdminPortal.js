@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Loading from "react-loading-animation";
 
 // Component
 import Nav from "../../components/Nav/Nav";
@@ -162,6 +163,7 @@ handleSportCreate = event => {
     // Preventing default form behavior
     event.preventDefault();
     // If state is valid, perform the AJAX request
+        this.setState({ errors: {}, isLoading: true})
         API.addSport(this.state.name).then(
             // Then, redirect
             () => {
@@ -182,6 +184,7 @@ handleAssignPlayer = event => {
         playerId: this.state.playerId,
         teamId: this.state.playerTeam
       }
+      this.setState({ errors: {}, isLoading: true})
       API.assignPlayer(data).then(
           // Then, redirect
           () => {
@@ -202,6 +205,7 @@ handleAssignCoach = event => {
         coachId: this.state.coachId,
         teamId: this.state.coachTeam
       }
+      this.setState({ errors: {}, isLoading: true})
       API.assignCoach(data).then(
           // Then, redirect
           () => {
@@ -222,6 +226,7 @@ handleTeamCreate = event => {
         sportID: this.state.sport,
         teamName: this.state.teamName
       }
+      this.setState({ errors: {}, isLoading: true})
       API.createTeam(teamData).then(
           // Then, redirect
           () => {
@@ -261,6 +266,14 @@ handleGameCreate = event => {
   // Render the page
   render() {
 
+    // Deconstructing the object
+    const { errors, isLoading } = this.state;
+
+    // Loading Spinner
+    if(isLoading) {
+      return <Loading/>
+    }
+
     return (
       <div className="container-fluid">
         <Nav />
@@ -298,10 +311,11 @@ handleGameCreate = event => {
                   onChange={this.handleInputChange}
                   value={this.state.sport}
                   disabled={this.state.optionDisabled}
+                  required="required"
                   >
-                  <option value="">Sport</option>
+                  <option value="" disabled="disabled">Sport</option>
                   {this.state.sports.map(sport => (
-                  <option value={sport.id} key={sport.id}>{sport.name}</option>
+                    <option value={sport.id} key={sport.id}>{sport.name}</option>
                   ))}
                   </select>
                 {this.state.sport ?
@@ -347,22 +361,24 @@ handleGameCreate = event => {
                             name="playerId" 
                             onChange={this.handleInputChange}
                             value={this.state.playerId}
+                            required="required"
                           >
-                            <option value="">Player</option>
-                            {this.state.players.map(player => (
-                            <option value={player.id} key={player.id}>{player.first_name} {player.last_name}</option>
-                            ))}
+                            <option value="" disabled="disabled">Player</option>
+                              {this.state.players.map(player => (
+                                <option value={player.id} key={player.id}>{player.first_name} {player.last_name}</option>
+                              ))}
                           </select>
                           <select
                             className="adminSportInput form-control" 
                             name="playerTeam" 
                             onChange={this.handleInputChange}
                             value={this.state.playerTeam}
+                            required="required"
                           >
-                            <option value="">Team</option>
-                            {this.state.teams.map(team => (
-                            <option value={team.id} key={team.id}>{team.teamName}</option>
-                            ))}
+                            <option value="" disabled="disabled">Team</option>
+                              {this.state.teams.map(team => (
+                                <option value={team.id} key={team.id}>{team.teamName}</option>
+                              ))}
                           </select>
                           <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                         </form>
@@ -374,22 +390,24 @@ handleGameCreate = event => {
                               name="coachId" 
                               onChange={this.handleInputChange}
                               value={this.state.coachId}
+                              required="required"
                             >
-                              <option value="">Coach</option>
-                              {this.state.coaches.map(coach => (
-                              <option value={coach.id} key={coach.id}>{coach.first_name} {coach.last_name}</option>
-                              ))}
+                              <option value="" disabled="disabled">Coach</option>
+                                {this.state.coaches.map(coach => (
+                                  <option value={coach.id} key={coach.id}>{coach.first_name} {coach.last_name}</option>
+                                ))}
                             </select>
                             <select
                               className="adminSportInput form-control" 
                               name="coachTeam" 
                               onChange={this.handleInputChange}
                               value={this.state.coachTeam}
+                              required="required"
                             >
-                              <option value="">Team</option>
-                              {this.state.teams.map(team => (
-                              <option value={team.id} key={team.id}>{team.teamName}</option>
-                              ))}
+                              <option value="" disabled="disabled">Team</option>
+                                {this.state.teams.map(team => (
+                                  <option value={team.id} key={team.id}>{team.teamName}</option>
+                                ))}
                             </select>
                             <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                           </form>
@@ -442,19 +460,21 @@ handleGameCreate = event => {
                             name="team1" 
                             onChange={this.handleInputChange}
                             value={this.state.team1}
+                            required="required"
                           >
-                            <option value="">Team1</option>
-                            {this.state.teams.map(team => (
-                            <option value={team.id} key={team.id}>{team.teamName}</option>
-                            ))}
+                            <option value="" disabled="disabled">Team1</option>
+                              {this.state.teams.map(team => (
+                                <option value={team.id} key={team.id}>{team.teamName}</option>
+                              ))}
                           </select>
                           <select
                             className="adminSportInput form-control" 
                             name="team2" 
                             onChange={this.handleInputChange}
                             value={this.state.team2}
+                            required="required"
                           >
-                            <option value="">Team2</option>
+                            <option value="" disabled="disabled">Team2</option>
                             {this.state.teams.map(team => (
                             <option value={team.id} key={team.id}>{team.teamName}</option>
                             ))}
