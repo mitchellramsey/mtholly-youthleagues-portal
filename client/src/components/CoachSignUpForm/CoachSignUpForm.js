@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
+import Loading from "react-loading-animation";
 
 // Component
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
@@ -119,7 +120,12 @@ class CoachSignupForm extends Component {
     // Render the form
     render() {
         // Setting the errors variable
-        const { errors } = this.state;
+        const { errors, isLoading } = this.state;
+
+        // Loading Spinner
+        if(isLoading) {
+            return <Loading/>
+        }
 
         return(
             <div className="col-md-6 text-center mx-auto">

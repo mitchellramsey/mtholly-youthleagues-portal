@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
+import Loading from "react-loading-animation";
 
 // Component
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
@@ -31,6 +32,7 @@ class SignupForm extends Component {
                 city: "",
                 state: "",
                 county: "",
+                isLoading: false,
                 errors: {}
             };
         
@@ -112,7 +114,12 @@ class SignupForm extends Component {
     // Render the form
     render() {
         // Setting the errors object
-        const { errors } = this.state;
+        const { errors, isLoading } = this.state;
+
+        // Loading Spinner
+        if(isLoading) {
+            return <Loading/>
+        }
 
         return(
             <div className="col-md-6 text-center mx-auto">

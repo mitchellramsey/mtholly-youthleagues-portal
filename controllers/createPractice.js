@@ -91,6 +91,7 @@ router.delete("/:id", (req, res) => {
 });
 
 // ----------------------------------------------------------------------------------- //
+// Finding and including teams related to coach
 router.get("/:id", (req, res) => {
 	Coach.findOne({
 		where: {
@@ -104,10 +105,6 @@ router.get("/:id", (req, res) => {
 		console.log(teams);
 	});
 });
-
-
-
-
 
 // ----------------------------------------------------------------------------------- //
 module.exports = router;

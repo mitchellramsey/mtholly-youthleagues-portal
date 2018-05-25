@@ -9,6 +9,7 @@
     background-size: cover;
     height: 750px;
     border: 1px solid #000;
+    background-position: center;
 }
 
 .col-home-bg {
@@ -16,9 +17,12 @@
 }
 
 .line { 
-    margin: 25px 0;
     height: 1px;
     background: black;
     background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+}
+
+.homepage {
+    margin-bottom: 40px;
 }
 

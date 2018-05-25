@@ -3,6 +3,7 @@ import React from "react";
 import { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+import Loading from "react-loading-animation";
 
 // Component
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
@@ -27,6 +28,7 @@ class CreatePracticeForm extends Component {
                 location: "", 
                 team: "",
                 coachId: props.coachId,
+                isLoading: false,
                 errors: {}
             };
         
@@ -66,17 +68,17 @@ class CreatePracticeForm extends Component {
                             date: "",
                             time: "",
                             location: "", 
-                            team: ""
+                            team: "",
+                            isLoading: true
                         });
 
             this.props.createPracticePost(this.state).then(
-                // Then, redirect
                 () => {
                     this.props.addFlashMessage({
                         type: "Success",
                         text: "You have created a practice successfully"
                     });
-           
+                    this.setState({ isLoading: false })
                 },
                 // Setting errors
                 (err) => this.setState({ errors: err.response.data }),
@@ -87,12 +89,16 @@ class CreatePracticeForm extends Component {
 
     // Render the component
     render() {
-
         // Setting the errors object
-        const { errors } = this.state;
+        const { errors, isLoading } = this.state;
+
+        // Loading Spinner
+        if(isLoading) {
+            return <Loading/>
+        }
 
         return(
-            <div className="col-md-6 mx-auto">
+            <div className="col-md-6 mx-auto homepage">
             {/* Form */}
                 <form className="form" onSubmit={this.handleFormSubmit}>
                     {/* Date */}
@@ -139,9 +145,7 @@ class CreatePracticeForm extends Component {
                                 required="required"
                             >
                             <option value="" disabled="disabled">Team</option>
-                            {this.props.team_association.map(team => (
-                                <option value={team.id} key={team.id}>{team.teamName}</option>
-                            ))}
+                                <option value={this.props.teams.id} key={this.props.teams.id}>{this.props.teams.teamName}</option>
                             </select>
 
                     </div>

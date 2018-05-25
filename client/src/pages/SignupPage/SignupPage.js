@@ -12,7 +12,6 @@ import FlashMessageList from "../../components/FlashMessageList/FlashMessageList
 import Nav from "../../components/Nav";
 import MainHeader from "../../components/MainHeader";
 import SignupForm from "../../components/SignUpForm";
-import Footer from "../../components/Footer/Footer";
 
 
 // CSS
@@ -33,7 +32,7 @@ class SignupPage extends Component {
             <div className="container-fluid">
                 <Nav/>
                 <div className="row">
-                    <div className="col-md-6 form">
+                    <div className="col-md-6 form homepage">
                         <MainHeader/>
                         <FlashMessageList/>
                         <SignupForm
@@ -43,12 +42,11 @@ class SignupPage extends Component {
                         />
                     </div>
 
-                    <div className="col-md-6 home-bg">
+                    <div className="col-md-6 home-bg homepage">
                         <div className="landing-bg">
                         </div>
                     </div>
                 </div>
-                <Footer/>
             </div>
         )
     }

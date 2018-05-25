@@ -66,6 +66,9 @@ app.use("/api/getGame", createGame);
 const createPractice = require("./controllers/createPractice");
 app.use("/api/createPractice", createPractice);
 
+const coachFindTeams = require("./controllers/coachFindTeams");
+app.use("/api/coachFindTeams/", coachFindTeams);
+
 const createTeam = require("./controllers/createTeam");
 app.use("/api/teams", createTeam);
 app.use("/api/findteams/", createTeam);
@@ -78,6 +81,9 @@ app.use("/api/children", registerChild);
 const retrieveKidInfo = require("./controllers/retrieveKidInfo");
 app.use("/api/kidInfo/", retrieveKidInfo);
 
+const retrieveSchedules = require("./controllers/retrieveSchedules");
+app.use("/api/findSchedules/", retrieveSchedules);
+
 const assignChildren = require("./controllers/assignChildren");
 app.use("/api/assignChildren", assignChildren);
 app.use("/api/children", assignChildren);
@@ -89,6 +95,8 @@ app.use("/api/coach", assignCoach);
 const adminLogInControllers = require("./controllers/adminLogInControllers");
 app.use("/api/auth/admin", adminLogInControllers);
 
+const payForChild = require("./controllers/payForChild-controller");
+app.use("/api/paid", payForChild);
 // ----------------------------------------------------------------------------------- //
 
 // ----------------------------------------------------------------------------------- //

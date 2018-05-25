@@ -7,17 +7,15 @@ const express = require("express");
 // Express Router
 const router = express.Router();
 
-
+// ----------------------------------------------------------------------------------- //
 router.get("/", function (req, res) {
 	Manager.findAll({})
 		.then(function (dbManager) {
-
-			console.log(dbManager);
-
 			res.json(dbManager);
 		});
 });
 
+// ----------------------------------------------------------------------------------- //
 router.post('/', function (req, res) {
 
 	// Deconstructing the variable
@@ -31,8 +29,6 @@ router.post('/', function (req, res) {
 	// searching for all managers
 	Manager.findAll({})
 		.then(function (games) {
-
-
 
 			// Manager form object
 			const data = {
@@ -61,9 +57,5 @@ router.post('/', function (req, res) {
 		});
 });
 
-
-
-
-
-
+// ----------------------------------------------------------------------------------- //
 module.exports = router;

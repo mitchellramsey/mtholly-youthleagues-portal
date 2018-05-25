@@ -41,6 +41,10 @@ export default {
     return axios.get("/api/findteams/" + sportId);
   },
 
+  coachFindTeams: function(id) {
+    return axios.get(`/api/coachFindTeams/${id}`);
+  },
+
   createNewGame: function(gameData) {
     return axios.post("/api/createGame/", gameData);
   },
@@ -60,11 +64,12 @@ export default {
   retrieveKidInfo: function(kidId) {
     return axios.get("/api/kidInfo/" + kidId);
   },
+
+  findSchedules: function(teamId) {
+    return axios.get(`/api/findSchedules/${teamId}`)
+  },
   
-  childPaid: function (paymentId) {
-    const paidInfo = {
-      paymentId: paymentId
-    }
+  childPaid: function (paidInfo) {
     return axios.put("/api/paid", paidInfo)
   }
 }

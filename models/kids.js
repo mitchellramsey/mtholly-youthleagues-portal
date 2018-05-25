@@ -52,7 +52,12 @@ module.exports = function (sequelize, DataTypes) {
 
     paidFor: {
       type: DataTypes.BOOLEAN
+    },
+
+    paymentId: {
+      type: DataTypes.STRING
     }
+
   });
 
   Kids.associate = models => {

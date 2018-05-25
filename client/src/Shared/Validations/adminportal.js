@@ -7,23 +7,23 @@ module.exports = function validateInput(data) {
     let errors = {};
 
     // Field validator
-    if(validator.isEmpty(data.firstName)) {
-        errors.firstName = "This field is required.";
+    if(validator.isEmpty(data.name)) {
+        errors.name = "This field is required.";
     }
 
     // Field validator
-    if(validator.isEmpty(data.lastName)) {
-        errors.lastName = "This field is required.";
+    if(validator.isEmpty(data.location)) {
+        errors.location = "This field is required.";
     }
 
     // Field validator
-    if(validator.isEmpty(data.age)) {
-        errors.age = "This field is required.";
+    if(validator.isEmpty(data.date)) {
+        errors.date = "This field is required.";
     }
 
     // If the email doesn't match
-    if(validator.isEmpty(data.years_exp)) {
-        errors.years_exp = "This field is required.";
+    if(validator.isEmpty(data.time)) {
+        errors.time = "This field is required.";
     }
 
     return {

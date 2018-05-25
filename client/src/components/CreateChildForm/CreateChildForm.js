@@ -3,7 +3,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
+import Loading from "react-loading-animation";
 
+// Validation
+import validateInput from "../../Shared/Validations/childssignup";
 
 // Component
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
@@ -27,7 +30,9 @@ class CreateChildForm extends Component {
             sport: "",
             years_exp: "",
             comments: "",
-            parentId: props.userId
+            parentId: props.userId,
+            isLoading: false,
+            errors: {}
         };
         // Binding methods to 'this'
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -40,6 +45,16 @@ class CreateChildForm extends Component {
             [event.target.name]: event.target.value
         })
     };
+
+    // Validation check
+    isValid() {
+        const { errors, isValid } = validateInput(this.state);
+        // If state is not valid, show errors
+        if(!isValid) {
+            this.setState({ errors })
+        }
+        return isValid;
+    }
     
 
     // On form submit
@@ -47,8 +62,9 @@ class CreateChildForm extends Component {
         // Preventing default form behavior
         event.preventDefault();
 
+        if(this.isValid()) {
         // If state is valid, perform the AJAX request
-       
+        this.setState({ errors: {}, isLoading: true });
             this.props.childSignUp(this.state).then(
                 // Then, redirect
                 () => {
@@ -57,21 +73,27 @@ class CreateChildForm extends Component {
                 // Setting errors
                 (err) => this.setState({ errors: err.response.data, isLoading: false })            
             );
-        
+        }
     }
 
     // Render the form
     render() {
+        // Deconstructing the object
+        const { errors, isLoading } = this.state;
 
+        // Loading Spinner
+        if(isLoading) {
+            return <Loading/>
+        }
 
         return (
             <div className="col-md-6 text-center mx-auto">
-                <h3>Register Child</h3>
+                <h3 id="register-child">Register Child</h3>
                     {/* Sign Up Form */}
-                    <form className="form text-center child-form" onSubmit={this.handleFormSubmit}>
+                    <form className="form text-center main-child-form" onSubmit={this.handleFormSubmit}>
                         <TextFieldGroup
                             onChange={this.handleInputChange}
-                            errors={this.firstName}
+                            errors={errors.firstName}
                             label="First Name"
                             type="text"
                             field="firstName"
@@ -81,7 +103,7 @@ class CreateChildForm extends Component {
                         />
                         <TextFieldGroup
                             onChange={this.handleInputChange}
-                            errors={this.lastName}
+                            errors={errors.lastName}
                             label="Last Name"
                             type="text"
                             field="lastName"
@@ -91,7 +113,7 @@ class CreateChildForm extends Component {
                         />
                         <TextFieldGroup
                             onChange={this.handleInputChange}
-                            errors={this.age}
+                            errors={errors.age}
                             label="Age"
                             type="text"
                             field="age"
@@ -99,7 +121,7 @@ class CreateChildForm extends Component {
                             value={this.state.age}
                             placeholder="Age"
                         />
-                        {/* "ClassNames NPM Package for conditional error handling styles" */}
+
                         <div className={classnames("form-group")}>
                             <label htmlFor="gender" className="control-label">Gender</label>
                                 <select 
@@ -107,14 +129,15 @@ class CreateChildForm extends Component {
                                     name="gender" 
                                     onChange={this.handleInputChange}
                                     value={this.state.gender}
+                                    required="required"
                                 >
-                                <option value="">Gender</option>
+                                <option value="" disabled="disabled" >Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 </select>
 
                         </div>
-                        {/* "ClassNames NPM Package for conditional error handling styles" */}
+                        
                         <div className={classnames("form-group")}>
                             <label htmlFor="sport" className="control-label">Sport</label>
                                 <select
@@ -122,8 +145,9 @@ class CreateChildForm extends Component {
                                     name="sport" 
                                     onChange={this.handleInputChange}
                                     value={this.state.sport}
+                                    required="required"
                                 >
-                                <option value="">Sport</option>
+                                <option value="" disabled="disabled">Sport</option>
                                 {this.props.sports.map(sport => (
                                     <option key={sport.id} value={sport.id}>{sport.name}</option>
                                 ))}
@@ -132,7 +156,7 @@ class CreateChildForm extends Component {
                         </div>
                         <TextFieldGroup
                             onChange={this.handleInputChange}
-                            errors={this.years_exp}
+                            errors={errors.years_exp}
                             label="Years of Experience"
                             type="text"
                             field="years_exp"

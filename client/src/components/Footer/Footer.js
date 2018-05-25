@@ -12,7 +12,20 @@ class Footer extends Component {
     render() {
         return (
             <div className="footer">
-                <hr className="line"></hr>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-4 text-center">
+                            <span className="resources">Resources</span>
+                    
+                        </div>
+                        <div className="col-md-4 text-center">
+                            <span className="resources">Quick Links</span>
+                        </div>
+                        <div className="col-md-4 text-center">
+                            <span className="resources">Docs</span>
+                        </div>
+                    </div>
+                </div>
             </div> 
         )
     }

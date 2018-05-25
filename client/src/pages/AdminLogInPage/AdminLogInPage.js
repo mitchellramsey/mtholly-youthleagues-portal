@@ -6,7 +6,6 @@ import MainHeader from "../../components/MainHeader/MainHeader";
 import FlashMessageList from "../../components/FlashMessageList/FlashMessageList";
 import AdminLogin from "../../components/AdminForm/AdminLogin";
 import Nav from "../../components/Nav/Nav";
-import Footer from "../../components/Footer/Footer";
 
 // CSS
 import "../Landing/landing.css";
@@ -21,7 +20,7 @@ class AdminLogInPage extends Component {
             <div className="container-fluid">
                 <Nav/>
                 <div className="row">
-                    <div className="col-md-6 form">
+                    <div className="col-md-6 form homepage">
                         <MainHeader/>
                         <FlashMessageList/>
                         <AdminLogin
@@ -31,12 +30,11 @@ class AdminLogInPage extends Component {
                         />
                     </div>
 
-                    <div className="col-md-6 home-bg">
+                    <div className="col-md-6 home-bg homepage">
                         <div className="landing-bg">
                         </div>
                     </div>
                 </div>
-                <Footer/>
             </div>
         )
     }

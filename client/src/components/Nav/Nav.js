@@ -32,21 +32,19 @@ class Nav extends Component {
         const userLink = (
             <ul>
                 <li className="log-out">{username}<Link to="/" className="links nav-item" onClick={this.logout.bind(this)}>Log Out</Link></li>
-                <li><Link to="/" className="links nav-item">Home</Link></li>
             </ul>
         )
 
-        /* Normal Nav links */
-        const normalLinks = (
-            <ul> 
-                <li><Link to="/" className="links nav-item">Home</Link></li>    
-            </ul>  
+        const nonUserLink = (
+            <ul>
+                <li className="log-out"><Link to="/" className="links nav-item">Home</Link></li>
+            </ul>
         )
 
-        /* If user is authenticated render a certain link */
+        /* If user is authenticated/not authenticated render a certain link */
         return (
             <nav className="navbar navbar-expand-lg">
-                { isAuthenticated ? userLink : normalLinks }
+                { !isAuthenticated ? nonUserLink : isAuthenticated ? userLink : null }
             </nav>
         )
     }

@@ -6,9 +6,13 @@ class PayPal extends React.Component {
     render() {		
         const onSuccess = (payment) => {
             // Congratulation, it came here means everything's fine!
-                    console.log("The payment was succeeded!", payment);
+                    const payInfo = {
+                        paymentInfo: payment.paymentID,
+                        parentId: this.props.parentId
+                    }
+                    this.props.payForChild(payInfo);
                     // API.childPaid(payment.paymentID) 
-                    alert("Payment was successful!")
+                 
                     // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
             
         }		

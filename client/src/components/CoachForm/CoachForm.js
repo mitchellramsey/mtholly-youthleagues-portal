@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Loading from "react-loading-animation";
 
 // Actions
 import { coachesLogInRequest } from "../../actions/coachesLogInRequest";
@@ -72,10 +73,15 @@ class CoachForm extends Component {
 
     // Render the form
     render() {
-        // Setting the errors variable
+        // Deconstructing the object
         const { errors, isLoading } = this.state;
         // Acessing authenticated property
         const { isAuthenticated } = this.props.auth;
+
+        // Loading Spinner
+        if(isLoading) {
+            return <Loading/>
+        }
 
         // Continue button
         const continueButton = (
