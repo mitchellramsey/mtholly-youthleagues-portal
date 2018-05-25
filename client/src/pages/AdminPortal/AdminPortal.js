@@ -166,11 +166,10 @@ handleSportCreate = event => {
         this.setState({ errors: {}, isLoading: true})
         API.addSport(this.state.name).then(
             // Then, redirect
-            () => {
-                window.location.reload(); 
+            (res) => {
+              this.getSports(); 
             },
             // Setting errors
-            (res) => this.getSports(),
             (err) => this.setState({ errors: err.response.data, isLoading: false })            
         );
 }
@@ -187,11 +186,10 @@ handleAssignPlayer = event => {
       this.setState({ errors: {}, isLoading: true})
       API.assignPlayer(data).then(
           // Then, redirect
-          () => {
-              window.location.reload(); 
+          (res) => {
+              this.getSports();
           },
           // Setting errors
-          (res) => this.getSports(),
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
 }
@@ -208,11 +206,8 @@ handleAssignCoach = event => {
       this.setState({ errors: {}, isLoading: true})
       API.assignCoach(data).then(
           // Then, redirect
-          () => {
-              window.location.reload(); 
-          },
-          // Setting errors
           (res) => this.getSports(),
+          // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
 }
@@ -229,11 +224,8 @@ handleTeamCreate = event => {
       this.setState({ errors: {}, isLoading: true})
       API.createTeam(teamData).then(
           // Then, redirect
-          () => {
-              window.location.reload(); 
-          },
-          // Setting errors
           (res) => this.getSports(),
+          // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
 }
@@ -254,11 +246,8 @@ handleGameCreate = event => {
    
       API.createNewGame(gameData).then(
           // Then, redirect
-          () => {
-              window.location.reload(); 
-          },
+          (res) => this.getSports(),
           // Setting errors
-          
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
 }
