@@ -78,10 +78,10 @@ class CreatePracticeForm extends Component {
                         type: "Success",
                         text: "You have created a practice successfully"
                     });
-           
+                    this.setState({ isLoading: false })
                 },
                 // Setting errors
-                (err) => this.setState({ errors: err.response.data, isLoading: false }),
+                (err) => this.setState({ errors: err.response.data }),
                 this.props.retrievePractices(this.state.coachId)            
             );
         }
