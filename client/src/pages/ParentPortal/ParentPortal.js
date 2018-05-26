@@ -80,7 +80,13 @@ class ParentPortal extends Component {
 
     payForChild = (payInfo) => {
         API.childPaid(payInfo)
-            .then(res => this.getChildren(this.props.auth.user.id))
+            .then(res => { 
+                    this.props.addFlashMessage({
+                        type: "Success",
+                        text: "You have paid for your child!"
+                    })
+                this.getChildren(this.props.auth.user.id);
+            })
             .catch(err => console.log(err));
     }
 
