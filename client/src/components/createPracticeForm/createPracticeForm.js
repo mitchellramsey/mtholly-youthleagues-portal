@@ -28,6 +28,7 @@ class CreatePracticeForm extends Component {
                 location: "", 
                 team: "",
                 coachId: props.coachId,
+                teams: props.teams,
                 isLoading: false,
                 errors: {}
             };
@@ -100,6 +101,15 @@ class CreatePracticeForm extends Component {
         return(
             <div className="col-md-6 mx-auto homepage">
             {/* Form */}
+            { this.props.teams === null 
+                ?
+                <div className="coachDataDiv col-md-12 mx-auto homepage">
+                    <div className="col-md-12 text-center">
+                        <span className="data-header">You must be assigned to a team before you can create a practice</span>
+                    </div>
+                </div>
+            // Else
+            :
                 <form className="form" onSubmit={this.handleFormSubmit}>
                     {/* Date */}
                     <TextFieldGroup
@@ -149,8 +159,9 @@ class CreatePracticeForm extends Component {
                             </select>
 
                     </div>
-                    <button className="btn btn-primary form-btn mx-auto submit-btn button-actions" disabled={this.state.isLoading}>Submit</button>
+                        <button className="btn btn-primary form-btn mx-auto submit-btn button-actions" disabled={this.state.isLoading}>Submit</button>
                 </form>
+            }
             </div>
         )
     }

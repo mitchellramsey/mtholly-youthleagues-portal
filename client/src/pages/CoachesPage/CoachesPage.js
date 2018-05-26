@@ -35,7 +35,8 @@ class CoachPortal extends Component {
             practices: [],
             team_association: [],
             teams: [],
-            schedules: []
+            schedules: [],
+            errors: {}
         }       
     }
 
@@ -163,6 +164,7 @@ class CoachPortal extends Component {
                             retrievePractices={this.retrievePractices}
                             teams={this.state.teams}
                             teamId={this.props.teamId}
+
                         />
                         // If not toggled to true, hide the form
                             :null
@@ -221,23 +223,32 @@ class CoachPortal extends Component {
                         {/* Show teams div */}
                         { this.state.showTeam ? 
                             <div className="coachDataDiv col-md-4 mx-auto homepage">
-                                <div className="row text-center">
-                                    <div className="col-md-12">
-                                            <span className="data-header">Team Name</span>
-                                        </div>
-                                    </div>
-
+                            {/* If the teams array is empty.. */}
+                            { this.state.teams === null
+                                ?
+                                <div className="col-md-12">
+                                    <span className="data-header">You currently are not assigned a team</span>
+                                </div>
+                                // Else
+                                :
+                                    <div className="row text-center">
+                                        <div className="col-md-12">
+                                                <span className="data-header">Team Name</span>
+                                            </div>
                                     
-                                        <ul className="coachDataId" key={this.state.teams.id}>
-                                                <div className="col-md-4 coachListItem">
-                                                        <li className="dateTime">Id: {this.state.teams.id}</li>
-                                                </div>
-                                                <div className="col-md-8 coachListItem">
-                                                        <li className="dateTime">{this.state.teams.teamName}</li>
-                                                </div> 
-                                                <hr className="line"></hr>
-                                        </ul>
 
+                                            <ul className="coachDataId" key={this.state.teams.id}>
+                                                    <div className="col-md-4 coachListItem">
+                                                        <li className="dateTime">Id: {this.state.teams.id}</li>
+                                                    </div>
+                                                    <div className="col-md-8 coachListItem">
+                                                        <li className="dateTime">{this.state.teams.teamName}</li>
+                                                    </div> 
+                                                    <hr className="line"></hr>
+                                            </ul>
+                                    </div>
+                                // End conditional
+                                }
                             </div>
                             // If not toggled to true, hide the form
                             :null
@@ -247,12 +258,22 @@ class CoachPortal extends Component {
 
                         {/* Show schedule div */}
                         { this.state.showSchedule ? 
-                            <div className="coachDataDiv col-md-8 mx-auto homepage">
+                            <div className="coachDataDiv col-md-12 mx-auto homepage">
+
+                                {/* If the teams array is empty.. */}
+                                {this.state.teams === null 
+                                    ?
+                                <div className="col-md-12 text-center">
+                                    <span className="data-header">There are no scehdules to view at this time</span>
+                                </div>
+                                // Else
+                                :
                                 <div className="row text-center">
-                                    <div className="col-md-3">
+                                    <div className="col-md-12 schedule-header">
+                                        <div className="col-md-3">
                                             <span className="data-header">Date</span>
                                         </div>
-                                        <div className="col-md-2">
+                                        <div className="col-md-3">
                                             <span className="data-header">Time</span>
                                         </div>
                                         <div className="col-md-3">
@@ -280,7 +301,9 @@ class CoachPortal extends Component {
                                                     <hr className="line"></hr>
                                             </ul>
                                     ))}
-                                
+                                </div>
+                                // End conditional
+                                }
                             </div>
                         // If not toggled to true, hide the form
                             :null

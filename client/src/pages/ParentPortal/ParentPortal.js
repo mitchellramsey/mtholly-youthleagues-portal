@@ -106,8 +106,8 @@ class ParentPortal extends Component {
             <Nav/>
                 <div className="row">
                     <div className="col-md-6 form">
-                    <FlashMessageList />
                     <MainHeader />
+                    <FlashMessageList />
                     <div className="text-center">
                         <h1 className="dashboard-title">Parent Dashboard</h1>
                         <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
