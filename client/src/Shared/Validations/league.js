@@ -9,7 +9,8 @@ module.exports = function validateInput(data) {
     // Field validator
     if(validator.isEmpty(data.name)) {
         errors.name = "This field is required.";
-    }
+    } 
+   
 
     return {
         errors,

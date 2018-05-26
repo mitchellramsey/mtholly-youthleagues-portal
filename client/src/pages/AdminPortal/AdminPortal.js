@@ -18,7 +18,7 @@ import API from "../../actions/API";
 import "./AdminPortal.css";
 
 // Validation
-import "../../Shared/Validations/league";
+import validateInput from "../../Shared/Validations/league";
 
 
 // ----------------------------------------------------------------------------------- //
@@ -56,6 +56,17 @@ class AdminPortal extends Component {
       }
       this.handleInputChange = this.handleInputChange.bind(this);
       
+    }
+
+    // If state is true, run this function
+    isValid() {
+      const {errors, isValid } = validateInput(this.state);
+    // If state is false, set errors
+      if(!isValid) {
+          this.setState({ errors })
+      }
+      // Getting the boolean value back    
+      return isValid;
     }
 
     //Calling for Sport API
@@ -163,6 +174,7 @@ handleSportCreate = event => {
     // Preventing default form behavior
     event.preventDefault();
     // If state is valid, perform the AJAX request
+    if(this.isValid()) {
         this.setState({ errors: {}, isLoading: true})
         API.addSport(this.state.name).then(
             // Then, redirect
@@ -174,12 +186,14 @@ handleSportCreate = event => {
             // Setting errors
             (err) => this.setState({ errors: err.response.data, isLoading: false })            
         );
+    }
 }
 
 // On form submit
 handleAssignPlayer = event => {
   // Preventing default form behavior
   event.preventDefault();
+  if(this.isValid()) {
   // If state is valid, perform the AJAX request
       const data = {
         playerId: this.state.playerId,
@@ -196,6 +210,7 @@ handleAssignPlayer = event => {
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
+    }
 }
 
 // On form submit
@@ -203,6 +218,7 @@ handleAssignCoach = event => {
   // Preventing default form behavior
   event.preventDefault();
   // If state is valid, perform the AJAX request
+  if(this.isValid()) {
       const data = {
         coachId: this.state.coachId,
         teamId: this.state.coachTeam
@@ -218,6 +234,7 @@ handleAssignCoach = event => {
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
+    }
 }
 
 // On form submit
@@ -225,6 +242,7 @@ handleTeamCreate = event => {
   // Preventing default form behavior
   event.preventDefault();
   // If state is valid, perform the AJAX request
+  if(this.isValid()) {
       const teamData = {
         sportID: this.state.sport,
         teamName: this.state.teamName
@@ -240,12 +258,14 @@ handleTeamCreate = event => {
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
+    }
 }
 
 handleGameCreate = event => {
   // Preventing default form behavior
   event.preventDefault();
   // If state is valid, perform the AJAX request
+  if(this.isValid()) {
       const gameData = {
         date: this.state.date,
         time: this.state.time,
@@ -267,11 +287,11 @@ handleGameCreate = event => {
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
+    }
 }
 
   // Render the page
   render() {
-
     // Deconstructing the object
     const { errors, isLoading } = this.state;
 
@@ -295,7 +315,7 @@ handleGameCreate = event => {
                     ? <form className="form text-center" onSubmit={this.handleSportCreate}>
                           <TextFieldGroup
                             onChange={this.handleInputChange}
-                            errors={this.name}
+                            errors={errors.name}
                             label="Create League"
                             type="text"
                             field="name"
@@ -344,7 +364,7 @@ handleGameCreate = event => {
                     ? <form className="form text-center adminSportInput mx-auto child-form" onSubmit={this.handleTeamCreate}>
                           <TextFieldGroup
                             onChange={this.handleInputChange}
-                            errors={this.name}
+                            errors={errors.teamName}
                             label="Create Team"
                             type="text"
                             field="teamName"
@@ -431,7 +451,7 @@ handleGameCreate = event => {
                           {/* Date */}
                           <TextFieldGroup
                             onChange={this.handleInputChange}
-                            // errors={errors.date}
+                            errors={errors.date}
                             label="Date"
                             type="date"
                             field="date"
@@ -442,7 +462,7 @@ handleGameCreate = event => {
                     {/* Time */}
                     <TextFieldGroup
                             onChange={this.handleInputChange}
-                            // errors={errors.time}
+                            errors={errors.time}
                             label="Time"
                             type="time"
                             field="time"
@@ -452,7 +472,7 @@ handleGameCreate = event => {
                     />
                             <TextFieldGroup
                             onChange={this.handleInputChange}
-                            errors={this.name}
+                            errors={errors.location}
                             label="Location"
                             type="text"
                             field="location"
