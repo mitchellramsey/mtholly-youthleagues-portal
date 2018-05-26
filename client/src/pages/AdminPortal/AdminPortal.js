@@ -167,7 +167,9 @@ handleSportCreate = event => {
         API.addSport(this.state.name).then(
             // Then, redirect
             (res) => {
-              this.getSports(); 
+              this.getSports();
+              this.resetMenu();
+              this.setState({isLoading: false});
             },
             // Setting errors
             (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -188,6 +190,8 @@ handleAssignPlayer = event => {
           // Then, redirect
           (res) => {
               this.getSports();
+              this.resetMenu();
+              this.setState({isLoading: false});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -206,7 +210,11 @@ handleAssignCoach = event => {
       this.setState({ errors: {}, isLoading: true})
       API.assignCoach(data).then(
           // Then, redirect
-          (res) => this.getSports(),
+          (res) => {
+            this.getSports();
+            this.resetMenu();
+            this.setState({isLoading: false});
+          },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
@@ -224,7 +232,11 @@ handleTeamCreate = event => {
       this.setState({ errors: {}, isLoading: true})
       API.createTeam(teamData).then(
           // Then, redirect
-          (res) => this.getSports(),
+          (res) => {
+            this.getSports();
+            this.resetMenu();
+            this.setState({isLoading: false});
+          },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
@@ -243,10 +255,15 @@ handleGameCreate = event => {
         sportId: this.state.sport
       }
 
-   
+      this.setState({ errors: {}, isLoading: true});
       API.createNewGame(gameData).then(
           // Then, redirect
-          (res) => this.getSports(),
+          
+          (res) => {
+            this.getSports();
+            this.resetMenu();
+            this.setState({isLoading: false});
+          },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
@@ -286,7 +303,7 @@ handleGameCreate = event => {
                             value={this.state.name}
                             placeholder="Sport"
                             />
-                          <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
+                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                       </form>                      
                     : null
                 }
@@ -468,7 +485,7 @@ handleGameCreate = event => {
                             <option value={team.id} key={team.id}>{team.teamName}</option>
                             ))}
                           </select>
-                          <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
+                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
                         </form>       
                         </div>               
                     : null
