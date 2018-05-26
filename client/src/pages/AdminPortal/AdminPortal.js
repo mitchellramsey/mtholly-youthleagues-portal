@@ -160,7 +160,8 @@ createSchedule() {
       showMenu: false,
       createTeam: false,
       assignPeople: false,
-      createSchedule: false
+      createSchedule: false,
+      createSport: false
     })
   }
 
@@ -181,7 +182,7 @@ handleSportCreate = event => {
             (res) => {
               this.getSports();
               this.resetMenu();
-              this.setState({isLoading: false});
+              this.setState({isLoading: false, name: ""});
             },
             // Setting errors
             (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -205,7 +206,7 @@ handleAssignPlayer = event => {
           (res) => {
               this.getSports();
               this.resetMenu();
-              this.setState({isLoading: false});
+              this.setState({isLoading: false, playerId: "", playerTeam: ""});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -229,7 +230,7 @@ handleAssignCoach = event => {
           (res) => {
             this.getSports();
             this.resetMenu();
-            this.setState({isLoading: false});
+            this.setState({isLoading: false, coachId: "", coachTeam: ""});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -253,7 +254,7 @@ handleTeamCreate = event => {
           (res) => {
             this.getSports();
             this.resetMenu();
-            this.setState({isLoading: false});
+            this.setState({isLoading: false, teamName: ""});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -282,7 +283,7 @@ handleGameCreate = event => {
           (res) => {
             this.getSports();
             this.resetMenu();
-            this.setState({isLoading: false});
+            this.setState({isLoading: false, date: "", time: "", location: "", team1: "", team2: ""});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -330,6 +331,7 @@ handleGameCreate = event => {
                 
               </div>
               <hr/>
+              <h5>Choose a league from the dropdown to display menu</h5>
               <div className="showMenuSection">
                 <select
                   className="adminSportInput form-control" 
@@ -339,7 +341,7 @@ handleGameCreate = event => {
                   disabled={this.state.optionDisabled}
                   required="required"
                   >
-                  <option value="" disabled="disabled">Sport</option>
+                  <option value="">Sport</option>
                   {this.state.sports.map(sport => (
                     <option value={sport.id} key={sport.id}>{sport.name}</option>
                   ))}
