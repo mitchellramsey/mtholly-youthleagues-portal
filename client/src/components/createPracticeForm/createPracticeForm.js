@@ -135,8 +135,8 @@ class CreatePracticeForm extends Component {
                             placeholder="Location"
                     />
                     {/* Team associaton */}
-                    <div className={classnames("form-group")}>
-                        <label htmlFor="team" className="control-label">Team</label>
+                    <div className={classnames("form-group text-center")}>
+                        <h4><label htmlFor="team" className="control-label">Team</label></h4>
                             <select
                                 className="form-control" 
                                 name="team" 
