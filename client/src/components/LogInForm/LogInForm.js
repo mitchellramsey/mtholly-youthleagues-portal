@@ -74,8 +74,11 @@ class LogInForm extends Component {
     render() {
         // Setting the errors variable
         const { isLoading, errors } = this.state;
-        // Acessing authenticated property
-        const { isAuthenticated } = this.props.auth;
+        
+        // Loading Spinner
+        if(isLoading) {
+            return <Loading/>
+        }
 
         // Render the form or button
         return (

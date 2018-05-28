@@ -12,11 +12,13 @@ import rootReducer from "../rootReducer/rootReducer";
 
 // ---------------------------------------------------------- //
 
+// Persist config, storage pointing to local storage
 const persistConfig = {
   key: "root",
   storage: storage
  };
 
+// Persisting the combined reducers and the selected storage
 const persist = persistReducer(persistConfig, rootReducer);
 
 // Creating Redux store
@@ -28,4 +30,5 @@ export let store = createStore(
     )
   );
 
+// Exporting the variable to be used in App.js
 export let persistor = persistStore(store);

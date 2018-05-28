@@ -37,6 +37,7 @@ const App = () => (
         <div>
           {/* React Switch for routing */}
           <Switch>
+          {/* Redux persist wrapper */}
           <PersistGate loading={<Loading/>} persistor={persistor}>
             {/* Homepage */}
             <Route exact path="/" component={Landing} />
