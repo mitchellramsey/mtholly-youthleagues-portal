@@ -52,7 +52,8 @@ class AdminPortal extends Component {
         team2: "",
         date:"",
         time: "",
-        location:""
+        location:"",
+        errors: {}
       }
       this.handleInputChange = this.handleInputChange.bind(this);
       
@@ -291,8 +292,10 @@ handleGameCreate = event => {
         <Nav />
         <div className="row">
             <div className="col-md-6 form">
-              <FlashMessageList />
               <MainHeader />
+              <FlashMessageList />
+              {/* Display possible log in error messages */}
+              { errors.form && <div className="alert alert-danger">{errors.form}</div>}
               <div className="createSportSection">
                 <button className="btn btn-primary createSport button-actions" onClick={() => this.toggleCreateSport()}>Create Sport</button>
                 
@@ -491,7 +494,7 @@ handleGameCreate = event => {
                             <option value={team.id} key={team.id}>{team.teamName}</option>
                             ))}
                           </select>
-                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                          <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                         </form>       
                         </div>               
                     : null

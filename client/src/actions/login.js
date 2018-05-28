@@ -3,6 +3,10 @@ import axios from "axios";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
 import jwt_decode from 'jwt-decode';
 import { SET_CURRENT_USER } from "./types";
+import { store } from "../Shared/Store/Store";
+
+// Actions
+import { setCurrentCoach } from "../actions/coachesLogInRequest";
 
 // ----------------------------------------------------------------------------------- //
 // Creating an action for SET_CURRENT_USER
@@ -21,7 +25,7 @@ export function logout() {
             // Clears authorization
             localStorage.removeItem("jwtToken");
             setAuthorizationToken(false);
-            dispatch(setCurrentUser({}));
+            dispatch(setCurrentUser({}) || setCurrentCoach({}));
         })
     }
 }
@@ -36,11 +40,12 @@ export function loginRequest(data) {
             const token = res.data.token;
             localStorage.setItem("jwtToken", token);
 
-            const decoded = jwt_decode(token);
-            // Importing the authToken function
-            // Passing it the token
-            setAuthorizationToken(token);
-            dispatch(setCurrentUser(decoded));
+            // If JWT token exists, set it
+            if(localStorage.jwtToken) {
+                setAuthorizationToken(localStorage.jwtToken);
+                // Dispatch the action
+                store.dispatch(setCurrentUser(jwt_decode(localStorage.jwtToken)))
+            }
         })
     }
 }

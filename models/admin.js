@@ -26,7 +26,12 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: {
         len: [0, 100]
-      }
+      },
+    },
+    adminUser: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,

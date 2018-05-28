@@ -11,17 +11,17 @@ import { logout } from "../actions/login";
 // ----------------------------------------------------------------------------------- //
 // Creating component wrapper
 export default function(ComposedComponent) {
-    class authenticateRoutes extends Component {
+    class AdminAuthenticateRoutes extends Component {
         
         componentWillMount() {
             // If user isnt authenticated
-            if(!this.props.isAuthenticated || !this.props.parent) {
+            if(!this.props.isAuthenticated || !this.props.admin) {
                 this.props.addFlashMessage({
                     type: "error",
                     text: "You need to login to access this page"
                 });
-                // Then logout and redirect
-                this.props.logout().then(
+                  // Then logout and redirect
+                  this.props.logout().then(
                     (res) => this.context.router.history.push("/403")
                 );
             }
@@ -37,13 +37,13 @@ export default function(ComposedComponent) {
 
 // ----------------------------------------------------------------------------------- //
 // Setting propTypes
-authenticateRoutes.propTypes = {
+AdminAuthenticateRoutes.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     addFlashMessage: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired
 }
 
-authenticateRoutes.contextTypes = {
+AdminAuthenticateRoutes.contextTypes = {
     router: PropTypes.object.isRequired
 }
 
@@ -51,11 +51,11 @@ authenticateRoutes.contextTypes = {
 function mapStateToProps(state) {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        parent: state.auth.parent
+        admin: state.auth.admin
     }
 }
 
 // ----------------------------------------------------------------------------------- //
-    return connect(mapStateToProps, { addFlashMessage, logout })(authenticateRoutes);
+    return connect(mapStateToProps, { addFlashMessage, logout })(AdminAuthenticateRoutes);
 }
 

@@ -2,14 +2,17 @@
 import axios from "axios";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
 import jwt_decode from 'jwt-decode';
-import { SET_CURRENT_USER } from "./types";
+import { SET_CURRENT_ADMIN } from "./types";
+
+// Redux imports
+import { store } from "../Shared/Store/Store";
 
 
 // ----------------------------------------------------------------------------------- //
 // Creating an action for SET_CURRENT_USER
-export function setCurrentUser(user) {
+export function setCurrentAdmin(user) {
     return {
-        type: SET_CURRENT_USER,
+        type: SET_CURRENT_ADMIN,
         user
     }
 }
@@ -17,8 +20,6 @@ export function setCurrentUser(user) {
 // Signup AJAX post
 export function adminLogInRequest(data) {
     return dispatch => {
-        console.log("I made it past dispatch");
-        console.log(data);
         return axios.post("/api/auth/admin", data).then(res => {
             // Saving token to user localStorage
             // Decoded token
@@ -29,7 +30,15 @@ export function adminLogInRequest(data) {
             // Importing the authToken function
             // Passing it the token
             setAuthorizationToken(token);
-            dispatch(setCurrentUser(decoded));
+            dispatch(setCurrentAdmin(decoded));
+
+            // If JWT token exists, set it
+            if(localStorage.jwtToken) {
+                setAuthorizationToken(localStorage.jwtToken);
+                // Dispatch the action
+                store.dispatch(setCurrentAdmin(jwt_decode(localStorage.jwtToken)))
+            }
         })
     }
 }
+

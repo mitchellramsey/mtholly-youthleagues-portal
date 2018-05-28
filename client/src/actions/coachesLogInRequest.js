@@ -2,13 +2,14 @@
 import axios from "axios";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
 import jwt_decode from 'jwt-decode';
-import { SET_CURRENT_USER } from "./types";
+import { SET_CURRENT_COACH } from "./types";
+import { store } from "../Shared/Store/Store";
 
 // ----------------------------------------------------------------------------------- //
 // Creating an action for SET_CURRENT_USER
-export function setCurrentUser(user) {
+export function setCurrentCoach(user) {
     return {
-        type: SET_CURRENT_USER,
+        type: SET_CURRENT_COACH,
         user
     }
 }
@@ -22,11 +23,13 @@ export function coachesLogInRequest(data) {
             const token = res.data.token;
             localStorage.setItem("jwtToken", token);
 
-            const decoded = jwt_decode(token);
-            // Importing the authToken function
-            // Passing it the token
-            setAuthorizationToken(token);
-            dispatch(setCurrentUser(decoded));
+            // If JWT token exists, set it
+            if(localStorage.jwtToken) {
+                setAuthorizationToken(localStorage.jwtToken);
+                // Dispatch the action
+                store.dispatch(setCurrentCoach(jwt_decode(localStorage.jwtToken)))
+            }
         })
     }
 }
+

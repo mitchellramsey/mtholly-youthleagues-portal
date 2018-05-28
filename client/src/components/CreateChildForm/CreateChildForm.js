@@ -68,7 +68,7 @@ class CreateChildForm extends Component {
             this.props.childSignUp(this.state).then(
                 // Then, redirect
                 () => {
-                    this.props.history.push("/") 
+                    window.location.reload(); 
                 },
                 // Setting errors
                 (err) => this.setState({ errors: err.response.data, isLoading: false })            

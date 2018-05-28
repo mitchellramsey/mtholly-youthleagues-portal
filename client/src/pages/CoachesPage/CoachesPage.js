@@ -226,7 +226,7 @@ class CoachPortal extends Component {
                             {/* If the teams array is empty.. */}
                             { this.state.teams === null
                                 ?
-                                <div className="col-md-12">
+                                <div className="col-md-12 text-center">
                                     <span className="data-header">You currently are not assigned a team</span>
                                 </div>
                                 // Else
