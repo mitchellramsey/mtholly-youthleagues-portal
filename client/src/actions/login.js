@@ -7,6 +7,7 @@ import { store } from "../Shared/Store/Store";
 
 // Actions
 import { setCurrentCoach } from "../actions/coachesLogInRequest";
+import { setCurrentAdmin } from "../actions/adminLogInRequest";
 
 // ----------------------------------------------------------------------------------- //
 // Creating an action for SET_CURRENT_USER
@@ -25,7 +26,7 @@ export function logout() {
             // Clears authorization
             localStorage.removeItem("jwtToken");
             setAuthorizationToken(false);
-            dispatch(setCurrentUser({}) || setCurrentCoach({}));
+            dispatch(setCurrentUser({}) || setCurrentCoach({}) || setCurrentAdmin({}));
         })
     }
 }

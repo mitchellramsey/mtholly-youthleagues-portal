@@ -163,7 +163,7 @@ class ParentPortal extends Component {
                                             <h4><strong>Date - Time - Location</strong></h4>
                                             <List>
                                                 {this.state.practices.map(practice => (
-                                                    <li className="list-group-item" >
+                                                    <li className="list-group-item" key={practice.id}>
                                                        <h4> {moment(practice.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")} - {moment(practice.time, "HH:mm:ss").format("hh:MM p")} - {practice.location}</h4>
                                                     </li>
                                                 ))}
@@ -180,7 +180,7 @@ class ParentPortal extends Component {
                                             <h4><strong>Date - Time - Location - Opponent</strong></h4>
                                             <List>
                                                 {this.state.games.map(game => (
-                                                    <li className="list-group-item" >
+                                                    <li className="list-group-item" key={game.id}>
                                                        <h4> {moment(game.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")} - {moment(game.time, "HH:mm:ss").format("hh:MM p")} - {game.location} - {game.opponent}</h4>
                                                     </li>
                                                 ))}

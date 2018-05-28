@@ -20,10 +20,8 @@ export default function(ComposedComponent) {
                     type: "error",
                     text: "You need to login to access this page"
                 });
-                  // Then logout and redirect
-                  this.props.logout().then(
-                    (res) => this.context.router.history.push("/403")
-                );
+                // Then redirect
+                this.context.router.history.push("/403");
             }
         }
 
