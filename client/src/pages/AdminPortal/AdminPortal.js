@@ -151,7 +151,8 @@ createSchedule() {
       showMenu: false,
       createTeam: false,
       assignPeople: false,
-      createSchedule: false
+      createSchedule: false,
+      createSport: false
     })
   }
 
