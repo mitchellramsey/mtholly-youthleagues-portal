@@ -1,4 +1,4 @@
-# mtholly-youthleagues-portal
+# My Holly Youth Leagues Portal
 A web application designed for the town of Mount Holly, NC or any town that provides youth athletic leagues. This site will be used for parents to sign up their children and as an information resource for parents, coaches, and league managers.
 
 ### The purpose of this application: 
@@ -7,9 +7,8 @@ A web application designed for the town of Mount Holly, NC or any town that prov
 3. Allow Parents access to the game schedule
 4. Allow Coaches to create a practice schedule
 5. Allow Administrators to create a game schedule
-                   
 
-# Technologies Used
+### Technologies Used
 * React
 * Redux
 * Express
@@ -25,8 +24,6 @@ A web application designed for the town of Mount Holly, NC or any town that prov
 * Moment JS
 * AXios
 * mySQL / Sequelize
-
-
 
                                       
 ![image](https://user-images.githubusercontent.com/32331741/40628136-38434750-6291-11e8-9a8e-498aec843ac6.png)
