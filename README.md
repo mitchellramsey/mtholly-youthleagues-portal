@@ -27,6 +27,6 @@ A web application designed for the town of Mount Holly, NC or any town that prov
 * mySQL / Sequelize
 
 
-                                      
-                                      
 
+                                      
+![image](https://user-images.githubusercontent.com/32331741/40628136-38434750-6291-11e8-9a8e-498aec843ac6.png)
