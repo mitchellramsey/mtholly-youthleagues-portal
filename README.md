@@ -25,5 +25,9 @@ A web application designed for the town of Mount Holly, NC or any town that prov
 * AXios
 * mySQL / Sequelize
 
+From the Landing Page, the parent can log in to their account
+
+![image](https://user-images.githubusercontent.com/32331741/40628837-5f2587c6-6295-11e8-9bc7-d4552b550b7e.png)
+
                                       
 ![image](https://user-images.githubusercontent.com/32331741/40628136-38434750-6291-11e8-9a8e-498aec843ac6.png)
