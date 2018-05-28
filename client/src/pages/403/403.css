@@ -1,0 +1,28 @@
+/* Classes */
+/* ------------------------------------------------------------ */
+
+.forbidden-span {
+    font-size: 8rem;
+    display: inherit;
+}
+
+.forbidden-text {
+    font-size: 2rem;
+    color: red;
+}
+
+.lock {
+    margin-top: 55px;
+}
+
+.image-text {
+    display: inherit;
+}
+
+.home-link {
+    color: red;
+    padding: 0px 6px 0px 3px;
+}
+
+
+/* ------------------------------------------------------------ */

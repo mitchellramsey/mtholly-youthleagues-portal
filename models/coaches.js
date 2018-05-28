@@ -61,6 +61,11 @@ module.exports = function (sequelize, Datatypes) {
 				len: [0, 100]
 			}
 		},
+		coach: {
+			type: Datatypes.BOOLEAN,
+			defaultValue: true,
+			allowNull: false
+		},
 		comments: {
 			type: Datatypes.TEXT,
 			allowNull: true,

@@ -52,11 +52,13 @@ class AdminPortal extends Component {
         team2: "",
         date:"",
         time: "",
-        location:""
+        location:"",
+        errors: {}
       }
       this.handleInputChange = this.handleInputChange.bind(this);
       
     }
+    
 
     //Calling for Sport API
     componentDidMount() {
@@ -149,8 +151,7 @@ createSchedule() {
       showMenu: false,
       createTeam: false,
       assignPeople: false,
-      createSchedule: false,
-      createSport: false
+      createSchedule: false
     })
   }
 
@@ -170,7 +171,12 @@ handleSportCreate = event => {
             (res) => {
               this.getSports();
               this.resetMenu();
-              this.setState({isLoading: false, name: ""});
+              this.setState({isLoading: false});
+
+              this.props.addFlashMessage({
+                type: "Success",
+                text: "You have added a new league"
+              })
             },
             // Setting errors
             (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -192,7 +198,7 @@ handleAssignPlayer = event => {
           (res) => {
               this.getSports();
               this.resetMenu();
-              this.setState({isLoading: false, playerId: "", playerTeam: ""});
+              this.setState({isLoading: false});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -214,7 +220,7 @@ handleAssignCoach = event => {
           (res) => {
             this.getSports();
             this.resetMenu();
-            this.setState({isLoading: false, coachId: "", coachTeam: ""});
+            this.setState({isLoading: false});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -236,7 +242,7 @@ handleTeamCreate = event => {
           (res) => {
             this.getSports();
             this.resetMenu();
-            this.setState({isLoading: false, teamName: ""});
+            this.setState({isLoading: false});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -263,7 +269,7 @@ handleGameCreate = event => {
           (res) => {
             this.getSports();
             this.resetMenu();
-            this.setState({isLoading: false, date: "", time: "", location: "", team1: "", team2: ""});
+            this.setState({isLoading: false});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -286,8 +292,10 @@ handleGameCreate = event => {
         <Nav />
         <div className="row">
             <div className="col-md-6 form">
-              <FlashMessageList />
               <MainHeader />
+              <FlashMessageList />
+              {/* Display possible log in error messages */}
+              { errors.form && <div className="alert alert-danger">{errors.form}</div>}
               <div className="createSportSection">
                 <button className="btn btn-primary createSport button-actions" onClick={() => this.toggleCreateSport()}>Create Sport</button>
                 
@@ -304,14 +312,13 @@ handleGameCreate = event => {
                             value={this.state.name}
                             placeholder="Sport"
                             />
-                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                          <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                       </form>                      
                     : null
                 }
                 
               </div>
               <hr/>
-              <h5>Choose a league from the dropdown to display menu</h5>
               <div className="showMenuSection">
                 <select
                   className="adminSportInput form-control" 
@@ -321,7 +328,7 @@ handleGameCreate = event => {
                   disabled={this.state.optionDisabled}
                   required="required"
                   >
-                  <option value="">Sport</option>
+                  <option value="" disabled="disabled">Sport</option>
                   {this.state.sports.map(sport => (
                     <option value={sport.id} key={sport.id}>{sport.name}</option>
                   ))}
@@ -487,7 +494,7 @@ handleGameCreate = event => {
                             <option value={team.id} key={team.id}>{team.teamName}</option>
                             ))}
                           </select>
-                          <button className="btn btn-primary form-btn mx-auto" disabled={this.state.isLoading}>Submit</button>
+                          <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
                         </form>       
                         </div>               
                     : null

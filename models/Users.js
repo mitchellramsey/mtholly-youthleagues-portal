@@ -68,7 +68,12 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         validate: {
           len: [0, 50]
-        }
+        },
+      },
+      parent: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+        allowNull: false
       },
       tokenId: {
         type: DataTypes.STRING,

@@ -22,6 +22,7 @@ router.get("/:id", (req, res) => {
 			}
 		}).then(games => {
 			res.json(games);
+			res.status(200).json({ errors: { form: "The email or password does not match "} })
 		})
 	});
 });

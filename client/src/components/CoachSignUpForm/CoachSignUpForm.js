@@ -116,8 +116,10 @@ class CoachSignupForm extends Component {
                     this.props.history.push("/coacheslogin") 
                 },
                 // Setting errors
-                (err) => this.setState({ errors: err.response.data, isLoading: false })            
+                (err) => this.setState({ errors: err.response.data })            
             );
+        } else {
+            this.setState({ isLoading: false });
         }
     };
 

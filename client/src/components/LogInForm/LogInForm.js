@@ -74,63 +74,11 @@ class LogInForm extends Component {
     render() {
         // Setting the errors variable
         const { isLoading, errors } = this.state;
-        // Acessing authenticated property
-        const { isAuthenticated } = this.props.auth;
-
+        
         // Loading Spinner
         if(isLoading) {
             return <Loading/>
         }
-
-        // Continue button
-        const continueButton = (
-            <div className="continue text-center">
-                <button className="btn btn-primary form-btn mx-auto" disabled={isLoading} onClick={this.handleFormSubmit}>
-                    <Link to="/parent-portal" className="links">Continue to Parent Portal</Link>
-                </button>
-
-            </div>
-        )
-        // Log in form
-        const loginFormArea = (
-            <form className="form text-center">
-                {/* Email */}
-                <TextFieldGroup
-                        onChange={this.handleInputChange}
-                        errors={errors.email}
-                        label="Email"
-                        type="text"
-                        field="email"
-                        className="form-control"
-                        value={this.state.email}
-                        placeholder="Email"
-                        id="email"
-                    />
-                {/* Password */}
-                <TextFieldGroup
-                        onChange={this.handleInputChange}
-                        errors={errors.password}
-                        label="Password"
-                        type="password"
-                        field="password"
-                        className="form-control"
-                        value={this.state.password}
-                        placeholder="Password"
-                        id="password"
-                    />
-                    <button className="btn btn-primary form-btn mx-auto button-actions" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
-
-                    <h5 className="LoginHeadings">Need an account?</h5>
-                    <span>Click <Link to="/signup">here</Link></span>
-                    
-                    <h4 className="LoginHeadings">Coaches Access Portal</h4>
-                    <span>Log In <Link to="/coacheslogin">here</Link></span>
-
-                    <h4 className="LoginHeadings">Administrative Access Portal</h4>
-                    <span>Log In <Link to="/adminlogin">here</Link></span>
-                    
-                </form>
-        )
 
         // Render the form or button
         return (
@@ -142,7 +90,43 @@ class LogInForm extends Component {
                 { errors.form && <div className="alert alert-danger">{errors.form}</div>}
                 {/* If authenticated, either render the log-in form or the continue button */}
                 <div>
-                    { isAuthenticated ? continueButton : loginFormArea }
+                    <form className="form text-center">
+                    {/* Email */}
+                    <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.email}
+                            label="Email"
+                            type="text"
+                            field="email"
+                            className="form-control"
+                            value={this.state.email}
+                            placeholder="Email"
+                            id="email"
+                        />
+                    {/* Password */}
+                    <TextFieldGroup
+                            onChange={this.handleInputChange}
+                            errors={errors.password}
+                            label="Password"
+                            type="password"
+                            field="password"
+                            className="form-control"
+                            value={this.state.password}
+                            placeholder="Password"
+                            id="password"
+                        />
+                        <button className="btn btn-primary form-btn mx-auto button-actions" disabled={isLoading} onClick={this.handleFormSubmit}>Submit</button>
+
+                        <h5 className="LoginHeadings">Need an account?</h5>
+                        <span>Click <Link to="/signup">here</Link></span>
+                        
+                        <h4 className="LoginHeadings">Coaches Access Portal</h4>
+                        <span>Log In <Link to="/coacheslogin">here</Link></span>
+
+                        <h4 className="LoginHeadings">Administrative Access Portal</h4>
+                        <span>Log In <Link to="/adminlogin">here</Link></span>
+                        
+                    </form>
                 </div>
             </div>
         )

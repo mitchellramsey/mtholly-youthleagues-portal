@@ -22,7 +22,8 @@ router.post("/", (req, res) => {
     Admin.findOne({
         where: {
             email: email,
-            userPassword: password
+            userPassword: password,
+            adminUser: true
         } 
     }).then(admin => {
         
@@ -38,6 +39,7 @@ router.post("/", (req, res) => {
                 // Display error message
                 res.status(401).json({ errors: { form: "The email or password does not match "} })
             }
+            console.log(admin);
         })
     })
 

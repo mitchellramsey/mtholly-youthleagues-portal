@@ -80,7 +80,13 @@ class ParentPortal extends Component {
 
     payForChild = (payInfo) => {
         API.childPaid(payInfo)
-            .then(res => this.getChildren(this.props.auth.user.id))
+            .then(res => { 
+                    this.props.addFlashMessage({
+                        type: "Success",
+                        text: "You have paid for your child!"
+                    })
+                this.getChildren(this.props.auth.user.id);
+            })
             .catch(err => console.log(err));
     }
 
@@ -100,8 +106,8 @@ class ParentPortal extends Component {
             <Nav/>
                 <div className="row">
                     <div className="col-md-6 form">
-                    <FlashMessageList />
                     <MainHeader />
+                    <FlashMessageList />
                     <div className="text-center">
                         <h1 className="dashboard-title">Parent Dashboard</h1>
                         <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
@@ -157,7 +163,7 @@ class ParentPortal extends Component {
                                             <h4><strong>Date - Time - Location</strong></h4>
                                             <List>
                                                 {this.state.practices.map(practice => (
-                                                    <li className="list-group-item" >
+                                                    <li className="list-group-item" key={practice.id}>
                                                        <h4> {moment(practice.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")} - {moment(practice.time, "HH:mm:ss").format("hh:MM p")} - {practice.location}</h4>
                                                     </li>
                                                 ))}
@@ -174,7 +180,7 @@ class ParentPortal extends Component {
                                             <h4><strong>Date - Time - Location - Opponent</strong></h4>
                                             <List>
                                                 {this.state.games.map(game => (
-                                                    <li className="list-group-item" >
+                                                    <li className="list-group-item" key={game.id}>
                                                        <h4> {moment(game.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")} - {moment(game.time, "HH:mm:ss").format("hh:MM p")} - {game.location} - {game.opponent}</h4>
                                                     </li>
                                                 ))}
