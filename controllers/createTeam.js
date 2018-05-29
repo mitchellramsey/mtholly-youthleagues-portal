@@ -26,8 +26,6 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
 	//Deconstructing the variable
 	const { sportID, teamName } = req.body;
-	console.log(req.body);
-	console.log(`Sport ID: ${sportID}` )
 	//Creating a Team
 	Team.create({
 		teamName:teamName,

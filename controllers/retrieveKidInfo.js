@@ -13,29 +13,36 @@ const { Users, Kids, Sport, Team, GamesInfo, Practice } = require("../models");
 // Retrieve Kid info
 router.get("/:kidId", (req,res) => {
     let data = [];
+    const kidId = req.params.kidId;
+    
     Kids.findOne({
         where: {
-            id: req.params.kidId
+             id: kidId
         },
         include: [Team, Sport]
     }).then(kid => {
         data.push(kid);
-        GamesInfo.findAll({
-            where: {
-                TeamId: kid.Team.id
-            }
-        }).then(games => {
-            data.push(games);
-            Practice.findAll({
+        if(kid.Team === null) {
+            res.json(data);
+        } else {
+            GamesInfo.findAll({
                 where: {
                     TeamId: kid.Team.id
                 }
-            }).then(practices => {
-                data.push(practices);
-                res.json(data);
+            }).then(games => {
+                data.push(games);
+                Practice.findAll({
+                    where: {
+                        TeamId: kid.Team.id
+                    }
+                }).then(practices => {
+                    data.push(practices);
+                    res.json(data);
+                })
             })
-        })
+        }
     });
+    
 });
 
 // ----------------------------------------------------------------------------------- //

@@ -152,7 +152,8 @@ createSchedule() {
       createTeam: false,
       assignPeople: false,
       createSchedule: false,
-      createSport: false
+      createSport: false,
+      name: ""
     })
   }
 
@@ -243,7 +244,7 @@ handleTeamCreate = event => {
           (res) => {
             this.getSports();
             this.resetMenu();
-            this.setState({isLoading: false});
+            this.setState({isLoading: false, teamName: ""});
 
             this.props.addFlashMessage({
               type: "Success",
@@ -330,6 +331,7 @@ handleGameCreate = event => {
                 
               </div>
               <hr/>
+              <h5>Choose a sport from the dropdown below to show menu.</h5>
               <div className="showMenuSection">
                 <select
                   className="adminSportInput form-control" 
@@ -339,7 +341,7 @@ handleGameCreate = event => {
                   disabled={this.state.optionDisabled}
                   required="required"
                   >
-                  <option value="" disabled="disabled">Sport</option>
+                  <option value="">Sport</option>
                   {this.state.sports.map(sport => (
                     <option value={sport.id} key={sport.id}>{sport.name}</option>
                   ))}
@@ -505,7 +507,11 @@ handleGameCreate = event => {
                             <option value={team.id} key={team.id}>{team.teamName}</option>
                             ))}
                           </select>
-                          <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
+                          {this.state.team1 !== this.state.team2 && this.state.team1 !== "" && this.state.team2 !== ""
+                          ? <button className="btn btn-primary form-btn mx-auto button-actions" disabled={this.state.isLoading}>Submit</button>
+                          : <button className="btn btn-primary form-btn mx-auto button-actions" disabled="disabled">Submit</button>
+                          }
+                          
                         </form>       
                         </div>               
                     : null

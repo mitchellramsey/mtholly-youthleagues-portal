@@ -33,7 +33,8 @@ class ParentPortal extends Component {
             sports: [],
             kidInfo: [],
             games: [],
-            practices: []
+            practices: [],
+            errors: ""
         }
 
     }
@@ -48,8 +49,14 @@ class ParentPortal extends Component {
     displayKidInfo = (kidId) => {
         API.retrieveKidInfo(kidId)
            .then(res => {
-               const [ kid, gamesInfo, practiceInfo ] = res.data;
-               this.setState({kidInfo: kid, games: gamesInfo, practices:practiceInfo, showChildTeam: !this.state.showChildTeam})
+               if(res.data.length === 3) {
+                    const [ kid, gamesInfo, practiceInfo ] = res.data;
+                    this.setState({kidInfo: kid, games: gamesInfo, practices:practiceInfo, showChildTeam: !this.state.showChildTeam, showChildForm: false})
+               } else {
+                    const [ kid ] = res.data;
+                    this.setState({kidInfo: kid, showChildTeam: !this.state.showChildTeam, showChildForm: false})
+               }
+               
            })
            .catch(err => console.log(err));
     }
@@ -93,7 +100,8 @@ class ParentPortal extends Component {
     // Toggle child form on click
     toggleChildForm () {
         this.setState({
-            showChildForm: !this.state.showChildForm
+            showChildForm: !this.state.showChildForm,
+            showChildTeam: false
         });
     }
 
@@ -112,10 +120,17 @@ class ParentPortal extends Component {
                         <h1 className="dashboard-title">Parent Dashboard</h1>
                     </div>
                     <hr className="line"></hr>
-                    <div className="paypal col-md-3 ml-auto">
-                        <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
-                        <span className="paypal-text">Pay with PayPal</span>
-                        <PayPal payForChild = {this.payForChild} parentId = {this.props.auth.user.id}/>
+                    <div className="row">
+                        <div className="col-md-8">
+                            <p>All leagues cost $10. Click on the PayPal link to the right to log into your account and pay for each child.
+                                PayPal will automatically choose the first 'Not Paid' child.
+                            </p>
+                        </div>
+                        <div className="paypal col-md-3 ml-auto">
+                            <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
+                            <span className="paypal-text">Pay with PayPal</span>
+                            <PayPal payForChild = {this.payForChild} parentId = {this.props.auth.user.id}/>
+                        </div>
                     </div>
                     <div className="childList">
                         <h3>Registered Children</h3>
@@ -124,7 +139,7 @@ class ParentPortal extends Component {
                                 {this.state.kids.map(kid => (
                                     <li className="list-group-item" key={kid.id}>
                                     <h3>
-                                    <button className="btn btn-primary kidButton button-actions" onClick={() => this.displayKidInfo(kid.id)} value={kid.id}>
+                                    <button className="btn btn-primary kidButton button-actions" onClick={() => this.displayKidInfo(kid.id)}  value={kid.id}>
                                         <h4><strong> {kid.first_name} {kid.last_name} - {kid.age} - {kid.Sport.name} - {kid.paidFor ? "Paid" : "Not Paid"}</strong></h4>
                                     </button>
                                     <DeleteBtn onClick={() => this.removeChild(kid.id)} />
@@ -154,7 +169,9 @@ class ParentPortal extends Component {
                             }
                             {
                                 this.state.showChildTeam
-                                ? <div>
+                                ? this.state.kidInfo.Team
+                                  ?
+                                  <div>
                                     <div className="child-info text-center">
                                         <h3><strong>Team Name: {this.state.kidInfo.Team.teamName}</strong></h3>
                                     </div>
@@ -193,6 +210,9 @@ class ParentPortal extends Component {
                                         )}
                                     </div>
                                   </div>
+                                  : <div className="child-info text-center">
+                                      <h3>Your child is currently not assigned to a team</h3>
+                                    </div>
                                 : null
                             }
                         </div>

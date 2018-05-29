@@ -27,7 +27,7 @@ router.get("/:TeamId", (req, res) => {
         }).then(foundGame => {
             res.json(foundGame)
         });
-        console.log(foundId);
+       
     }); 
 });
 // ----------------------------------------------------------------------------------- //

@@ -44,7 +44,7 @@ class CoachPortal extends Component {
     componentDidMount() {
         this.retrieveTeams(this.props.auth.user.id);
         this.retrievePractices(this.props.auth.user.id);
-        this.retrieveSchedules(this.props.auth.user.id);
+
     }
 
 
@@ -62,21 +62,15 @@ class CoachPortal extends Component {
     retrieveTeams = id => {
         API.coachFindTeams(id)
             .then(res => {
-                console.log(res.data);
-                this.setState({ teams: res.data.Team })
+                const [ coach, games ] = res.data;
+                this.setState({ teams: coach.Team, schedules: games })
             })
                 // Handle errors
                 .catch(err =>console.log(err));
 
     }
 
-    // Retrieve teams with associated coaches
-    retrieveSchedules = (TeamId) => {
-        API.findSchedules(TeamId)
-            .then(res => this.setState({ schedules: res.data }))
-                // Handle errors
-                .catch(err => console.log(err));
-    }
+
 
     // Delete practices
     deleteCoachPractices = id => {
