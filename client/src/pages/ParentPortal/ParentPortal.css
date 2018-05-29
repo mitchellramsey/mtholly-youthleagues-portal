@@ -2,8 +2,12 @@
 /* Classes */
 /* ------------------------------------------------------ */
 .register {
-   float: right;
-   border-radius: 0px;
+    margin-bottom: 10px;
+}
+
+.paypal-text {
+    font-weight: 600;
+    color: firebrick;
 }
 
 .childList {
@@ -24,10 +28,10 @@
 transition: all 0.2s ease-in-out; 
 }
 
-.paypal {
+/* .paypal {
     float: right;
     text-align: center;
-}
+} */
 
 .child-info {
     background-color: #fff;
@@ -36,4 +40,12 @@ transition: all 0.2s ease-in-out;
     padding: 10px;
     border: 1px solid #000;
 
+}
+
+.list-group-item {
+    padding: .75rem 0px;
+}
+
+.kidButton {
+    border: 1px solid #000;
 }

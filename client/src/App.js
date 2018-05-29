@@ -24,6 +24,7 @@ import CoachesPortal from "./pages/CoachesPage/CoachesPage";
 import AdminLogInPage from "./pages/AdminLogInPage/AdminLogInPage";
 import AdminPortal from "./pages/AdminPortal/";
 import Forbidden from "./pages/403/403";
+import NotFound from "./pages/404/404";
 
 // ------------------ CSS ----------------------- //
 import './App.css';
@@ -49,7 +50,7 @@ const App = () => (
             <Route exact path="/adminlogin" component={AdminLogInPage} />
             <Route exact path="/adminportal" component={AdminAuthenticateRoutes(AdminPortal)} />
             <Route exact path="/403" component={Forbidden} />
-            </PersistGate>
+          </PersistGate>
           </Switch>
         </div>
       </Router>
