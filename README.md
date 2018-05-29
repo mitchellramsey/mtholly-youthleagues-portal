@@ -18,7 +18,7 @@ A web application designed for the town of Mount Holly, NC or any town that prov
 * Validator
 * Lodash
 * React Loading Animation
-* React persist NPM Package
+* Redux Persist NPM Package
 * Classnames NPM Package
 * ShortId NPM Package
 * Moment JS
