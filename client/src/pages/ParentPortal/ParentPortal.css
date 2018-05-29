@@ -3,6 +3,7 @@
 /* ------------------------------------------------------ */
 .register {
     margin-bottom: 10px;
+    float: right;
 }
 
 .paypal-text {
@@ -28,10 +29,10 @@
 transition: all 0.2s ease-in-out; 
 }
 
-/* .paypal {
+.paypal {
     float: right;
     text-align: center;
-} */
+}
 
 .child-info {
     background-color: #fff;

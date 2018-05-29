@@ -74,6 +74,7 @@ class LogInForm extends Component {
     render() {
         // Setting the errors variable
         const { isLoading, errors } = this.state;
+        const { isAuthenticated, coach, parent, admin } = this.props.auth;
         
         // Loading Spinner
         if(isLoading) {
@@ -125,6 +126,18 @@ class LogInForm extends Component {
 
                         <h4 className="LoginHeadings">Administrative Access Portal</h4>
                         <span>Log In <Link to="/adminlogin">here</Link></span>
+
+                        { isAuthenticated && coach ? this.context.router.history.push("/coachesportal")
+                            // Else
+                            :
+                            isAuthenticated && parent ? this.context.router.history.push("/parent-portal")
+                            // Else
+                            :
+                            isAuthenticated && admin ? this.context.router.history.push("/adminportal")
+                            // Else
+                            :
+                            null
+                        }
                         
                     </form>
                 </div>

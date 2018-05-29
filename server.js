@@ -33,6 +33,8 @@ if (process.env.NODE_ENV === "production") {
 
 // Requiring controllers
 // ----------------------------------------------------------------------------------- //
+const clientControllers = require("./controllers/client-controllers");
+app.use("/client-controllers", clientControllers);
 
 const signUpControllers = require("./controllers/signUp-controllers");
 app.use("/api/users", signUpControllers)
@@ -94,9 +96,6 @@ app.use("/api/auth/admin", adminLogInControllers);
 
 const payForChild = require("./controllers/payForChild-controller");
 app.use("/api/paid", payForChild);
-
-const clientControllers = require("./controllers/client-controllers");
-app.use("/client-controllers", clientControllers);
 // ----------------------------------------------------------------------------------- //
 
 // ----------------------------------------------------------------------------------- //
