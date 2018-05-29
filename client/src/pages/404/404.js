@@ -29,7 +29,7 @@ class NotFound extends Component {
                             <span className="forbidden-text">Not Found</span>
                         </div>
                         <div className="col-md-6 right-image-div mr-auto">
-                            <img src={NotFoundGif} alt="404 not found image" />
+                            <img src={NotFoundGif} alt="404 not found" />
                         </div>
                         <div className="col-md-6 left-nf-div ml-auto text-center">
                             <span className="forbidden-text">It appears this page is empty. Try

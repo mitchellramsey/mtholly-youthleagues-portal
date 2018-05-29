@@ -110,12 +110,10 @@ class ParentPortal extends Component {
                     <FlashMessageList />
                     <div className="text-center">
                         <h1 className="dashboard-title">Parent Dashboard</h1>
-                    </div>
-                    <hr className="line"></hr>
-                    <div className="paypal col-md-3 ml-auto">
                         <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
-                        <span className="paypal-text">Pay with PayPal</span>
-                        <PayPal payForChild = {this.payForChild} parentId = {this.props.auth.user.id}/>
+                    </div>
+                    <div className="paypal">Pay with PayPal
+                    <PayPal payForChild = {this.payForChild} parentId = {this.props.auth.user.id}/>
                     </div>
                     <div className="childList">
                         <h3>Registered Children</h3>
