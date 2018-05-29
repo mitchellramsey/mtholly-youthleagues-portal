@@ -42,28 +42,19 @@ class CoachPortal extends Component {
 
     // Update state after data is called
     componentDidMount() {
-        this.retrieveTeams(this.props.auth.user.id);
-        this.retrievePractices(this.props.auth.user.id);
+        this.retrieveTeamInfo(this.props.auth.user.id);
+
 
     }
 
 
     
-    // Axios request to get the coaches Id and practices
-    retrievePractices = practiceData =>  {
-        this.props.getPractice(practiceData)
-            .then(res => this.setState({ practices: res.data }))
-                // Handle errors
-                .catch(err => console.log(err));
-
-    }
-
     // Retrieve teams for form dropdown
-    retrieveTeams = id => {
+    retrieveTeamInfo = id => {
         API.coachFindTeams(id)
             .then(res => {
-                const [ coach, games ] = res.data;
-                this.setState({ teams: coach.Team, schedules: games })
+                const [ coach, games, practices ] = res.data;
+                this.setState({ teams: coach.Team, schedules: games, practices: practices })
             })
                 // Handle errors
                 .catch(err =>console.log(err));

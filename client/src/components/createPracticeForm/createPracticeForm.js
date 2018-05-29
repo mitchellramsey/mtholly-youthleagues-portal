@@ -83,7 +83,7 @@ class CreatePracticeForm extends Component {
                 },
                 // Setting errors
                 (err) => this.setState({ errors: err.response.data }),
-                this.props.retrievePractices(this.state.coachId)            
+               
             );
         }
     };
