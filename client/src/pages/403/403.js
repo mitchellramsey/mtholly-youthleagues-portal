@@ -56,7 +56,6 @@ class Forbidden extends Component {
 // ---------------------------------------------------------------------------------------------------- //
 
 // Setting propTypes
-// Setting propTypes
 Forbidden.propTypes = {
     auth: PropTypes.object.isRequired
   }

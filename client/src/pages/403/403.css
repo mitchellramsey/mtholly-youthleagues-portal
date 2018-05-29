@@ -24,5 +24,18 @@
     padding: 0px 6px 0px 3px;
 }
 
+.home-image-link {
+    color: blue;
+    padding: 0px 10px 0px 4px;
+}
+
+.left-nf-div {
+    display: inline;
+}
+
+.right-image-div {
+    display: inline-block;
+}
+
 
 /* ------------------------------------------------------------ */
