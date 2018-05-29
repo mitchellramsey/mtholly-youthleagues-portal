@@ -34,9 +34,6 @@ if (process.env.NODE_ENV === "production") {
 // Requiring controllers
 // ----------------------------------------------------------------------------------- //
 
-const clientControllers = require("./controllers/client-controllers");
-app.use("/client-controllers", clientControllers);
-
 const signUpControllers = require("./controllers/signUp-controllers");
 app.use("/api/users", signUpControllers)
 
@@ -97,11 +94,14 @@ app.use("/api/auth/admin", adminLogInControllers);
 
 const payForChild = require("./controllers/payForChild-controller");
 app.use("/api/paid", payForChild);
+
+const clientControllers = require("./controllers/client-controllers");
+app.use("/client-controllers", clientControllers);
 // ----------------------------------------------------------------------------------- //
 
 // ----------------------------------------------------------------------------------- //
 // Starting the server
-db.sequelize.sync({force:true}).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });

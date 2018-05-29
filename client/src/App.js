@@ -50,7 +50,6 @@ const App = () => (
             <Route exact path="/adminlogin" component={AdminLogInPage} />
             <Route exact path="/adminportal" component={AdminAuthenticateRoutes(AdminPortal)} />
             <Route exact path="/403" component={Forbidden} />
-            <Route component={NotFound} />
           </PersistGate>
           </Switch>
         </div>

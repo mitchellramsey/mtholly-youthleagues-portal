@@ -244,6 +244,11 @@ handleTeamCreate = event => {
             this.getSports();
             this.resetMenu();
             this.setState({isLoading: false});
+
+            this.props.addFlashMessage({
+              type: "Success",
+              text: "You have created a new team"
+            })
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -272,6 +277,11 @@ handleGameCreate = event => {
             this.resetMenu();
             this.setState({isLoading: false, date: "", time: "", location: "", team1: "", team2: ""});
           },
+
+          this.props.addFlashMessage({
+            type: "Success",
+            text: "You have created a new game schedule"
+          }),
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
       );
