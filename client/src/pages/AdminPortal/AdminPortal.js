@@ -151,7 +151,8 @@ createSchedule() {
       showMenu: false,
       createTeam: false,
       assignPeople: false,
-      createSchedule: false
+      createSchedule: false,
+      createSport: false
     })
   }
 
@@ -171,7 +172,7 @@ handleSportCreate = event => {
             (res) => {
               this.getSports();
               this.resetMenu();
-              this.setState({isLoading: false});
+              this.setState({isLoading: false, name: ""});
 
               this.props.addFlashMessage({
                 type: "Success",
@@ -198,7 +199,7 @@ handleAssignPlayer = event => {
           (res) => {
               this.getSports();
               this.resetMenu();
-              this.setState({isLoading: false});
+              this.setState({isLoading: false, playerId: "", playerTeam: ""});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -220,7 +221,7 @@ handleAssignCoach = event => {
           (res) => {
             this.getSports();
             this.resetMenu();
-            this.setState({isLoading: false});
+            this.setState({isLoading: false, coachId: "", coachTeam: ""});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
@@ -269,7 +270,7 @@ handleGameCreate = event => {
           (res) => {
             this.getSports();
             this.resetMenu();
-            this.setState({isLoading: false});
+            this.setState({isLoading: false, date: "", time: "", location: "", team1: "", team2: ""});
           },
           // Setting errors
           (err) => this.setState({ errors: err.response.data, isLoading: false })            
