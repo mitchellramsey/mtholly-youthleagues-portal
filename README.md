@@ -33,7 +33,7 @@ On this page a parent can create a new account or login to an existing account. 
 
 Once a new account is created, you will receive a notification that the sign up was successful.  You can then log into the account. The password field is starred out for your protection. 
 
-![image](https://user-images.githubusercontent.com/32331741/40691825-26233256-637c-11e8-9741-cd450dc237ac.png)
+![image](https://user-images.githubusercontent.com/32331741/40692544-72e755a0-6380-11e8-8071-deb98906e3c5.png)
 
 The parent can register all children that will be participating in a sport. Once the child is registered, it will show the registered child, what sport they are playing, and whether fees have been paid.  Parent's can pay for each child directly from this website using the PayPal API.  If you need to remove a child, you just click on the red X. 
 
