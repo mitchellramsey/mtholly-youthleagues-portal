@@ -27,9 +27,9 @@ A web application designed for the town of Mount Holly, NC or any town that prov
 
 The Landing Page
 
-On this page a parent can create a new account of login to an existing account. It also provides the link to the coaches portal and the administrative portal. Passwords are stored as an encrypted field. 
+On this page a parent can create a new account or login to an existing account. It also provides the link to the coaches portal and the administrative portal. Passwords are stored encrypted.
 
-![image](https://user-images.githubusercontent.com/32331741/40629273-0de3ada4-6298-11e8-9140-901a455b8072.png)
+![image](https://user-images.githubusercontent.com/32331741/40692174-3887b096-637e-11e8-9187-dec850d21fe5.png)
 
 Once a new account is created, you will receive a notification that the sign up was successful.  You can then log into the account. The password field is starred out for your protection. 
 
