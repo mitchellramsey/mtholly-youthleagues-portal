@@ -52,9 +52,15 @@ The parent selects a specific child and the team name, the practice schedule and
 
 ### Coaches Page
 
-The Coach has the ability to see their assigned team, create practices for the team, show the practices for the team and show the team game schedule. 
+The Coach has the ability to see their assigned team and create practices for the team. 
 
 ![image](https://user-images.githubusercontent.com/32331741/40731688-97ef4202-63ff-11e8-867e-2a2cd3c3ff22.png)
+
+The Coach can see the practice schedule for the team. By clicking on the red X, a practice can be cancelled. 
+
+![image](https://user-images.githubusercontent.com/32331741/40744777-9a154936-6423-11e8-91a9-fde1c884504f.png)
+
+The Coach can see the game schedule and their teams opponent.
 
 ![image](https://user-images.githubusercontent.com/32331741/40731773-c59b3c60-63ff-11e8-9d32-14ce8b6bc78d.png)
 
