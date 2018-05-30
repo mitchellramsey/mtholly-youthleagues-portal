@@ -54,9 +54,10 @@ The Coach has the ability to see their assigned team, create practices for the t
 
 The Administrator has the ability to create teams, assign players and coaches to a team, and to create the game schedule. 
 
-![image](https://user-images.githubusercontent.com/32331741/40728025-34f4cb66-63f7-11e8-8974-8deb047c5208.png)  ![image](https://user-images.githubusercontent.com/32331741/40728218-9f406c5a-63f7-11e8-880b-54905b3a5092.png)
+![image](https://user-images.githubusercontent.com/32331741/40728025-34f4cb66-63f7-11e8-8974-8deb047c5208.png)  
 
-![image](https://user-images.githubusercontent.com/32331741/40728375-fa0cbd5a-63f7-11e8-9a41-61471b79bfb7.png)
+![image](https://user-images.githubusercontent.com/32331741/40728218-9f406c5a-63f7-11e8-880b-54905b3a5092.png)
+
 
 
 
