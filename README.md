@@ -8,7 +8,9 @@ Try it Out !      https://mtholly-youthleague-portal.herokuapp.com/
 2. Allow Parents to see when and where the team will practice
 3. Allow Parents access to the game schedule
 4. Allow Coaches to create a practice schedule
-5. Allow Administrators to create a game schedule
+5. Allow Administrators to create teams
+6. Allow Administrators to assign coaches to teams
+7. Allow Administrators to create a game schedule
 
 ### Technologies Used
 * React
@@ -30,11 +32,10 @@ Try it Out !      https://mtholly-youthleague-portal.herokuapp.com/
 
 ### The Landing Page
 
-On this page a parent can create a new account or login to an existing account. It also provides the link to the coaches portal and the administrative portal. Passwords are stored encrypted.
-
+On this page a parent can create a new account or login to an existing account. It also provides the link to the coaches portal and the administrative portal. 
 ![image](https://user-images.githubusercontent.com/32331741/40692490-28827116-6380-11e8-9fa2-206842bbb42f.png)
 
-Once a new account is created, you will receive a notification that the sign up was successful.  You can then log into the account. The password field is starred out for your protection. 
+Once a new account is created, you will receive a notification that the sign up was successful.  You can then log into the account. Passwords are stored encrypted and are starred out on the log in screen for security.  
 
 ![image](https://user-images.githubusercontent.com/32331741/40692570-9b49d040-6380-11e8-8cea-4c8bb5d9da35.png)
 
