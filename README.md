@@ -26,6 +26,7 @@ Try it Out !   https://mtholly-youthleague-portal.herokuapp.com/
 * Moment JS
 * AXios
 * mySQL / Sequelize
+* Heroku
 
 ### The Landing Page
 
