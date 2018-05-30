@@ -37,7 +37,8 @@ Once a new account is created, you will receive a notification that the sign up 
 
 The parent can register all children that will be participating in a sport. Once the child is registered, it will show the registered child, what sport they are playing, and whether fees have been paid.  Parent's can pay for each child directly from this website using the PayPal API.  If you need to remove a child, you just click on the red X. 
 
-![image](https://user-images.githubusercontent.com/32331741/40692094-bfe7bbe0-637d-11e8-9489-ddedd7120703.png)
+![image](https://user-images.githubusercontent.com/32331741/40692633-ee0ba150-6380-11e8-8510-c006072e8924.png)
+
 
 
 
