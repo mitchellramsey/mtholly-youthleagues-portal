@@ -25,7 +25,7 @@ A web application designed for the town of Mount Holly, NC or any town that prov
 * AXios
 * mySQL / Sequelize
 
-The Landing Page
+### The Landing Page
 
 On this page a parent can create a new account or login to an existing account. It also provides the link to the coaches portal and the administrative portal. Passwords are stored encrypted.
 
