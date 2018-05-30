@@ -29,7 +29,7 @@ A web application designed for the town of Mount Holly, NC or any town that prov
 
 On this page a parent can create a new account or login to an existing account. It also provides the link to the coaches portal and the administrative portal. Passwords are stored encrypted.
 
-![image](https://user-images.githubusercontent.com/32331741/40692174-3887b096-637e-11e8-9187-dec850d21fe5.png)
+![image](https://user-images.githubusercontent.com/32331741/40692490-28827116-6380-11e8-9fa2-206842bbb42f.png)
 
 Once a new account is created, you will receive a notification that the sign up was successful.  You can then log into the account. The password field is starred out for your protection. 
 
