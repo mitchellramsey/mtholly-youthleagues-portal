@@ -3,12 +3,13 @@
 /* ------------------------------------------------------ */
 .register {
     margin-bottom: 10px;
-    float: right;
+  
 }
 
 .paypal-text {
     font-weight: 600;
     color: firebrick;
+    margin: 0;
 }
 
 .childList {
@@ -30,7 +31,7 @@ transition: all 0.2s ease-in-out;
 }
 
 .paypal {
-    float: right;
+  
     text-align: center;
 }
 

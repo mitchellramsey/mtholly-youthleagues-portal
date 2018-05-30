@@ -160,46 +160,20 @@ class CoachPortal extends Component {
                         {/* Show schedule div */}
                         { this.state.showPractice ? 
                             <div className="coachDataDiv col-md-8 mx-auto homepage">
-                                <div className="row text-center">
-                                    <div className="col-md-3">
-                                            <span className="data-header">Date</span>
-                                        </div>
-                                        <div className="col-md-2">
-                                            <span className="data-header">Time</span>
-                                        </div>
-                                        <div className="col-md-3">
-                                            <span className="data-header">Location</span>
-                                        </div>
-                                        <div className="col-md-3">
-                                            <span className="data-header">Association</span>
-                                        </div>
-                                        <div className="col-md-1">
-                                            <span className="data-header">X</span>
-                                        </div>
-                                    </div>
-                                 
+                                <div className="text-center">
+                                    <h5><stronger>Date - Time - Location - Association - X</stronger></h5>
+                                </div>
+                                <div className="text-center">
+                                    <ul className="coachDataId" >
                                     {this.state.practices.map(practice => (
-                                            <ul className="coachDataId" key={practice.id}>
-                                                    <div className="col-md-3 coachListItem">
-                                                            <li className="dateTime">{moment(practice.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")}</li>
-                                                    </div>
-                                                    <div className="col-md-2 coachListItem">
-                                                            <li className="dateTime">{moment(practice.time, "HH:mm:ss").format("hh:MM p")}</li>
-                                                    </div>
-                                                    <div className="col-md-3 coachListItem">
-                                                            <li className="dateTime">{practice.location}</li>
-                                                    </div>
-                                                    <div className="col-md-3 coachListItem">
-                                                            <li className="dateTime">{practice.Team.teamName}</li>
-                                                    </div> 
-                                                    <div className="col-md-1 coachListItem">
-                                                            <DeleteBtn onClick={() => this.deleteCoachPractices(practice.id)}/>
-                                                    </div> 
-                                                    <hr className="line"></hr>
-                                            </ul>
+                                        <li className="dateTime" key={practice.id}>
+                                            {moment(practice.date, "YYYY-MM-DDTHH:mm:ss.SSS").format("MM/DD/YY")} - {moment(practice.time, "HH:mm:ss").format("hh:MM p")} - {practice.location} - {this.state.teams.teamName} - <DeleteBtn onClick={() => this.deleteCoachPractices(practice.id)}/>
+                                        </li>
                                     ))}
-                                
-                            </div>
+
+                                    </ul>
+                                </div>
+                            </div>     
                         // If not toggled to true, hide the form
                             :null
                         }

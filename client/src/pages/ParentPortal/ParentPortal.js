@@ -128,7 +128,7 @@ class ParentPortal extends Component {
                         </div>
                         <div className="paypal col-md-3 ml-auto">
                             <button className="btn btn-primary register button-actions" onClick={() => this.toggleChildForm()}>Register Child</button>
-                            <span className="paypal-text">Pay with PayPal</span>
+                            <p className="paypal-text">Pay with PayPal</p>
                             <PayPal payForChild = {this.payForChild} parentId = {this.props.auth.user.id}/>
                         </div>
                     </div>
