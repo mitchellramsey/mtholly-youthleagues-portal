@@ -44,16 +44,17 @@ The parent can register all children that will be participating in a sport. Once
 
 The parent selects a specific child and the team name, the practice schedule and the game schedule will be displayed. 
 
-![image](https://user-images.githubusercontent.com/32331741/40731009-1dcbf16a-63fe-11e8-8485-153ff6a8c36c.png)
+![image](https://user-images.githubusercontent.com/32331741/40731947-2e154a92-6400-11e8-83ff-4e2a6b6ec380.png)
+![image](https://user-images.githubusercontent.com/32331741/40731857-fb3468ce-63ff-11e8-85e0-2f4962000751.png)
 
 
 ### Coaches Page
 
 The Coach has the ability to see their assigned team, create practices for the team, show the practices for the team and show the team game schedule. 
 
-![image](https://user-images.githubusercontent.com/32331741/40729415-4bea7598-63fa-11e8-8f97-2773b678ab38.png)
+![image](https://user-images.githubusercontent.com/32331741/40731688-97ef4202-63ff-11e8-867e-2a2cd3c3ff22.png)
 
-![image](https://user-images.githubusercontent.com/32331741/40729952-8be532ea-63fb-11e8-9641-de21ebac8f61.png)
+![image](https://user-images.githubusercontent.com/32331741/40731773-c59b3c60-63ff-11e8-9d32-14ce8b6bc78d.png)
 
 
 ### Adminstration Page
