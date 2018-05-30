@@ -33,6 +33,7 @@ Try it Out !      https://mtholly-youthleague-portal.herokuapp.com/
 ### The Landing Page
 
 On this page a parent can create a new account or login to an existing account. It also provides the link to the coaches portal and the administrative portal. 
+
 ![image](https://user-images.githubusercontent.com/32331741/40692490-28827116-6380-11e8-9fa2-206842bbb42f.png)
 
 Once a new account is created, you will receive a notification that the sign up was successful.  You can then log into the account. Passwords are stored encrypted and are starred out on the log in screen for security.  
