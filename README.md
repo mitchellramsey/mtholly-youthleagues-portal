@@ -1,6 +1,8 @@
 # My Holly Youth Leagues Portal
 A web application designed for the town of Mount Holly, NC or any town that provides youth athletic leagues. This site will be used for parents to sign up their children and as an information resource for parents, coaches, and league managers.
 
+https://mtholly-youthleague-portal.herokuapp.com/  "Mt. Holly Youth League Portal" 
+
 ### The purpose of this application: 
 1. Allow Parents to register their child for a sport
 2. Allow Parents to see when and where the team will practice
@@ -39,8 +41,19 @@ The parent can register all children that will be participating in a sport. Once
 
 ![image](https://user-images.githubusercontent.com/32331741/40692633-ee0ba150-6380-11e8-8510-c006072e8924.png)
 
+### Coaches Page
 
 
+
+### Adminstration Page
+
+The Administrator has the ability to create teams, assign players and coaches to a team, and to create the game schedule. 
+
+![image](https://user-images.githubusercontent.com/32331741/40728025-34f4cb66-63f7-11e8-8974-8deb047c5208.png)
+
+![image](https://user-images.githubusercontent.com/32331741/40728218-9f406c5a-63f7-11e8-880b-54905b3a5092.png)
+
+![image](https://user-images.githubusercontent.com/32331741/40728375-fa0cbd5a-63f7-11e8-9a41-61471b79bfb7.png)
 
 
 
