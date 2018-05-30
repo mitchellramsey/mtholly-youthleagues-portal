@@ -73,7 +73,11 @@ The Administrator has the ability to create teams, assign players and coaches to
 
 ![image](https://user-images.githubusercontent.com/32331741/40728218-9f406c5a-63f7-11e8-880b-54905b3a5092.png)
 
+### Footer
 
+The Footer on each page provides links to external resources that may be benificial to the parents.
+
+![image](https://user-images.githubusercontent.com/32331741/40745796-708fc584-6426-11e8-91ab-3b7c112b171b.png)
 
 ### Database
 
