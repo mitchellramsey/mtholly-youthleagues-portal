@@ -27,11 +27,19 @@ A web application designed for the town of Mount Holly, NC or any town that prov
 
 The Landing Page
 
-On this oage a parent can create a new account of login to an existing account. It also provides the link to the coaches portal and the administrative portal. Passwords are stored as an encrypted field. 
+On this page a parent can create a new account of login to an existing account. It also provides the link to the coaches portal and the administrative portal. Passwords are stored as an encrypted field. 
 
 ![image](https://user-images.githubusercontent.com/32331741/40629273-0de3ada4-6298-11e8-9140-901a455b8072.png)
 
-Once you create a new account, you will receive a notification that the sign up was successful.  You can then log into the account. 
+Once a new account is created, you will receive a notification that the sign up was successful.  You can then log into the account. The password field is starred out for your protection. 
+
+![image](https://user-images.githubusercontent.com/32331741/40691825-26233256-637c-11e8-9741-cd450dc237ac.png)
+
+The parent can register all children that will be participating in a sport. Once the child is registered, it will show the registered child, what sport they are playing, and whether fees have been paid.  Parent's can pay for each child directly from this website using the PayPal API.  If you need to remove a child, you just click on the red X. 
+
+![image](https://user-images.githubusercontent.com/32331741/40692094-bfe7bbe0-637d-11e8-9489-ddedd7120703.png)
+
+
 
 
 
