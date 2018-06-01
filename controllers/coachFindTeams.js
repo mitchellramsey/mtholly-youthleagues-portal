@@ -2,7 +2,8 @@
 const {
 	Team,
 	Coach, 
-	GamesInfo
+	GamesInfo,
+	Practice
 } = require("../models");
 // Dependencies
 const express = require("express");
@@ -29,7 +30,14 @@ router.get("/:id", (req, res) => {
             }
         }).then(foundGames => {
 			data.push(foundGames);
-            res.json(data);
+            Practice.findAll({
+				where: {
+					TeamId: coachInfo.TeamId
+				}
+			}).then(practices => {
+				data.push(practices);
+				res.json(data);
+			});
         });
 	})
 });
