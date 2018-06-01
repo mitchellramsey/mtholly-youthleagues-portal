@@ -1,6 +1,7 @@
 // Imports
 import React from "react";
 import { Component } from "react";
+import { Link } from "react";
 
 // Css
 import "../Nav/nav.css";
@@ -17,31 +18,31 @@ class Footer extends Component {
                         <div className="col-md-4 text-center">
                             <span className="resources">Resources</span>
                             <br />
-                            <a href="http://www.biomechaniks.com/training_page/youth-athletic-development">Bio Mechaniks Sports Training</a>
+                            <Link to="http://www.biomechaniks.com/training_page/youth-athletic-development">Bio Mechaniks Sports Training</Link>
                             <br />
-                            <a href="http://www.mycoreathletics.com/">Core Athletics</a>
+                            <Link to="http://www.mycoreathletics.com/">Core Athletics</Link>
                             <br />
-                            <a href="http://www.mthollyoptimist.com/Default.aspx?tabid=479740&mid=502447&newskeyid=HN1&newsid=40118267&ctl=newsdetail">$10 Sport Physicals</a>
+                            <Link to="http://www.mthollyoptimist.com/Default.aspx?tabid=479740&mid=502447&newskeyid=HN1&newsid=40118267&ctl=newsdetail">$10 Sport Physicals</Link>
                             <br />
-                            <a href="https://www.medexpress.com/services-and-treatment/sports-school-physicals.html">Low Cost Sport Physicals</a>
+                            <Link to="https://www.medexpress.com/services-and-treatment/sports-school-physicals.html">Low Cost Sport Physicals</Link>
                             <br />
                         </div>
 
                         <div className="col-md-4 text-center">
                             <span className="resources">Quick Links</span>
                             <br />
-                            <a href="http://www.mtholly.us/">City of Mount Holly</a>
+                            <Link to="http://www.mtholly.us/">City of Mount Holly</Link>
                             <br />
-                            <a href="http://www.gastongov.com/">Gaston County</a>
+                            <Link to="http://www.gastongov.com/">Gaston County</Link>
                             <br />
-                            <a href="http://www.mtholly.us/parks_recreation.php?Parks-Recreation-1">Mt Holly Parks and Rec</a>
+                            <Link to="http://www.mtholly.us/parks_recreation.php?Parks-Recreation-1">Mt Holly Parks and Rec</Link>
                             <br/ >
                             
                         </div>
                         <div className="col-md-4 text-center">
                             <span className="resources">Docs</span>
                             <br></br>
-                            <a href="https://github.com/mramsey1992/mtholly-youthleagues-portal">Website Documentation</a>
+                            <Link to="https://github.com/mramsey1992/mtholly-youthleagues-portal">Website Documentation</Link>
                             <br></br>
                         </div>
 
