@@ -5,15 +5,12 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const db = require('./models');
 const logger = require("morgan");
-const flash = require("connect-flash");
 
 // ----------------------------------------------------------------------------------- //
 
 // Initializing Express
 let app = express();
 const PORT = process.env.PORT || 3001;
-// Setting up flash messages for session users
-app.use(flash());
 // Serving up the public folder to give static content
 app.use(express.static("client/build"));
 
@@ -96,6 +93,7 @@ app.use("/api/auth/admin", adminLogInControllers);
 
 const payForChild = require("./controllers/payForChild-controller");
 app.use("/api/paid", payForChild);
+
 // ----------------------------------------------------------------------------------- //
 
 // ----------------------------------------------------------------------------------- //

@@ -1,7 +1,7 @@
 // Imports
 import React from "react";
 import { Component } from "react";
-import { Link } from "react";
+import { Link } from "react-router-dom";
 
 // Css
 import "../Nav/nav.css";
@@ -36,7 +36,7 @@ class Footer extends Component {
                             <Link to="http://www.gastongov.com/">Gaston County</Link>
                             <br />
                             <Link to="http://www.mtholly.us/parks_recreation.php?Parks-Recreation-1">Mt Holly Parks and Rec</Link>
-                            <br/ >
+                            <br />
                             
                         </div>
                         <div className="col-md-4 text-center">

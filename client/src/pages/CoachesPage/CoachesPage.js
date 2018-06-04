@@ -43,12 +43,8 @@ class CoachPortal extends Component {
     // Update state after data is called
     componentDidMount() {
         this.retrieveTeamInfo(this.props.auth.user.id);
-
-
     }
 
-
-    
     // Retrieve teams for form dropdown
     retrieveTeamInfo = id => {
         API.coachFindTeams(id)
@@ -60,8 +56,6 @@ class CoachPortal extends Component {
                 .catch(err =>console.log(err));
 
     }
-
-
 
     // Delete practices
     deleteCoachPractices = id => {
